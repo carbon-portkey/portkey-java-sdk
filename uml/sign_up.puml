@@ -1,0 +1,35 @@
+@startuml sign_up
+class SignUpService {
+    - state: ISignUpState
+    + setState (state: ISignUpState): void
+    + sendCode(params: AnyParams): boolean throws AElfException
+    + verifyCode(params: AnyParams): Wallet throws AElfException
+}
+
+class Wallet {
+    ...
+}
+
+interface ISignUpState {
+    + sendCode(): ISignUpState
+    + verifyCode(): ISignUpState
+}
+
+class SendCodeState implements ISignUpState {
+    + sendCode(): ISignUpState
+    + verifyCode(): ISignUpState
+}
+
+class VerifyCodeState implements ISignUpState {
+    + sendCode(): ISignUpState
+    + verifyCode(): ISignUpState
+}
+
+class AnyState implements ISignUpState {
+    ...
+}
+
+ISignUpState --> SignUpService
+Wallet --> SignUpService
+
+@enduml

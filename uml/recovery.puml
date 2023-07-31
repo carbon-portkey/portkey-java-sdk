@@ -1,0 +1,44 @@
+@startuml recovery
+class RecoveryService {
+    - state : IRecoveryState
+    - guardians: List<Guardian>
+    - verifiedGuardians: List<Guardian>
+    + setState: (state: IRecoveryState) => void
+    + constructor(params): this
+    + getRemainGuardians(): List<Guardian>
+    + isFullFilled(): boolean
+    + getNextGuardian(): Guardian
+    + verifyGuardian(params): boolean
+    + finish(): Wallet throws AElfException
+}
+
+class Guardian {
+    ...
+}
+
+interface IRecoveryState {
+    + send(params): IRecoveryState
+    + verify(params): IRecoveryState
+}
+
+class InitRecoveryState implements IRecoveryState {
+    + send(params): SendRecoveryState
+    + verify(params): InitRecoveryState
+}
+
+class VerifyRecoveryState implements IRecoveryState {
+    + send(params): SendRecoveryState
+    + verify(params): VerifyRecoveryState
+}
+
+class FullfilledRecoveryState implements IRecoveryState {
+    + send(params): FullfilledRecoveryState
+    + verify(params): FullfilledRecoveryState
+}
+
+Guardian --> RecoveryService
+IRecoveryState --> RecoveryService
+
+
+
+@enduml

@@ -1,0 +1,27 @@
+@startuml logger
+
+interface PortkeyClient {
+    constructor(logger?: ILogger, ...) : this
+    ...
+}
+
+interface ILogger {
+    + log(message: string, exception: AElfException): void
+}
+
+' if ILogger is not provided, use DefaultLogger
+class DefaultLogger implements ILogger {
+    + log(message: string, exception: AElfException): void
+}
+
+' msg is extended from its super class
+class AElfException {
+    + resultCode: int
+    - msg: string
+    + getMessage(): string
+}
+
+AElfException --> ILogger
+ILogger --> PortkeyClient
+
+@enduml

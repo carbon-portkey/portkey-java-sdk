@@ -1,0 +1,75 @@
+@startuml storage
+class StorageProvider {
+    - manager: AbstractStorageManager
+    + getStorageManager: () => AbstractStorageManager
+    + setOrInitDefaultManager: (platform:String, @Nullable encryptKey, @Nullable manager: AbstractStorageManager) => void
+    - initDefaultStorageManager: (platform: String) => AbstractStorageManager
+}
+
+note bottom of StorageProvider
+    public void setOrInitDefaultManager(String platform, @Nullable AbstractStorageManager manager){
+        this.manager=(manager == null ? this.initDefaultStorageManager(platform) : manager);
+    }
+end note
+
+interface IStorageBehaviour {
+    + get:(word: string) => string
+    + set:(word: string, value: string) => void
+    + read:(word: string) => string
+    + remove:(word: string) => void
+    + headContent: (word:string, content:string) => boolean
+}
+
+abstract class AbstractStorageManager implements IStorageBehaviour {
+    - ecrypter: IEncrypter
+    + constructor: (@Nullable encrypter:IEncrypter, @Nullable encryptKey) => this
+    - getEncrypter: () => IEncrypter
+    + exportEncryptKey: () => string
+    + {abstract} get:(word: string) => string
+    + {abstract} set:(word: string, value: string) => void
+    + {abstract} read:(word: string) => string
+    + {abstract} remove:(word: string) => void
+    + {abstract} headContent: (word:string, content:string) => boolean
+}
+
+note top of AbstractStorageManager
+    public AbstractStorageManager(@Nullable IEncrypter encrypter){
+        this.ecrypter = (encrypter == null ? this.getEncrypter() : encrypter);
+    }
+
+    protected IEncrypter getEncrypter(){
+        if(this.ecrypter == null){
+            this.ecrypter = new AElfEncrypter();
+        }
+        return this.ecrypter;
+    }
+end note
+
+class DefaultStorageManager extends AbstractStorageManager {
+    ...
+}
+
+class AndroidStorageManager extends AbstractStorageManager {
+    ...
+}
+
+interface IEncrypter {
+    + encrypt:(word: string, encryptKey:string) => string
+    + decrypt:(word: string, encryptKey:string) => string
+    + exportEncryptKey: () => string
+    + importEncryptKey: (encryptKey:string) => void
+}
+
+class AElfEncrypter implements IEncrypter {
+    - encryptKey: string
+    + constructor: (@Nullable encryptKey:string) => this
+    + encrypt:(word: string, encryptKey:string) => string
+    + decrypt:(word: string, encryptKey:string) => string
+    + exportEncryptKey: () => string
+    + importEncryptKey: (encryptKey:string) => void
+}
+
+AbstractStorageManager -> StorageProvider
+IEncrypter -> AbstractStorageManager
+
+@enduml
