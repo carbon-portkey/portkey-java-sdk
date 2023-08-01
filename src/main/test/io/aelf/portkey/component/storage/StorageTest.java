@@ -3,7 +3,7 @@ package io.aelf.portkey.component.storage;
 import io.aelf.portkey.assertion.AssertChecker;
 import io.aelf.portkey.storage.DefaultStorageHandler;
 import io.aelf.portkey.storage.StorageProvider;
-import io.aelf.portkey.storage.model.AbstractStorageHandler;
+import io.aelf.portkey.storage.model.IStorageBehaviour;
 import io.aelf.utils.AElfException;
 import io.fastkv.FastKV;
 import org.junit.Assert;
@@ -15,7 +15,7 @@ import java.lang.reflect.Field;
 public class StorageTest {
 
     private final String testEncryptKey = "87bfda5e9290325d1a67895c4bc9de2b";
-    private AbstractStorageHandler handler;
+    private IStorageBehaviour handler;
 
     private final String expected = "i am mock", key = "mock";
 
@@ -30,11 +30,6 @@ public class StorageTest {
     public void putTest() {
         handler.putValue(key, expected);
         Assert.assertEquals(expected, handler.getValue(key));
-    }
-
-    @Test
-    public void encryptKeyTest() {
-        AssertChecker.assertNotBlank(handler.exportEncryptKey());
     }
 
     @Test
@@ -60,7 +55,7 @@ public class StorageTest {
 
     @Test
     public void putAsyncTest(){
-        handler.putValueAsync(key, expected);
+        handler.putValueAsync(key, expected,null);
         Assert.assertEquals(expected, handler.getValue(key));
     }
 

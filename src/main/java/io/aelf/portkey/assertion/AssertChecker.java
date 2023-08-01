@@ -37,8 +37,12 @@ public class AssertChecker {
                 new AElfException(ResultCode.INTERNAL_ERROR, "expected not equals but got equals"));
     }
 
-    public static void assertNotEquals(@NotNull Object anything, @NotNull Object other, @Nullable AElfException preset)
+    public static void assertNotEquals(@Nullable Object anything, @Nullable Object other, @NotNull AElfException preset)
             throws RuntimeException {
+        if (anything == null) {
+            if (other != null) throw preset;
+            return;
+        }
         innerThrow(anything.equals(other), preset);
     }
 

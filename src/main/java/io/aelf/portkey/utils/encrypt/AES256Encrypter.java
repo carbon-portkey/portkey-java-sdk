@@ -1,7 +1,10 @@
 package io.aelf.portkey.utils.encrypt;
 
+import io.aelf.portkey.utils.log.GlobalLogger;
 import io.aelf.utils.AElfException;
 import org.apache.http.util.TextUtils;
+import org.apache.logging.log4j.core.util.Assert;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import javax.crypto.Cipher;
@@ -26,16 +29,17 @@ public class AES256Encrypter implements IEncrypter {
             byte[] keyBytes = secretKey.getEncoded();
             return bytesToHex(keyBytes);
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            AElfException ex = new AElfException(e);
+            GlobalLogger.getLogger().e("you are using wrong kind of algorithm.", ex);
+            throw ex;
         }
-        return null;
     }
 
     public boolean isValidEncryptKey(String encryptKey) {
         if (TextUtils.isEmpty(encryptKey)) return false;
         try {
-            getCipher(encryptKey);
-            return true;
+            Cipher cipher = getCipher(encryptKey, Cipher.ENCRYPT_MODE);
+            return Assert.isNonEmpty(cipher);
         } catch (Exception e) {
             return false;
         }
@@ -44,35 +48,37 @@ public class AES256Encrypter implements IEncrypter {
     public String encryptMsg(@NotNull String msg, @NotNull String encryptKey) {
         if (TextUtils.isEmpty(msg)) return msg;
         try {
-            Cipher cipher = getCipher(encryptKey);
+            Cipher cipher = getCipher(encryptKey, Cipher.ENCRYPT_MODE);
             byte[] inputBytes = msg.getBytes(StandardCharsets.UTF_8);
             byte[] encrypted = cipher.doFinal(inputBytes);
             return Base64.getEncoder().encodeToString(encrypted);
         } catch (Exception e) {
-            throw new AElfException(e);
+            AElfException ex = new AElfException(e);
+            GlobalLogger.getLogger().e("encrypt fail:", ex);
+            throw ex;
         }
     }
 
-    private Cipher getCipher(@NotNull String key) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+    @Contract(pure = true)
+    private static Cipher getCipher(@NotNull String key, int mode) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         byte[] keyBytes = key.getBytes(StandardCharsets.UTF_8);
         SecretKeySpec secretKeySpec = new SecretKeySpec(keyBytes, "AES");
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
+        cipher.init(mode, secretKeySpec);
         return cipher;
     }
 
     public String decryptMsg(@NotNull String msg, @NotNull String encryptKey) {
         if (TextUtils.isEmpty(msg)) return msg;
-        try{
-            byte[] keyBytes = encryptKey.getBytes(StandardCharsets.UTF_8);
-            SecretKeySpec secretKeySpec = new SecretKeySpec(keyBytes, "AES");
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
+        try {
+            Cipher cipher = getCipher(encryptKey, Cipher.DECRYPT_MODE);
             byte[] encryptedBytes = Base64.getDecoder().decode(msg);
             byte[] decrypted = cipher.doFinal(encryptedBytes);
             return new String(decrypted, StandardCharsets.UTF_8);
-        }catch (Exception e){
-            throw new AElfException(e);
+        } catch (Exception e) {
+            AElfException ex = new AElfException(e);
+            GlobalLogger.getLogger().e("encrypt fail:", ex);
+            throw ex;
         }
     }
 }

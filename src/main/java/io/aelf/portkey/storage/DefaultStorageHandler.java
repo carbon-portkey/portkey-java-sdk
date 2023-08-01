@@ -1,5 +1,10 @@
 package io.aelf.portkey.storage;
 
+import io.aelf.internal.AsyncResult;
+import io.aelf.internal.ISuccessCallback;
+import io.aelf.portkey.async.AsyncTaskCaller;
+import io.aelf.portkey.utils.log.GlobalLogger;
+import io.aelf.utils.AElfException;
 import org.apache.http.util.TextUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -10,12 +15,12 @@ import org.jetbrains.annotations.Nullable;
 
 public class DefaultStorageHandler extends AbstractStorageHandler {
 
-    public DefaultStorageHandler(){
-       super();
+    public DefaultStorageHandler() {
+        super();
     }
 
-    public DefaultStorageHandler(@Nullable String encryptKey){
-        super(null,encryptKey);
+    public DefaultStorageHandler(@Nullable String encryptKey) {
+        super(null, encryptKey);
     }
 
     private final FastKV kvProvider = new FastKV.Builder(
@@ -30,9 +35,22 @@ public class DefaultStorageHandler extends AbstractStorageHandler {
         kvProvider.putString(key, encrypter.encryptMsg(value, encryptKey));
     }
 
-    public void putValueAsync(@NotNull String key, String value) {
-        // TODO finish the putValueAsync function
-        putValue(key,value);
+    @Override
+    public void putValueAsync(@NotNull String key, String value, @Nullable ISuccessCallback<Boolean> callback) {
+        AsyncTaskCaller.getInstance().asyncCall(() -> {
+            try {
+                putValue(key, value);
+                return new AsyncResult<>(Boolean.TRUE);
+            } catch (Throwable e) {
+                GlobalLogger.getLogger().e(
+                        "put fail. key:"
+                                .concat(key)
+                                .concat(", value: ")
+                                .concat(value),
+                        new AElfException(e));
+                return new AsyncResult<>(Boolean.FALSE);
+            }
+        }, callback, null);
     }
 
     public boolean headValue(@NotNull String key, String value) {
