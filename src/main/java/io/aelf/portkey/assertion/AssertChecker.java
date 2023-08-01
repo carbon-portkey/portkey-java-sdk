@@ -55,14 +55,13 @@ public class AssertChecker {
     }
 
     public static void assertNotThrow(TestFunction function, @Nullable AElfException preset) throws RuntimeException {
+        boolean result;
         try {
-            boolean result = function.test();
-            if (!result) {
-                throw new RuntimeException("assert error");
-            }
+            result = function.test();
         } catch (Exception e) {
-            innerThrow(true, preset);
+            result = false;
         }
+        innerThrow(result, preset);
     }
 
     protected static void innerThrow(boolean condition, @Nullable AElfException preset) throws RuntimeException {

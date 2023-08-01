@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: project init">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/assertion/AssertChecker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/assertion/TestFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/IRetrofitProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/RetrofitProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/test/java/io.aelf.portkey/component/AssertTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uml/logger.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uml/recovery.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uml/sign_up.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uml/storage.puml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/assertion/AssertTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/RetrofitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/assertion/AssertChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/assertion/AssertChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/RetrofitProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/RetrofitProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/java/io.aelf.portkey/component/AssertTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,24 +53,90 @@
       <recent name="io.aelf.portkey.network" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.RetrofitTest.RetrofitFailGetTest">
     <configuration name="AssertTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="portkey-java-sdk" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="component.*" />
+          <option name="PATTERN" value="java.io.aelf.portkey.component.assertion.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="component" />
-      <option name="MAIN_CLASS_NAME" value="component.AssertTest" />
+      <option name="PACKAGE_NAME" value="java.io.aelf.portkey.component.assertion" />
+      <option name="MAIN_CLASS_NAME" value="java.io.aelf.portkey.component.assertion.AssertTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RetrofitTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="portkey-java-sdk" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.aelf.portkey.component.network.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.aelf.portkey.component.network" />
+      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.network.RetrofitTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RetrofitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="portkey-java-sdk" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="java.io.aelf.portkey.component.network.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="java.io.aelf.portkey.component.network" />
+      <option name="MAIN_CLASS_NAME" value="java.io.aelf.portkey.component.network.RetrofitTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RetrofitTest.RetrofitFailGetTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="portkey-java-sdk" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.aelf.portkey.component.network.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.aelf.portkey.component.network" />
+      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.network.RetrofitTest" />
+      <option name="METHOD_NAME" value="RetrofitFailGetTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RetrofitTest.RetrofitFailInitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="portkey-java-sdk" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.aelf.portkey.component.network.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.aelf.portkey.component.network" />
+      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.network.RetrofitTest" />
+      <option name="METHOD_NAME" value="RetrofitFailInitTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RetrofitTest.RetrofitFailGetTest" />
+        <item itemvalue="JUnit.RetrofitTest.RetrofitFailInitTest" />
+        <item itemvalue="JUnit.RetrofitTest (1)" />
+        <item itemvalue="JUnit.RetrofitTest" />
         <item itemvalue="JUnit.AssertTest" />
       </list>
     </recent_temporary>
@@ -99,7 +158,15 @@
       <option name="project" value="LOCAL" />
       <updated>1690771017010</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: project init">
+      <option name="closed" value="true" />
+      <created>1690798045063</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1690798045063</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

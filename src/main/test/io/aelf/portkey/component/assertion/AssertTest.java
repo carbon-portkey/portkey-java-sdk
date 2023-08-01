@@ -1,4 +1,4 @@
-package component;
+package io.aelf.portkey.component.assertion;
 
 import io.aelf.portkey.assertion.AssertChecker;
 import io.aelf.utils.AElfException;
