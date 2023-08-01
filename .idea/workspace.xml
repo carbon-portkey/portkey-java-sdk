@@ -4,20 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: basic assert settings">
-      <change afterPath="$PROJECT_DIR$/portkey-sdk.kva" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portkey-sdk.kvb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/GlobalConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/DefaultStorageHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/StorageProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/model/AbstractStorageHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/model/IStorageBehaviour.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/Platform.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/encrypt/AES256Encrypter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/encrypt/IEncrypter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/storage/StorageTest.java" afterDir="false" />
+    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: import async props from AElf.Java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/storage/StorageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/storage/StorageTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +54,7 @@
       <recent name="io.aelf.portkey.network" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.StorageTest.putAsyncTest">
+  <component name="RunManager" selected="JUnit.StorageTest">
     <configuration name="StorageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="portkey-java-sdk" />
       <extension name="coverage">
@@ -147,10 +136,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.StorageTest.putAsyncTest" />
         <item itemvalue="JUnit.StorageTest" />
-        <item itemvalue="JUnit.StorageTest.headTest" />
         <item itemvalue="JUnit.StorageTest.useWrongKeyTest" />
+        <item itemvalue="JUnit.StorageTest.putAsyncTest" />
+        <item itemvalue="JUnit.StorageTest.headTest" />
         <item itemvalue="JUnit.StorageTest.stringEncryptedAndNotTheSameTest" />
       </list>
     </recent_temporary>
@@ -188,7 +177,23 @@
       <option name="project" value="LOCAL" />
       <updated>1690869113362</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: finish basic storage config">
+      <option name="closed" value="true" />
+      <created>1690880817111</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1690880817111</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat: import async props from AElf.Java">
+      <option name="closed" value="true" />
+      <created>1690889589560</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1690889589560</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -206,21 +211,17 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="feat: project init" />
     <MESSAGE value="feat: basic assert settings" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: basic assert settings" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/DefaultStorageHandler.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="feat: finish basic storage config" />
+    <MESSAGE value="feat: import async props from AElf.Java" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: import async props from AElf.Java" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/portkey_java_sdk$StorageTest.ic" NAME="StorageTest 覆盖结果" MODIFIED="1690890281244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>io.aelf.portkey.component.storage.*</FILTER>
+    </SUITE>
   </component>
 </project>

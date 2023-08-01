@@ -59,4 +59,9 @@ public class StorageTest {
         Assert.assertEquals(expected, handler.getValue(key));
     }
 
+    @Test
+    public void manyPutRequestPressureTest(){
+
+    }
+
 }
