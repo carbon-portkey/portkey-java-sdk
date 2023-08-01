@@ -4,13 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: project init">
-      <change afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/assertion/AssertTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/RetrofitTest.java" afterDir="false" />
+    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: basic assert settings">
+      <change afterPath="$PROJECT_DIR$/portkey-sdk.kva" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/portkey-sdk.kvb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/GlobalConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/DefaultStorageHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/StorageProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/model/AbstractStorageHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/model/IStorageBehaviour.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/Platform.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/encrypt/AES256Encrypter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/encrypt/IEncrypter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/storage/StorageTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/assertion/AssertChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/assertion/AssertChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/RetrofitProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/RetrofitProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/test/java/io.aelf.portkey/component/AssertTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +27,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -39,10 +47,14 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "project.structure.last.edited": "项目",
+    "project.structure.last.edited": "库",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
@@ -53,79 +65,81 @@
       <recent name="io.aelf.portkey.network" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RetrofitTest.RetrofitFailGetTest">
-    <configuration name="AssertTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.StorageTest.putAsyncTest">
+    <configuration name="StorageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="portkey-java-sdk" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="java.io.aelf.portkey.component.assertion.*" />
+          <option name="PATTERN" value="io.aelf.portkey.component.storage.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="java.io.aelf.portkey.component.assertion" />
-      <option name="MAIN_CLASS_NAME" value="java.io.aelf.portkey.component.assertion.AssertTest" />
+      <option name="PACKAGE_NAME" value="io.aelf.portkey.component.storage" />
+      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.storage.StorageTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RetrofitTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StorageTest.headTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="portkey-java-sdk" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="io.aelf.portkey.component.network.*" />
+          <option name="PATTERN" value="io.aelf.portkey.component.storage.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="io.aelf.portkey.component.network" />
-      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.network.RetrofitTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RetrofitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="portkey-java-sdk" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="java.io.aelf.portkey.component.network.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="java.io.aelf.portkey.component.network" />
-      <option name="MAIN_CLASS_NAME" value="java.io.aelf.portkey.component.network.RetrofitTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RetrofitTest.RetrofitFailGetTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="portkey-java-sdk" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.aelf.portkey.component.network.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="io.aelf.portkey.component.network" />
-      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.network.RetrofitTest" />
-      <option name="METHOD_NAME" value="RetrofitFailGetTest" />
+      <option name="PACKAGE_NAME" value="io.aelf.portkey.component.storage" />
+      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.storage.StorageTest" />
+      <option name="METHOD_NAME" value="headTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RetrofitTest.RetrofitFailInitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StorageTest.putAsyncTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="portkey-java-sdk" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="io.aelf.portkey.component.network.*" />
+          <option name="PATTERN" value="io.aelf.portkey.component.storage.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="io.aelf.portkey.component.network" />
-      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.network.RetrofitTest" />
-      <option name="METHOD_NAME" value="RetrofitFailInitTest" />
+      <option name="PACKAGE_NAME" value="io.aelf.portkey.component.storage" />
+      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.storage.StorageTest" />
+      <option name="METHOD_NAME" value="putAsyncTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StorageTest.stringEncryptedAndNotTheSameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="portkey-java-sdk" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.aelf.portkey.component.storage.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.aelf.portkey.component.storage" />
+      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.storage.StorageTest" />
+      <option name="METHOD_NAME" value="stringEncryptedAndNotTheSameTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StorageTest.useWrongKeyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="portkey-java-sdk" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.aelf.portkey.component.storage.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.aelf.portkey.component.storage" />
+      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.storage.StorageTest" />
+      <option name="METHOD_NAME" value="useWrongKeyTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -133,11 +147,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.RetrofitTest.RetrofitFailGetTest" />
-        <item itemvalue="JUnit.RetrofitTest.RetrofitFailInitTest" />
-        <item itemvalue="JUnit.RetrofitTest (1)" />
-        <item itemvalue="JUnit.RetrofitTest" />
-        <item itemvalue="JUnit.AssertTest" />
+        <item itemvalue="JUnit.StorageTest.putAsyncTest" />
+        <item itemvalue="JUnit.StorageTest" />
+        <item itemvalue="JUnit.StorageTest.headTest" />
+        <item itemvalue="JUnit.StorageTest.useWrongKeyTest" />
+        <item itemvalue="JUnit.StorageTest.stringEncryptedAndNotTheSameTest" />
       </list>
     </recent_temporary>
   </component>
@@ -166,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1690798045063</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat: basic assert settings">
+      <option name="closed" value="true" />
+      <created>1690869113362</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1690869113362</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -183,7 +205,19 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="feat: project init" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: project init" />
+    <MESSAGE value="feat: basic assert settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: basic assert settings" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/DefaultStorageHandler.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
