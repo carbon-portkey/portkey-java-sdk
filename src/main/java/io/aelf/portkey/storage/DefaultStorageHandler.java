@@ -16,16 +16,25 @@ import org.jetbrains.annotations.Nullable;
 public class DefaultStorageHandler extends AbstractStorageHandler {
 
     public DefaultStorageHandler() {
-        super();
+        this(null);
     }
 
     public DefaultStorageHandler(@Nullable String encryptKey) {
-        super(null, encryptKey);
+        this(encryptKey, null);
     }
 
-    private final FastKV kvProvider = new FastKV.Builder(
-            System.getProperty("user.dir"),
-            GlobalConfig.NAME_PORTKEY_SDK).build();
+    public DefaultStorageHandler(@Nullable String encryptKey, @Nullable String storageBucketName) {
+        super(null, encryptKey);
+        initFastKVKit(storageBucketName);
+    }
+
+    protected void initFastKVKit(@Nullable String storageBucketName) {
+        kvProvider = new FastKV.Builder(
+                System.getProperty("user.dir"),
+                TextUtils.isEmpty(storageBucketName) ? GlobalConfig.NAME_PORTKEY_SDK : storageBucketName).build();
+    }
+
+    private FastKV kvProvider;
 
     public String getValue(@NotNull String key) {
         return encrypter.decryptMsg(kvProvider.getString(key), encryptKey);
@@ -36,7 +45,7 @@ public class DefaultStorageHandler extends AbstractStorageHandler {
     }
 
     @Override
-    public void putValueAsync(@NotNull String key, String value, @Nullable ISuccessCallback<Boolean> callback) {
+    public void putValueAsync(@NotNull final String key, final String value, @Nullable ISuccessCallback<Boolean> callback) {
         AsyncTaskCaller.getInstance().asyncCall(() -> {
             try {
                 putValue(key, value);
@@ -59,5 +68,15 @@ public class DefaultStorageHandler extends AbstractStorageHandler {
             return TextUtils.isEmpty(res);
         }
         return value.equals(res);
+    }
+
+    @Override
+    public void removeValue(@NotNull String key) {
+        kvProvider.remove(key);
+    }
+
+    @Override
+    public boolean contains(@NotNull String key) {
+        return kvProvider.contains(key);
     }
 }

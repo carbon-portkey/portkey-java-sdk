@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: import async props from AElf.Java">
+    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: rm unexpected files">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/async/AsyncTaskCaller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/async/AsyncTaskCaller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/DefaultStorageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/DefaultStorageHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/model/IStorageBehaviour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/model/IStorageBehaviour.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/storage/StorageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/storage/StorageTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +47,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "project.structure.last.edited": "库",
+    "project.structure.last.edited": "模块",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
@@ -54,7 +58,7 @@
       <recent name="io.aelf.portkey.network" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.StorageTest">
+  <component name="RunManager" selected="JUnit.StorageTest.putAsyncTest">
     <configuration name="StorageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="portkey-java-sdk" />
       <extension name="coverage">
@@ -65,12 +69,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="io.aelf.portkey.component.storage" />
       <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.storage.StorageTest" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StorageTest.headTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StorageTest.getUndefinedKeyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="portkey-java-sdk" />
       <extension name="coverage">
         <pattern>
@@ -80,7 +85,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="io.aelf.portkey.component.storage" />
       <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.storage.StorageTest" />
-      <option name="METHOD_NAME" value="headTest" />
+      <option name="METHOD_NAME" value="getUndefinedKeyTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -94,6 +99,8 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="jbr-17" />
       <option name="PACKAGE_NAME" value="io.aelf.portkey.component.storage" />
       <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.storage.StorageTest" />
       <option name="METHOD_NAME" value="putAsyncTest" />
@@ -102,7 +109,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StorageTest.stringEncryptedAndNotTheSameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StorageTest.removeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="portkey-java-sdk" />
       <extension name="coverage">
         <pattern>
@@ -112,7 +119,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="io.aelf.portkey.component.storage" />
       <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.storage.StorageTest" />
-      <option name="METHOD_NAME" value="stringEncryptedAndNotTheSameTest" />
+      <option name="METHOD_NAME" value="removeTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -134,13 +141,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <module name="portkey-java-sdk" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="jbr-17" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.StorageTest.putAsyncTest" />
+      <item itemvalue="JUnit.StorageTest" />
+      <item itemvalue="JUnit.StorageTest.getUndefinedKeyTest" />
+      <item itemvalue="JUnit.StorageTest.removeTest" />
+      <item itemvalue="JUnit.StorageTest.useWrongKeyTest" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.StorageTest" />
-        <item itemvalue="JUnit.StorageTest.useWrongKeyTest" />
         <item itemvalue="JUnit.StorageTest.putAsyncTest" />
-        <item itemvalue="JUnit.StorageTest.headTest" />
-        <item itemvalue="JUnit.StorageTest.stringEncryptedAndNotTheSameTest" />
+        <item itemvalue="JUnit.StorageTest" />
+        <item itemvalue="JUnit.StorageTest.getUndefinedKeyTest" />
+        <item itemvalue="JUnit.StorageTest.removeTest" />
+        <item itemvalue="JUnit.StorageTest.useWrongKeyTest" />
       </list>
     </recent_temporary>
   </component>
@@ -193,7 +217,15 @@
       <option name="project" value="LOCAL" />
       <updated>1690889589560</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat: rm unexpected files">
+      <option name="closed" value="true" />
+      <created>1690890487143</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1690890487143</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -213,7 +245,16 @@
     <MESSAGE value="feat: basic assert settings" />
     <MESSAGE value="feat: finish basic storage config" />
     <MESSAGE value="feat: import async props from AElf.Java" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: import async props from AElf.Java" />
+    <MESSAGE value="feat: rm unexpected files" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: rm unexpected files" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="handler.getValue(anotherKey)" />
+        <watch expression="kvProvider.getString(key)" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
