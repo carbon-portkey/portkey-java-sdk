@@ -1,4 +1,4 @@
-package io.aelf.portkey.utils;
+package io.aelf.portkey.utils.enums;
 
 public enum Platform {
     Desktop,

@@ -1,6 +1,6 @@
 package io.aelf.portkey.utils.encrypt;
 
-import io.aelf.portkey.utils.log.GlobalLogger;
+import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.utils.AElfException;
 import org.apache.http.util.TextUtils;
 import org.apache.logging.log4j.core.util.Assert;
@@ -30,7 +30,7 @@ public class AES256Encrypter implements IEncrypter {
             return bytesToHex(keyBytes);
         } catch (NoSuchAlgorithmException e) {
             AElfException ex = new AElfException(e);
-            GlobalLogger.getLogger().e("you are using wrong kind of algorithm.", ex);
+            GLogger.e("you are using wrong kind of algorithm.", ex);
             throw ex;
         }
     }
@@ -54,7 +54,7 @@ public class AES256Encrypter implements IEncrypter {
             return Base64.getEncoder().encodeToString(encrypted);
         } catch (Exception e) {
             AElfException ex = new AElfException(e);
-            GlobalLogger.getLogger().e("encrypt fail:", ex);
+            GLogger.e("encrypt fail:", ex);
             throw ex;
         }
     }
@@ -77,7 +77,7 @@ public class AES256Encrypter implements IEncrypter {
             return new String(decrypted, StandardCharsets.UTF_8);
         } catch (Exception e) {
             AElfException ex = new AElfException(e);
-            GlobalLogger.getLogger().e("encrypt fail:", ex);
+            GLogger.e("encrypt fail:", ex);
             throw ex;
         }
     }

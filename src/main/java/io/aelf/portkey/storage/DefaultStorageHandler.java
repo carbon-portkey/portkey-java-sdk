@@ -3,7 +3,7 @@ package io.aelf.portkey.storage;
 import io.aelf.internal.AsyncResult;
 import io.aelf.internal.ISuccessCallback;
 import io.aelf.portkey.async.AsyncTaskCaller;
-import io.aelf.portkey.utils.log.GlobalLogger;
+import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.utils.AElfException;
 import org.apache.http.util.TextUtils;
 import org.jetbrains.annotations.NotNull;
@@ -51,12 +51,13 @@ public class DefaultStorageHandler extends AbstractStorageHandler {
                 putValue(key, value);
                 return new AsyncResult<>(Boolean.TRUE);
             } catch (Throwable e) {
-                GlobalLogger.getLogger().e(
+                GLogger.e(
                         "put fail. key:"
                                 .concat(key)
                                 .concat(", value: ")
                                 .concat(value),
-                        new AElfException(e));
+                        new AElfException(e)
+                );
                 return new AsyncResult<>(Boolean.FALSE);
             }
         }, callback, null);

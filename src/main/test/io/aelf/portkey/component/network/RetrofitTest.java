@@ -2,23 +2,26 @@ package io.aelf.portkey.component.network;
 
 import com.google.gson.JsonElement;
 import io.aelf.portkey.assertion.AssertChecker;
-import io.aelf.portkey.network.RetrofitProvider;
+import io.aelf.portkey.component.TestParams;
+import io.aelf.portkey.network.retrofit.RetrofitProvider;
 import org.junit.Before;
 import org.junit.Test;
+import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Query;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 
 interface TestService {
-    @GET("anything")
-    JsonElement getGreet(@Query("name") String name);
+    @GET("/api/blockChain/chainStatus")
+    Call<JsonElement> networkStatus();
 }
 
 public class RetrofitTest {
+
     @Before
     public void init() {
-        RetrofitProvider.resetOrInitRetrofit("http://www.example.com");
+        RetrofitProvider.resetOrInitRetrofit(TestParams.TEST_AELF_NODE_HOST);
     }
 
     @Test
@@ -32,16 +35,26 @@ public class RetrofitTest {
     }
 
     @Test
-    public void RetrofitGetTest() {
-        AssertChecker.assertNotNull(RetrofitProvider.getAPIService(TestService.class).getGreet("test"), null);
+    public void RetrofitGetTest() throws IOException {
+        AssertChecker.assertNotNull(
+                RetrofitProvider.getAPIService(TestService.class)
+                        .networkStatus()
+                        .execute()
+                        .body(),
+                null);
     }
 
     @Test(expected = RuntimeException.class)
-    public void RetrofitFailGetTest() throws NoSuchFieldException, IllegalAccessException {
+    public void RetrofitFailGetTest() throws NoSuchFieldException, IllegalAccessException, IOException {
         Class<RetrofitProvider> clazz = RetrofitProvider.class;
         Field retrofit = clazz.getDeclaredField("retrofit");
         retrofit.setAccessible(true);
         retrofit.set(null, null);
-        AssertChecker.assertNotNull(RetrofitProvider.getAPIService(TestService.class).getGreet("test"), null);
+        AssertChecker.assertNotNull(
+                RetrofitProvider.getAPIService(TestService.class)
+                        .networkStatus()
+                        .execute()
+                        .body(),
+                null);
     }
 }

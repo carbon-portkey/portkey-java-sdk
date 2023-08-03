@@ -2,7 +2,6 @@ package io.aelf.portkey.storage.model;
 
 import io.aelf.internal.ISuccessCallback;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
