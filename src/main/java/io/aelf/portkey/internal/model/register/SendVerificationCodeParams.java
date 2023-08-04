@@ -4,45 +4,59 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SendVerificationCodeParams {
     @JsonProperty("type")
-    private final String type;
+    private String type;
     @JsonProperty("guardianIdentifier")
-    private final String guardianIdentifier;
+    private String guardianIdentifier;
     @JsonProperty("verifierId")
-    private final String verifierId;
+    private String verifierId;
     @JsonProperty("chainId")
-    private final String chainId;
+    private String chainId;
 
     @JsonProperty("operationType")
     private int operationType;
 
-    public SendVerificationCodeParams(String type, String guardianIdentifier, String verifierId, String chainId) {
-        this.type = type;
-        this.guardianIdentifier = guardianIdentifier;
-        this.verifierId = verifierId;
-        this.chainId = chainId;
-    }
 
     public String getType() {
         return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getGuardianIdentifier() {
         return guardianIdentifier;
     }
 
+    public SendVerificationCodeParams setGuardianIdentifier(String guardianIdentifier) {
+        this.guardianIdentifier = guardianIdentifier;
+        return this;
+    }
+
     public String getVerifierId() {
         return verifierId;
+    }
+
+    public SendVerificationCodeParams setVerifierId(String verifierId) {
+        this.verifierId = verifierId;
+        return this;
     }
 
     public String getChainId() {
         return chainId;
     }
 
+    public SendVerificationCodeParams setChainId(String chainId) {
+        this.chainId = chainId;
+        return this;
+    }
+
     public int getOperationType() {
         return operationType;
     }
 
-    public void setOperationType(int operationType) {
+    public SendVerificationCodeParams setOperationType(int operationType) {
         this.operationType = operationType;
+        return this;
     }
 }

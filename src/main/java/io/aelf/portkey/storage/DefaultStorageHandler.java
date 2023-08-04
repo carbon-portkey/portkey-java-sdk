@@ -30,7 +30,7 @@ public class DefaultStorageHandler extends AbstractStorageHandler {
 
     protected void initFastKVKit(@Nullable String storageBucketName) {
         kvProvider = new FastKV.Builder(
-                System.getProperty("user.dir"),
+                System.getProperty("user.dir").concat(GlobalConfig.MAIN_STORAGE_PATH_PREFIX),
                 TextUtils.isEmpty(storageBucketName) ? GlobalConfig.NAME_PORTKEY_SDK : storageBucketName).build();
     }
 

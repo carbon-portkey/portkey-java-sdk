@@ -6,6 +6,8 @@ import org.apache.http.util.TextUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 public class AssertChecker {
 
     public static void assertNotBlank(String str) throws RuntimeException {
@@ -46,6 +48,22 @@ public class AssertChecker {
         innerThrow(anything.equals(other), preset);
     }
 
+    public static <T> void assertNotEmptyList(T[] array) throws RuntimeException {
+        assertNotEmptyList(array, new AElfException(ResultCode.INTERNAL_ERROR, "expected not empty list"));
+    }
+
+    public static <T> void assertNotEmptyList(T[] array, @Nullable AElfException preset) throws RuntimeException {
+        innerThrow(array == null || array.length == 0, preset);
+    }
+
+    public static void assertNotEmptyList(List<?> list) throws RuntimeException {
+        assertNotEmptyList(list, new AElfException(ResultCode.INTERNAL_ERROR, "expected not empty list"));
+    }
+
+    public static void assertNotEmptyList(List<?> list, @Nullable AElfException preset) throws RuntimeException {
+        innerThrow(list == null || list.isEmpty(), preset);
+    }
+
     public static void assertNotEmptyList(Iterable<?> list) throws RuntimeException {
         assertNotEmptyList(list, new AElfException(ResultCode.INTERNAL_ERROR, "expected not empty list"));
     }
@@ -65,7 +83,7 @@ public class AssertChecker {
         } catch (Exception e) {
             result = false;
         }
-        innerThrow(result, preset);
+        innerThrow(!result, preset);
     }
 
     protected static void innerThrow(boolean condition, @Nullable AElfException preset) throws RuntimeException {

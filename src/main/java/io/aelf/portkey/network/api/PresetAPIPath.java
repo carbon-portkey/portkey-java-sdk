@@ -12,4 +12,6 @@ public interface PresetAPIPath {
     String SEND_APPLE_USER_EXTRA_INFO = "/api/app/userExtraInfo/appleUserExtraInfo";
     String VERIFY_GOOGLE_TOKEN = "/api/app/account/verifyGoogleToken";
     String VERIFY_APPLE_TOKEN = "/api/app/account/verifyAppleToken";
+    String GET_PHONE_COUNTRY_CODE = "/api/app/phone/info";
+    String GET_RECOMMEND_GUARDIAN = "/api/app/account/getVerifierServer";
 }

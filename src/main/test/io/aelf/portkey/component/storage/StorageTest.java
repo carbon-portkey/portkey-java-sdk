@@ -14,6 +14,7 @@ import java.lang.reflect.Field;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
+@SuppressWarnings("BusyWait")
 public class StorageTest {
 
     private final String testEncryptKey = "87bfda5e9290325d1a67895c4bc9de2b";
@@ -93,6 +94,7 @@ public class StorageTest {
     public void getUndefinedKeyTest() {
         String undefined = "undefined";
         Assert.assertTrue(TextUtils.isEmpty(handler.getValue(undefined)));
+        Assert.assertFalse(handler.contains(undefined));
     }
 
 }

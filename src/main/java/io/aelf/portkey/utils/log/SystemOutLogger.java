@@ -3,6 +3,7 @@ package io.aelf.portkey.utils.log;
 import io.aelf.utils.AElfException;
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("CallToPrintStackTrace")
 public class SystemOutLogger implements ILogger {
     @Override
     public void e(@NotNull String msg, @NotNull AElfException exception) {

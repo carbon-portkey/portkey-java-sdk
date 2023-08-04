@@ -24,10 +24,3 @@ public class VerifyCodeResultDTO {
         this.signature = signature;
     }
 }
-
-/**
- * export type VerifyVerificationCodeResult = {
- *   verificationDoc: string;
- *   signature: string;
- * };
- */

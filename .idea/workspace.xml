@@ -4,38 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: import AElf's async ability">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/common/CheckCaptchaParams.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/common/OperationScene.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/GetGuardianInfoParams.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/GuardianDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/GuardianInfoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/GuardianListDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/ManagerInfoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/register/RegisterHeader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/register/RegisterInfoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/register/SendVerificationCodeParams.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/register/VerifyCodeResultDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/PresetAPIPath.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/PresetAPIs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/IConnector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/interceptor/BodyModifyInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/interceptor/CommonHeaderInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/TestParams.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/NetworkConnectorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: network implement 10%">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/common/CountryCodeInfoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/common/CountryCodeItemDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/TestService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/WebServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/assertion/AssertChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/assertion/AssertChecker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/GlobalConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/GlobalConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/IRetrofitProvider.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/RetrofitProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/retrofit/RetrofitProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/register/SendVerificationCodeParams.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/register/SendVerificationCodeParams.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/register/VerifyCodeResultDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/register/VerifyCodeResultDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/PresetAPIPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/PresetAPIPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/PresetAPIs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/IPresetAPIs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/IConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/IConnector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/interceptor/BodyModifyInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/interceptor/BodyModifyInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/interceptor/CommonHeaderInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/interceptor/CommonHeaderInterceptor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/DefaultStorageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/DefaultStorageHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/model/IStorageBehaviour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/model/IStorageBehaviour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/enums/Platform.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/encrypt/AES256Encrypter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/encrypt/AES256Encrypter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/log/GlobalLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/log/GLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/StorageProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/StorageProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/encrypt/IEncrypter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/encrypt/IEncrypter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/log/GLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/log/GLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/log/SystemOutLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/log/SystemOutLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/TestParams.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/TestParams.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/assertion/AssertTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/assertion/AssertTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/NetworkConnectorTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/RetrofitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/RetrofitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/storage/StorageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/storage/StorageTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uml/recovery.puml" beforeDir="false" afterPath="$PROJECT_DIR$/uml/recovery.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uml/storage.puml" beforeDir="false" afterPath="$PROJECT_DIR$/uml/storage.puml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +51,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SIGN_OFF_COMMIT" value="true" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -66,30 +65,70 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.preview.features.used&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;项目&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.preview.features.used": "true",
+    "project.structure.last.edited": "项目",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="io.aelf.portkey.internal.model.common" />
+    </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="io.aelf.portkey.network" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="NetworkConnectorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.StorageTest.getUndefinedKeyTest">
+    <configuration name="StorageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="portkey-java-sdk" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.aelf.portkey.component.storage.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="jbr-17" />
+      <option name="PACKAGE_NAME" value="io.aelf.portkey.component.storage" />
+      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.storage.StorageTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StorageTest.getUndefinedKeyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="portkey-java-sdk" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.aelf.portkey.component.storage.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="jbr-17" />
+      <option name="PACKAGE_NAME" value="io.aelf.portkey.component.storage" />
+      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.storage.StorageTest" />
+      <option name="METHOD_NAME" value="getUndefinedKeyTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebServiceTest.captchaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="portkey-java-sdk" />
       <extension name="coverage">
         <pattern>
@@ -100,9 +139,45 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="jbr-17" />
       <option name="PACKAGE_NAME" value="io.aelf.portkey.component.network" />
-      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.network.NetworkConnectorTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.network.WebServiceTest" />
+      <option name="METHOD_NAME" value="captchaTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebServiceTest.getPhoneCountryCodeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="portkey-java-sdk" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.aelf.portkey.component.network.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="jbr-17" />
+      <option name="PACKAGE_NAME" value="io.aelf.portkey.component.network" />
+      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.network.WebServiceTest" />
+      <option name="METHOD_NAME" value="getPhoneCountryCodeTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebServiceTest.getVerificationCodeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="portkey-java-sdk" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.aelf.portkey.component.network.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="jbr-17" />
+      <option name="PACKAGE_NAME" value="io.aelf.portkey.component.network" />
+      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.network.WebServiceTest" />
+      <option name="METHOD_NAME" value="getVerificationCodeTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -120,7 +195,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.NetworkConnectorTest" />
+        <item itemvalue="JUnit.StorageTest.getUndefinedKeyTest" />
+        <item itemvalue="JUnit.StorageTest" />
+        <item itemvalue="JUnit.WebServiceTest.getPhoneCountryCodeTest" />
+        <item itemvalue="JUnit.WebServiceTest.captchaTest" />
+        <item itemvalue="JUnit.WebServiceTest.getVerificationCodeTest" />
       </list>
     </recent_temporary>
   </component>
@@ -189,7 +268,23 @@
       <option name="project" value="LOCAL" />
       <updated>1690955951596</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="feat: finish basic network configs">
+      <option name="closed" value="true" />
+      <created>1691057702081</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1691057702081</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat: network implement 10%">
+      <option name="closed" value="true" />
+      <created>1691140498398</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1691140498398</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -211,7 +306,9 @@
     <MESSAGE value="feat: import async props from AElf.Java" />
     <MESSAGE value="feat: rm unexpected files" />
     <MESSAGE value="feat: import AElf's async ability" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: import AElf's async ability" />
+    <MESSAGE value="feat: finish basic network configs" />
+    <MESSAGE value="feat: network implement 10%" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: network implement 10%" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

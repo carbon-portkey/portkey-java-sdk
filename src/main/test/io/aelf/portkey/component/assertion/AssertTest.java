@@ -6,8 +6,6 @@ import org.junit.Test;
 
 import com.google.common.collect.Lists;
 
-import java.util.List;
-
 public class AssertTest {
 
     @Test
@@ -42,17 +40,17 @@ public class AssertTest {
 
     @Test
     public void testAssertNotEmptyList() {
-        AssertChecker.assertNotEmptyList(List.of(new String[] { "test" }));
+        AssertChecker.assertNotEmptyList(new String[]{"test"});
     }
 
     @Test
     public void testAssertNotEmptyList2() {
-        AssertChecker.assertNotEmptyList(Lists.asList("test", new String[] {}));
+        AssertChecker.assertNotEmptyList(Lists.asList("test", new String[]{}));
     }
 
     @Test(expected = RuntimeException.class)
     public void testAssertNotEmptyListWithException() {
-        AssertChecker.assertNotEmptyList(List.of(new String[] {}));
+        AssertChecker.assertNotEmptyList(new String[]{});
     }
 
     @Test

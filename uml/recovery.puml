@@ -31,9 +31,9 @@ class VerifyRecoveryState implements IRecoveryState {
     + verify(params): VerifyRecoveryState
 }
 
-class FullfilledRecoveryState implements IRecoveryState {
-    + send(params): FullfilledRecoveryState
-    + verify(params): FullfilledRecoveryState
+class FulfilledRecoveryState implements IRecoveryState {
+    + send(params): FulfilledRecoveryState
+    + verify(params): FulfilledRecoveryState
 }
 
 Guardian --> RecoveryService

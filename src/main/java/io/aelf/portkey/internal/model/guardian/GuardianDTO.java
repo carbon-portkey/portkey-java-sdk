@@ -49,11 +49,10 @@ public class GuardianDTO {
         this.identifierHash = identifierHash;
     }
 
-    public boolean isLoginGuardian() {
+    public boolean getIsLoginGuardian() {
         return isLoginGuardian;
     }
-
-    public void setLoginGuardian(boolean loginGuardian) {
+    public void setIsLoginGuardian(boolean loginGuardian) {
         isLoginGuardian = loginGuardian;
     }
 

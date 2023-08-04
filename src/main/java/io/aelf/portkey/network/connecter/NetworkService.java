@@ -5,13 +5,13 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 import io.aelf.portkey.assertion.AssertChecker;
 import io.aelf.portkey.internal.model.common.CheckCaptchaParams;
-import io.aelf.portkey.internal.model.common.OperationScene;
+import io.aelf.portkey.internal.model.common.CountryCodeInfoDTO;
 import io.aelf.portkey.internal.model.guardian.GuardianInfoDTO;
 import io.aelf.portkey.internal.model.register.RegisterHeader;
 import io.aelf.portkey.internal.model.register.RegisterInfoDTO;
 import io.aelf.portkey.internal.model.register.SendVerificationCodeParams;
 import io.aelf.portkey.internal.model.register.VerifyCodeResultDTO;
-import io.aelf.portkey.network.api.PresetAPIs;
+import io.aelf.portkey.network.api.IPresetAPIs;
 import io.aelf.portkey.network.retrofit.RetrofitProvider;
 import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.response.ResultCode;
@@ -24,14 +24,14 @@ import retrofit2.Response;
 
 
 public class NetworkService implements IConnector {
-    protected static volatile PresetAPIs api;
+    protected static volatile IPresetAPIs api;
     protected static volatile Gson gson;
 
     public NetworkService() {
         if (api == null) {
             synchronized (NetworkService.class) {
                 if (api == null) {
-                    api = RetrofitProvider.getAPIService(PresetAPIs.class);
+                    api = RetrofitProvider.getAPIService(IPresetAPIs.class);
                 }
             }
         }
@@ -62,8 +62,8 @@ public class NetworkService implements IConnector {
                     }
                     throw new AElfException(
                             ResultCode.PEER_REJECTED,
-                            String.format("it seems that the peer has rejected your request," +
-                                            " code:%d, msg:\n%s",
+                            String.format("it seems that the peer has rejected your request. " +
+                                            "\ncode:%d \nmsg: %s",
                                     response.code(),
                                     TextUtils.isEmpty(msg) ? "unknown" : msg
                             )
@@ -74,6 +74,10 @@ public class NetworkService implements IConnector {
             AssertChecker.assertNotNull(response);
             T result = response.body();
             assert result != null;
+            GLogger.t("Network connection end, path:"
+                    .concat(call.request().url().toString())
+                    .concat("\nresult: ")
+                    .concat(GLogger.prettyJSON(result)));
             return result;
         } catch (Throwable e) {
             AElfException exception = new AElfException(e);
@@ -82,6 +86,16 @@ public class NetworkService implements IConnector {
         }
     }
 
+
+    /**
+     * Check the CountryCodeInfo config.
+     *
+     * @return CountryCodeInfoDTO
+     */
+    @Override
+    public CountryCodeInfoDTO getPhoneCountryCode() throws AElfException {
+        return realExecute(api.getPhoneCountryCode());
+    }
 
     @Override
     public boolean checkGoogleRecaptcha(int scene) throws AElfException {

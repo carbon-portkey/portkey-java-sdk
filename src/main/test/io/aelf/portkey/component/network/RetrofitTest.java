@@ -1,21 +1,13 @@
 package io.aelf.portkey.component.network;
 
-import com.google.gson.JsonElement;
 import io.aelf.portkey.assertion.AssertChecker;
 import io.aelf.portkey.component.TestParams;
 import io.aelf.portkey.network.retrofit.RetrofitProvider;
 import org.junit.Before;
 import org.junit.Test;
-import retrofit2.Call;
-import retrofit2.http.GET;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
-
-interface TestService {
-    @GET("/api/blockChain/chainStatus")
-    Call<JsonElement> networkStatus();
-}
 
 public class RetrofitTest {
 

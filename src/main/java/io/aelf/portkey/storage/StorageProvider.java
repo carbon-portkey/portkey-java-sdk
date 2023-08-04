@@ -1,6 +1,5 @@
 package io.aelf.portkey.storage;
 
-import io.aelf.portkey.storage.model.AbstractStorageHandler;
 import io.aelf.portkey.storage.model.IStorageBehaviour;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
