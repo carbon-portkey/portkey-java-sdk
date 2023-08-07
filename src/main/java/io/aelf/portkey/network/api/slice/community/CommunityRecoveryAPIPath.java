@@ -1,6 +1,6 @@
-package io.aelf.portkey.network.api;
+package io.aelf.portkey.network.api.slice.community;
 
-public interface PresetAPIPath {
+public interface CommunityRecoveryAPIPath {
     String CHECK_GOOGLE_RECAPTCHA = "/api/app/account/isGoogleRecaptchaOpen";
     String GET_GUARDIAN_INFO = "/api/app/account/guardianIdentifiers";
     String GET_REGISTER_INFO = "/api/app/account/registerInfo";

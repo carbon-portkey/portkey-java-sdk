@@ -38,7 +38,7 @@
       <artifactId>aelf-sdk</artifactId>
       <version>1.2.0-SNAPSHOT</version>
       <scope>system</scope>
-      <systemPath>${project.basedir}/../aelf-sdk.java/AElfClient/target/AElfClient.jar</systemPath>
+      <systemPath>${project.basedir}/../Carbon-AElf/aelf-sdk.java/out/artifacts/aelf_sdk_jar/aelf-sdk.jar</systemPath>
     </dependency>
     <!-- https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit -->
     <dependency>

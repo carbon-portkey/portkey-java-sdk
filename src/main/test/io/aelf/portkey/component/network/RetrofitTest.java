@@ -18,7 +18,7 @@ public class RetrofitTest {
 
     @Test
     public void RetrofitInitTest() {
-        AssertChecker.assertNotNull(RetrofitProvider.getAPIService(TestService.class), null);
+        AssertChecker.assertNotNull(RetrofitProvider.getAPIService(ITestService.class), null);
     }
 
     @Test(expected = RuntimeException.class)
@@ -29,7 +29,7 @@ public class RetrofitTest {
     @Test
     public void RetrofitGetTest() throws IOException {
         AssertChecker.assertNotNull(
-                RetrofitProvider.getAPIService(TestService.class)
+                RetrofitProvider.getAPIService(ITestService.class)
                         .networkStatus()
                         .execute()
                         .body(),
@@ -43,7 +43,7 @@ public class RetrofitTest {
         retrofit.setAccessible(true);
         retrofit.set(null, null);
         AssertChecker.assertNotNull(
-                RetrofitProvider.getAPIService(TestService.class)
+                RetrofitProvider.getAPIService(ITestService.class)
                         .networkStatus()
                         .execute()
                         .body(),

@@ -1,6 +1,5 @@
 package io.aelf.portkey.internal;
 
-@SuppressWarnings("SuspiciousGetterSetter")
 public class GlobalConfig {
     public static final String NAME_PORTKEY_SDK = "portkey-sdk";
     public static final String URL_SYMBOL_PORTKEY = "portkey";

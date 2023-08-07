@@ -12,13 +12,15 @@ public class CommonHeaderInterceptor extends AbstractInterceptor {
 
     @Override
     public @NotNull Response intercept(@NotNull Chain chain) throws IOException {
-        if (chain.request().url().toString().contains(GlobalConfig.URL_SYMBOL_PORTKEY)
-                && isHeaderContentBlank(chain, GlobalConfig.DO_NOT_OVERRIDE_HEADERS_SYMBOL)) {
-            Request.Builder builder = chain.request().newBuilder();
-            builder.addHeader("Accept", "text/plain;v=1.0");
-            builder.addHeader("Content-Type", "application/json");
-            return chain.proceed(builder.build());
+        Request.Builder builder = chain.request().newBuilder();
+        if (isHeaderContentBlank(builder, GlobalConfig.DO_NOT_OVERRIDE_HEADERS_SYMBOL)) {
+            if (chain.request().url().toString().contains(GlobalConfig.URL_SYMBOL_PORTKEY)) {
+                builder = checkAndReplaceHeader(builder, "Accept", "text/plain;v=1.0");
+                builder = checkAndReplaceHeader(builder, "Content-Type", "application/json");
+            }
+        } else {
+            builder.removeHeader(GlobalConfig.DO_NOT_OVERRIDE_HEADERS_SYMBOL);
         }
-        return chain.proceed(chain.request());
+        return chain.proceed(builder.build());
     }
 }

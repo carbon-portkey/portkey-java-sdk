@@ -11,7 +11,7 @@ import io.aelf.portkey.internal.model.register.RegisterHeader;
 import io.aelf.portkey.internal.model.register.RegisterInfoDTO;
 import io.aelf.portkey.internal.model.register.SendVerificationCodeParams;
 import io.aelf.portkey.internal.model.register.VerifyCodeResultDTO;
-import io.aelf.portkey.network.api.IPresetAPIs;
+import io.aelf.portkey.network.api.APIGlobalInterface;
 import io.aelf.portkey.network.retrofit.RetrofitProvider;
 import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.response.ResultCode;
@@ -24,14 +24,14 @@ import retrofit2.Response;
 
 
 public class NetworkService implements IConnector {
-    protected static volatile IPresetAPIs api;
+    protected static volatile APIGlobalInterface api;
     protected static volatile Gson gson;
 
     public NetworkService() {
         if (api == null) {
             synchronized (NetworkService.class) {
                 if (api == null) {
-                    api = RetrofitProvider.getAPIService(IPresetAPIs.class);
+                    api = RetrofitProvider.getAPIService(APIGlobalInterface.class);
                 }
             }
         }
