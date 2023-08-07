@@ -4,7 +4,7 @@ public interface CommunityRecoveryAPIPath {
     String CHECK_GOOGLE_RECAPTCHA = "/api/app/account/isGoogleRecaptchaOpen";
     String GET_GUARDIAN_INFO = "/api/app/account/guardianIdentifiers";
     String GET_REGISTER_INFO = "/api/app/account/registerInfo";
-    String GET_VERIFICATION_CODE = "/api/app/account/sendVerificationRequest";
+    String SEND_VERIFICATION_CODE = "/api/app/account/sendVerificationRequest";
     String CHECK_VERIFICATION_CODE = "/api/app/account/verifyCode";
     String REQUEST_REGISTER = "/api/app/account/register/request";
     String REQUEST_RECOVERY = "/api/app/account/recovery/request";

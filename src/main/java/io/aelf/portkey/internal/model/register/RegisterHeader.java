@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RegisterHeader {
 
+    @JsonProperty("reCaptchaToken")
+    private String reCaptchaToken;
+
     public String getReCaptchaToken() {
         return reCaptchaToken;
     }
@@ -11,8 +14,5 @@ public class RegisterHeader {
     public void setReCaptchaToken(String reCaptchaToken) {
         this.reCaptchaToken = reCaptchaToken;
     }
-
-    @JsonProperty("reCaptchaToken")
-    private String reCaptchaToken;
 
 }

@@ -1,8 +1,8 @@
-package io.aelf.portkey.internal.model.register;
+package io.aelf.portkey.internal.model.verify;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class VerifyCodeResultDTO {
+public class HeadVerifyCodeResultDTO {
     @JsonProperty("verificationDoc")
     private String verificationDoc;
     @JsonProperty("signature")

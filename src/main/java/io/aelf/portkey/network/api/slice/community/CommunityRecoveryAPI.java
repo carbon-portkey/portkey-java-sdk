@@ -2,10 +2,14 @@ package io.aelf.portkey.network.api.slice.community;
 
 import io.aelf.portkey.internal.model.common.CheckCaptchaParams;
 import io.aelf.portkey.internal.model.common.CountryCodeInfoDTO;
+import io.aelf.portkey.internal.model.common.RegisterOrRecoveryResultDTO;
 import io.aelf.portkey.internal.model.guardian.GuardianInfoDTO;
-import io.aelf.portkey.internal.model.register.RegisterInfoDTO;
-import io.aelf.portkey.internal.model.register.SendVerificationCodeParams;
-import io.aelf.portkey.internal.model.register.VerifyCodeResultDTO;
+import io.aelf.portkey.internal.model.recovery.RequestRecoveryParams;
+import io.aelf.portkey.internal.model.register.*;
+import io.aelf.portkey.internal.model.verify.HeadVerifyCodeParams;
+import io.aelf.portkey.internal.model.verify.HeadVerifyCodeResultDTO;
+import io.aelf.portkey.internal.model.verify.SendVerificationCodeParams;
+import io.aelf.portkey.internal.model.verify.SendVerificationCodeResultDTO;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -37,8 +41,17 @@ public interface CommunityRecoveryAPI {
     Call<RegisterInfoDTO> getRegisterInfo(@Query("loginGuardianIdentifier") String loginGuardianIdentifier,
                                           @Query("caHash") String caHash);
 
-    @GET(CommunityRecoveryAPIPath.GET_VERIFICATION_CODE)
-    Call<VerifyCodeResultDTO> getVerificationCode(@Body SendVerificationCodeParams params, @Header("reCaptchaToken") String reCaptchaToken);
+    @POST(CommunityRecoveryAPIPath.SEND_VERIFICATION_CODE)
+    Call<SendVerificationCodeResultDTO> sendVerificationCode(@Body SendVerificationCodeParams params, @Header("reCaptchaToken") String reCaptchaToken);
+
+    @POST(CommunityRecoveryAPIPath.CHECK_VERIFICATION_CODE)
+    Call<HeadVerifyCodeResultDTO> checkVerificationCode(@Body HeadVerifyCodeParams params);
+
+    @POST(CommunityRecoveryAPIPath.REQUEST_REGISTER)
+    Call<RegisterOrRecoveryResultDTO> requestRegister(@Body RequestRegisterParams params);
+
+    @POST(CommunityRecoveryAPIPath.REQUEST_RECOVERY)
+    Call<RegisterOrRecoveryResultDTO> requestRecovery(@Body RequestRecoveryParams params);
 
 }
 

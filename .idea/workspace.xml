@@ -4,18 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: network implement 10%">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/APIGlobalInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/InterceptorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/GlobalConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/GlobalConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/IPresetAPIs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/slice/community/CommunityRecoveryAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/PresetAPIPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/slice/community/CommunityRecoveryAPIPath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/interceptor/CommonHeaderInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/interceptor/CommonHeaderInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/RetrofitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/RetrofitTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/TestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/ITestService.java" afterDir="false" />
+    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: register and recovery service API model">
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/verify/SendVerificationCodeResultDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/verify/SendVerificationCodeResultDTO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,24 +39,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.preview.features.used": "true",
-    "project.structure.last.edited": "Facet",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "Errors"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.preview.features.used&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Facet&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="io.aelf.portkey.internal.model.common" />
@@ -276,7 +266,23 @@
       <option name="project" value="LOCAL" />
       <updated>1691141040449</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="feat: deconstruct APIs into sub packages">
+      <option name="closed" value="true" />
+      <created>1691387244251</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1691387244251</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat: register and recovery service API model">
+      <option name="closed" value="true" />
+      <created>1691395535824</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1691395535824</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -300,7 +306,9 @@
     <MESSAGE value="feat: import AElf's async ability" />
     <MESSAGE value="feat: finish basic network configs" />
     <MESSAGE value="feat: network implement 10%" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: network implement 10%" />
+    <MESSAGE value="feat: deconstruct APIs into sub packages" />
+    <MESSAGE value="feat: register and recovery service API model" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: register and recovery service API model" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

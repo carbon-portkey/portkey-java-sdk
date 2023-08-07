@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import io.aelf.portkey.internal.GlobalConfig;
+import io.aelf.portkey.internal.behaviour.GlobalConfig;
 import io.aelf.utils.AElfException;
 import org.jetbrains.annotations.NotNull;
 

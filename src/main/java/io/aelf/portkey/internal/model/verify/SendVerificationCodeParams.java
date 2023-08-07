@@ -1,10 +1,15 @@
-package io.aelf.portkey.internal.model.register;
+package io.aelf.portkey.internal.model.verify;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.aelf.portkey.internal.behaviour.DataVerifyTools;
+import io.aelf.portkey.internal.model.common.AccountOriginalType;
 
 public class SendVerificationCodeParams {
+    /**
+     * @see AccountOriginalType
+     */
     @JsonProperty("type")
-    private String type;
+    private int type;
     @JsonProperty("guardianIdentifier")
     private String guardianIdentifier;
     @JsonProperty("verifierId")
@@ -16,11 +21,12 @@ public class SendVerificationCodeParams {
     private int operationType;
 
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
+        DataVerifyTools.verifyAccountOriginType(type);
         this.type = type;
     }
 

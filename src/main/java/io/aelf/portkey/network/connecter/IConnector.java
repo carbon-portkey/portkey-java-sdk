@@ -2,10 +2,11 @@ package io.aelf.portkey.network.connecter;
 
 import io.aelf.portkey.internal.model.common.CountryCodeInfoDTO;
 import io.aelf.portkey.internal.model.guardian.GuardianInfoDTO;
-import io.aelf.portkey.internal.model.register.RegisterHeader;
-import io.aelf.portkey.internal.model.register.RegisterInfoDTO;
-import io.aelf.portkey.internal.model.register.SendVerificationCodeParams;
-import io.aelf.portkey.internal.model.register.VerifyCodeResultDTO;
+import io.aelf.portkey.internal.model.register.*;
+import io.aelf.portkey.internal.model.verify.HeadVerifyCodeParams;
+import io.aelf.portkey.internal.model.verify.HeadVerifyCodeResultDTO;
+import io.aelf.portkey.internal.model.verify.SendVerificationCodeParams;
+import io.aelf.portkey.internal.model.verify.SendVerificationCodeResultDTO;
 import io.aelf.utils.AElfException;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
@@ -30,6 +31,8 @@ public interface IConnector {
 
     RegisterInfoDTO getRegisterInfo(String loginGuardianIdentifier, String caHash);
 
-    VerifyCodeResultDTO getVerificationCode(@NonNull SendVerificationCodeParams params,
-                                            @NonNull RegisterHeader headers) throws AElfException;
+    SendVerificationCodeResultDTO getVerificationCode(@NonNull SendVerificationCodeParams params,
+                                                      @NonNull RegisterHeader headers) throws AElfException;
+
+    HeadVerifyCodeResultDTO checkVerificationCode(@NonNull HeadVerifyCodeParams params) throws AElfException;
 }

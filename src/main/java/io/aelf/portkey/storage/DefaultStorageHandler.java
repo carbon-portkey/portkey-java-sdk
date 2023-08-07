@@ -8,7 +8,7 @@ import io.aelf.utils.AElfException;
 import org.apache.http.util.TextUtils;
 import org.jetbrains.annotations.NotNull;
 
-import io.aelf.portkey.internal.GlobalConfig;
+import io.aelf.portkey.internal.behaviour.GlobalConfig;
 import io.aelf.portkey.storage.model.AbstractStorageHandler;
 import io.fastkv.FastKV;
 import org.jetbrains.annotations.Nullable;

@@ -1,7 +1,7 @@
 package io.aelf.portkey.network.interceptor;
 
 import io.aelf.network.interceptor.AbstractInterceptor;
-import io.aelf.portkey.internal.GlobalConfig;
+import io.aelf.portkey.internal.behaviour.GlobalConfig;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.jetbrains.annotations.NotNull;

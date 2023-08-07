@@ -2,10 +2,10 @@ package io.aelf.portkey.component.network;
 
 import io.aelf.portkey.assertion.AssertChecker;
 import io.aelf.portkey.component.TestParams;
-import io.aelf.portkey.internal.GlobalConfig;
+import io.aelf.portkey.internal.behaviour.GlobalConfig;
 import io.aelf.portkey.internal.model.common.CountryCodeInfoDTO;
 import io.aelf.portkey.internal.model.common.OperationScene;
-import io.aelf.portkey.internal.model.register.SendVerificationCodeParams;
+import io.aelf.portkey.internal.model.verify.SendVerificationCodeParams;
 import io.aelf.portkey.network.connecter.IConnector;
 import io.aelf.portkey.network.connecter.NetworkService;
 import io.aelf.portkey.network.retrofit.RetrofitProvider;

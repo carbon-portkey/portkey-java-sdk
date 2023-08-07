@@ -11,6 +11,9 @@ public class CheckCaptchaParams {
         this.operationType = operationType;
     }
 
+    /**
+     * @see OperationScene
+     */
     @JsonProperty("operationType")
     private int operationType;
 

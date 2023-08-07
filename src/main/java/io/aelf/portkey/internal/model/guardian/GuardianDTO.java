@@ -1,6 +1,8 @@
 package io.aelf.portkey.internal.model.guardian;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.aelf.portkey.internal.behaviour.DataVerifyTools;
+import io.aelf.portkey.internal.model.common.AccountOriginalType;
 
 public class GuardianDTO {
 
@@ -12,16 +14,20 @@ public class GuardianDTO {
     private boolean isLoginGuardian;
     @JsonProperty("salt")
     private String salt;
+    /**
+     * @see AccountOriginalType
+     */
     @JsonProperty("type")
-    private String type;
+    private int type;
     @JsonProperty("verifierId")
     private String verifierId;
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
+        DataVerifyTools.verifyAccountOriginType(type);
         this.type = type;
     }
 

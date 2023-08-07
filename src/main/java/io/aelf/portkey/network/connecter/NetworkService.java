@@ -7,10 +7,11 @@ import io.aelf.portkey.assertion.AssertChecker;
 import io.aelf.portkey.internal.model.common.CheckCaptchaParams;
 import io.aelf.portkey.internal.model.common.CountryCodeInfoDTO;
 import io.aelf.portkey.internal.model.guardian.GuardianInfoDTO;
-import io.aelf.portkey.internal.model.register.RegisterHeader;
-import io.aelf.portkey.internal.model.register.RegisterInfoDTO;
-import io.aelf.portkey.internal.model.register.SendVerificationCodeParams;
-import io.aelf.portkey.internal.model.register.VerifyCodeResultDTO;
+import io.aelf.portkey.internal.model.register.*;
+import io.aelf.portkey.internal.model.verify.HeadVerifyCodeParams;
+import io.aelf.portkey.internal.model.verify.HeadVerifyCodeResultDTO;
+import io.aelf.portkey.internal.model.verify.SendVerificationCodeParams;
+import io.aelf.portkey.internal.model.verify.SendVerificationCodeResultDTO;
 import io.aelf.portkey.network.api.APIGlobalInterface;
 import io.aelf.portkey.network.retrofit.RetrofitProvider;
 import io.aelf.portkey.utils.log.GLogger;
@@ -18,6 +19,7 @@ import io.aelf.response.ResultCode;
 import io.aelf.utils.AElfException;
 import okhttp3.ResponseBody;
 import org.apache.http.util.TextUtils;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -115,7 +117,14 @@ public class NetworkService implements IConnector {
     }
 
     @Override
-    public VerifyCodeResultDTO getVerificationCode(@NotNull SendVerificationCodeParams params, @NotNull RegisterHeader headers) {
-        return realExecute(api.getVerificationCode(params, headers.getReCaptchaToken()));
+    public SendVerificationCodeResultDTO getVerificationCode(@NotNull SendVerificationCodeParams params, @NotNull RegisterHeader headers) {
+        return realExecute(api.sendVerificationCode(params, headers.getReCaptchaToken()));
     }
+
+    @Override
+    public HeadVerifyCodeResultDTO checkVerificationCode(@NonNull HeadVerifyCodeParams params) throws AElfException {
+        return realExecute(api.checkVerificationCode(params));
+    }
+
+
 }
