@@ -4,27 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: register and recovery service API model">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/apple/AppleExtraInfoParams.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/apple/AppleExtraInfoResultDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/apple/AppleVerifyTokenParams.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/common/TokenVerifyOriginType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/google/GoogleVerifyTokenParams.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/GetRecommendGuardianResultDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/GetRecommendationVerifierParams.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/GlobalOperationInterface.java" afterDir="false" />
+    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: service slice refactor">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/retrofit/ClientInterceptorFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/common/CommonAPIPath.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/common/GoogleNetworkAPISlice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/common/GoogleOperationAPISlice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/nft/NftAPIPath.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/behaviour/DataVerifyTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/behaviour/DataVerifyTools.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/common/CheckCaptchaParams.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/common/CheckCaptchaParams.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/common/OperationScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/common/OperationScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/verify/HeadVerifyCodeParams.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/verify/HeadVerifyCodeParams.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/verify/SendVerificationCodeParams.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/verify/SendVerificationCodeParams.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/APIGlobalInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/GlobalNetworkInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/slice/community/CommunityRecoveryAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/slice/account/AccountNetworkAPISlice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/slice/community/CommunityRecoveryAPIPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/slice/account/AccountAPIPath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/IConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/slice/account/AccountOperationAPISlice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/assertion/AssertChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/assertion/AssertChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/behaviour/GlobalConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/behaviour/GlobalConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/common/TokenVerifyOriginType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/common/TokenVerifyOriginType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/slice/account/AccountAPIPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/account/AccountAPIPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/slice/account/AccountNetworkAPISlice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/account/AccountNetworkAPISlice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/slice/account/AccountOperationAPISlice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/account/AccountOperationAPISlice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/GlobalNetworkInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/GlobalNetworkInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/GlobalOperationInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/GlobalOperationInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/retrofit/RetrofitProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/retrofit/RetrofitProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/ITestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/ITestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/InterceptorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/InterceptorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/RetrofitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/RetrofitTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/WebServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/WebServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,8 +35,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -100,7 +99,7 @@
       <recent name="io.aelf.portkey.network" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.WebServiceTest">
+  <component name="RunManager" selected="JUnit.RetrofitTest">
     <configuration name="InterceptorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="portkey-java-sdk" />
       <extension name="coverage">
@@ -119,42 +118,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InterceptorTest.testHeaderReplacement1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="portkey-java-sdk" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.aelf.portkey.component.network.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="jbr-17" />
-      <option name="PACKAGE_NAME" value="io.aelf.portkey.component.network" />
-      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.network.InterceptorTest" />
-      <option name="METHOD_NAME" value="testHeaderReplacement1" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="InterceptorTest.testHeaderReplacement2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="portkey-java-sdk" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.aelf.portkey.component.network.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="jbr-17" />
-      <option name="PACKAGE_NAME" value="io.aelf.portkey.component.network" />
-      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.network.InterceptorTest" />
-      <option name="METHOD_NAME" value="testHeaderReplacement2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="InterceptorTest.testPostQueryBodyRebuildProtect2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="portkey-java-sdk" />
       <extension name="coverage">
@@ -168,6 +131,42 @@
       <option name="PACKAGE_NAME" value="io.aelf.portkey.component.network" />
       <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.network.InterceptorTest" />
       <option name="METHOD_NAME" value="testPostQueryBodyRebuildProtect2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RetrofitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="portkey-java-sdk" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.aelf.portkey.component.network.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="jbr-17" />
+      <option name="PACKAGE_NAME" value="io.aelf.portkey.component.network" />
+      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.network.RetrofitTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RetrofitTest.RetrofitGetTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="portkey-java-sdk" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.aelf.portkey.component.network.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="jbr-17" />
+      <option name="PACKAGE_NAME" value="io.aelf.portkey.component.network" />
+      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.component.network.RetrofitTest" />
+      <option name="METHOD_NAME" value="RetrofitGetTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -204,11 +203,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RetrofitTest" />
+        <item itemvalue="JUnit.RetrofitTest.RetrofitGetTest" />
         <item itemvalue="JUnit.WebServiceTest" />
         <item itemvalue="JUnit.InterceptorTest.testPostQueryBodyRebuildProtect2" />
         <item itemvalue="JUnit.InterceptorTest" />
-        <item itemvalue="JUnit.InterceptorTest.testHeaderReplacement2" />
-        <item itemvalue="JUnit.InterceptorTest.testHeaderReplacement1" />
       </list>
     </recent_temporary>
   </component>
@@ -325,7 +324,15 @@
       <option name="project" value="LOCAL" />
       <updated>1691395579570</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="feat: service slice refactor">
+      <option name="closed" value="true" />
+      <created>1691399939916</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1691399939916</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -351,7 +358,8 @@
     <MESSAGE value="feat: network implement 10%" />
     <MESSAGE value="feat: deconstruct APIs into sub packages" />
     <MESSAGE value="feat: register and recovery service API model" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: register and recovery service API model" />
+    <MESSAGE value="feat: service slice refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: service slice refactor" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

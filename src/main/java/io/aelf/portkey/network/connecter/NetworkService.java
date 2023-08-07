@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 import io.aelf.portkey.assertion.AssertChecker;
+import io.aelf.portkey.internal.behaviour.GlobalConfig;
 import io.aelf.portkey.internal.model.apple.AppleExtraInfoParams;
 import io.aelf.portkey.internal.model.apple.AppleExtraInfoResultDTO;
 import io.aelf.portkey.internal.model.apple.AppleVerifyTokenParams;
@@ -20,7 +21,7 @@ import io.aelf.portkey.internal.model.verify.HeadVerifyCodeParams;
 import io.aelf.portkey.internal.model.verify.HeadVerifyCodeResultDTO;
 import io.aelf.portkey.internal.model.verify.SendVerificationCodeParams;
 import io.aelf.portkey.internal.model.verify.SendVerificationCodeResultDTO;
-import io.aelf.portkey.network.api.slice.account.AccountOperationAPISlice;
+import io.aelf.portkey.network.slice.common.GoogleNetworkAPISlice;
 import io.aelf.portkey.network.retrofit.RetrofitProvider;
 import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.response.ResultCode;
@@ -33,7 +34,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 
-public class NetworkService implements AccountOperationAPISlice {
+public class NetworkService implements GlobalOperationInterface {
     protected static volatile GlobalNetworkInterface api;
     protected static volatile Gson gson;
 
@@ -164,4 +165,9 @@ public class NetworkService implements AccountOperationAPISlice {
         return realExecute(api.getRecommendationGuardianInfo(params));
     }
 
+    @Override
+    public String getGoogleAccessToken(@NotNull String authorization) {
+        GoogleNetworkAPISlice service = RetrofitProvider.getAPIService(GoogleNetworkAPISlice.class, GlobalConfig.GOOGLE_HOST);
+        return realExecute(service.getGoogleAccessToken("Bearer ".concat(authorization)));
+    }
 }

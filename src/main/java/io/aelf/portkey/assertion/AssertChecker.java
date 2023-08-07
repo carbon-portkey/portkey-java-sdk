@@ -1,5 +1,6 @@
 package io.aelf.portkey.assertion;
 
+import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.response.ResultCode;
 import io.aelf.utils.AElfException;
 import org.apache.http.util.TextUtils;
@@ -81,6 +82,7 @@ public class AssertChecker {
         try {
             result = function.test();
         } catch (Exception e) {
+            GLogger.e("assertNotThrow: exception found.", new AElfException(e));
             result = false;
         }
         innerThrow(!result, preset);

@@ -13,7 +13,7 @@ public class RetrofitTest {
 
     @Before
     public void init() {
-        RetrofitProvider.resetOrInitRetrofit(TestParams.TEST_AELF_NODE_HOST);
+        RetrofitProvider.resetOrInitMainRetrofit(TestParams.TEST_AELF_NODE_HOST);
     }
 
     @Test
@@ -23,7 +23,7 @@ public class RetrofitTest {
 
     @Test(expected = RuntimeException.class)
     public void RetrofitFailInitTest() {
-        RetrofitProvider.resetOrInitRetrofit("");
+        RetrofitProvider.resetOrInitMainRetrofit("");
     }
 
     @Test

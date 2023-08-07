@@ -6,7 +6,7 @@ import io.aelf.portkey.internal.behaviour.GlobalConfig;
 import io.aelf.portkey.internal.model.common.CountryCodeInfoDTO;
 import io.aelf.portkey.internal.model.common.OperationScene;
 import io.aelf.portkey.internal.model.verify.SendVerificationCodeParams;
-import io.aelf.portkey.network.api.slice.account.AccountOperationAPISlice;
+import io.aelf.portkey.network.slice.account.AccountOperationAPISlice;
 import io.aelf.portkey.network.connecter.NetworkService;
 import io.aelf.portkey.network.retrofit.RetrofitProvider;
 import io.aelf.utils.AElfException;
@@ -19,7 +19,7 @@ public class WebServiceTest {
 
     @Before
     public void init() {
-        RetrofitProvider.resetOrInitRetrofit(TestParams.TEST_PORTKEY_API_HOST);
+        RetrofitProvider.resetOrInitMainRetrofit(TestParams.TEST_PORTKEY_API_HOST);
         networkService = new NetworkService();
         GlobalConfig.setTestEnv(true);
     }

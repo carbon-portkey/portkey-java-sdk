@@ -1,4 +1,4 @@
-package io.aelf.portkey.network.api.slice.account;
+package io.aelf.portkey.network.slice.account;
 
 public interface AccountAPIPath {
     String CHECK_GOOGLE_RECAPTCHA = "/api/app/account/isGoogleRecaptchaOpen";

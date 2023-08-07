@@ -17,7 +17,7 @@ public class InterceptorTest {
 
     @Before
     public void init() {
-        RetrofitProvider.resetOrInitRetrofit(TestParams.TEST_PORTKEY_API_HOST);
+        RetrofitProvider.resetOrInitMainRetrofit(TestParams.TEST_PORTKEY_API_HOST);
         GlobalConfig.setTestEnv(true);
         api = RetrofitProvider.getAPIService(ITestService.class);
     }

@@ -55,5 +55,5 @@ public abstract class TokenVerifyOriginType {
       <P>
       To avoid the problem of jackson's annotation inheritance, this field is not annotated.
      */
-//    Protected String token;
+//    Protected String nft;
 }

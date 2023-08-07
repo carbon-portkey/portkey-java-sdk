@@ -1,6 +1,6 @@
 package io.aelf.portkey.network.connecter;
 
-import io.aelf.portkey.network.api.slice.account.AccountNetworkAPISlice;
+import io.aelf.portkey.network.slice.account.AccountNetworkAPISlice;
 
 /**
  * This interface is just a representation of all the API interfaces.

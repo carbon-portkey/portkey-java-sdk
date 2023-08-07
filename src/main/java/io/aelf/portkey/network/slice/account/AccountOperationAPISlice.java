@@ -1,4 +1,4 @@
-package io.aelf.portkey.network.api.slice.account;
+package io.aelf.portkey.network.slice.account;
 
 import io.aelf.portkey.internal.model.apple.AppleExtraInfoParams;
 import io.aelf.portkey.internal.model.apple.AppleExtraInfoResultDTO;

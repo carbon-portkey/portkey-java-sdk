@@ -8,6 +8,7 @@ public class GlobalConfig {
     public static final String MAINNET_CHAIN_ID = "AELF";
     public static final String TESTNET_CHAIN_ID = "tDVV";
     public static final String TESTNET_CHAIN_ID_ALTERNATIVE = "tDVW";
+    public static final String GOOGLE_HOST = "https://www.googleapis.com";
 
     private static boolean underTestEnvironment = false;
 
