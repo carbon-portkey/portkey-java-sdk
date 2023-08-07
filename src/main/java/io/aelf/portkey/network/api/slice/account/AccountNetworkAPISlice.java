@@ -1,8 +1,14 @@
-package io.aelf.portkey.network.api.slice.community;
+package io.aelf.portkey.network.api.slice.account;
 
+import io.aelf.portkey.internal.model.apple.AppleExtraInfoParams;
+import io.aelf.portkey.internal.model.apple.AppleExtraInfoResultDTO;
+import io.aelf.portkey.internal.model.apple.AppleVerifyTokenParams;
 import io.aelf.portkey.internal.model.common.CheckCaptchaParams;
 import io.aelf.portkey.internal.model.common.CountryCodeInfoDTO;
 import io.aelf.portkey.internal.model.common.RegisterOrRecoveryResultDTO;
+import io.aelf.portkey.internal.model.google.GoogleVerifyTokenParams;
+import io.aelf.portkey.internal.model.guardian.GetRecommendGuardianResultDTO;
+import io.aelf.portkey.internal.model.guardian.GetRecommendationVerifierParams;
 import io.aelf.portkey.internal.model.guardian.GuardianInfoDTO;
 import io.aelf.portkey.internal.model.recovery.RequestRecoveryParams;
 import io.aelf.portkey.internal.model.register.*;
@@ -13,7 +19,7 @@ import io.aelf.portkey.internal.model.verify.SendVerificationCodeResultDTO;
 import retrofit2.Call;
 import retrofit2.http.*;
 
-public interface CommunityRecoveryAPI {
+public interface AccountNetworkAPISlice {
 
 
     /**
@@ -21,7 +27,7 @@ public interface CommunityRecoveryAPI {
      *
      * @return CountryCodeInfoDTO
      */
-    @GET(CommunityRecoveryAPIPath.GET_PHONE_COUNTRY_CODE)
+    @GET(AccountAPIPath.GET_PHONE_COUNTRY_CODE)
     Call<CountryCodeInfoDTO> getPhoneCountryCode();
 
     /**
@@ -29,29 +35,40 @@ public interface CommunityRecoveryAPI {
      *
      * @return Boolean true if open, false if not.
      */
-    @POST(CommunityRecoveryAPIPath.CHECK_GOOGLE_RECAPTCHA)
+    @POST(AccountAPIPath.CHECK_GOOGLE_RECAPTCHA)
     Call<Boolean> checkGoogleRecaptcha(@Body CheckCaptchaParams body);
 
-    @GET(CommunityRecoveryAPIPath.GET_GUARDIAN_INFO)
+    @GET(AccountAPIPath.GET_GUARDIAN_INFO)
     Call<GuardianInfoDTO> getGuardianInfo(@Query("chainId") String chainId,
                                           @Query("caHash") String caHash,
                                           @Query("guardianIdentifier") String guardianIdentifier);
 
-    @GET(CommunityRecoveryAPIPath.GET_REGISTER_INFO)
+    @GET(AccountAPIPath.GET_REGISTER_INFO)
     Call<RegisterInfoDTO> getRegisterInfo(@Query("loginGuardianIdentifier") String loginGuardianIdentifier,
                                           @Query("caHash") String caHash);
 
-    @POST(CommunityRecoveryAPIPath.SEND_VERIFICATION_CODE)
+    @POST(AccountAPIPath.SEND_VERIFICATION_CODE)
     Call<SendVerificationCodeResultDTO> sendVerificationCode(@Body SendVerificationCodeParams params, @Header("reCaptchaToken") String reCaptchaToken);
 
-    @POST(CommunityRecoveryAPIPath.CHECK_VERIFICATION_CODE)
+    @POST(AccountAPIPath.CHECK_VERIFICATION_CODE)
     Call<HeadVerifyCodeResultDTO> checkVerificationCode(@Body HeadVerifyCodeParams params);
 
-    @POST(CommunityRecoveryAPIPath.REQUEST_REGISTER)
+    @POST(AccountAPIPath.REQUEST_REGISTER)
     Call<RegisterOrRecoveryResultDTO> requestRegister(@Body RequestRegisterParams params);
 
-    @POST(CommunityRecoveryAPIPath.REQUEST_RECOVERY)
+    @POST(AccountAPIPath.REQUEST_RECOVERY)
     Call<RegisterOrRecoveryResultDTO> requestRecovery(@Body RequestRecoveryParams params);
 
+    @POST(AccountAPIPath.SEND_APPLE_USER_EXTRA_INFO)
+    Call<AppleExtraInfoResultDTO> sendAppleUserExtraInfo(@Body AppleExtraInfoParams params);
+
+    @POST(AccountAPIPath.VERIFY_GOOGLE_TOKEN)
+    Call<HeadVerifyCodeResultDTO> verifyGoogleToken(@Body GoogleVerifyTokenParams token);
+
+    @POST(AccountAPIPath.VERIFY_APPLE_TOKEN)
+    Call<HeadVerifyCodeResultDTO> verifyAppleToken(@Body AppleVerifyTokenParams token);
+
+    @POST(AccountAPIPath.GET_RECOMMEND_GUARDIAN)
+    Call<GetRecommendGuardianResultDTO> getRecommendationGuardianInfo(@Body GetRecommendationVerifierParams params);
 }
 

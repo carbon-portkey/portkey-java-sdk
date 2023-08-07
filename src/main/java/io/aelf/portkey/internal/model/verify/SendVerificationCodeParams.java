@@ -14,9 +14,14 @@ public class SendVerificationCodeParams {
     private String guardianIdentifier;
     @JsonProperty("verifierId")
     private String verifierId;
+    /**
+     * @see DataVerifyTools#verifyChainIdParams(String)
+     */
     @JsonProperty("chainId")
     private String chainId;
-
+    /**
+     * @see DataVerifyTools#verifyOperationType(int)
+     */
     @JsonProperty("operationType")
     private int operationType;
 
@@ -53,6 +58,7 @@ public class SendVerificationCodeParams {
     }
 
     public SendVerificationCodeParams setChainId(String chainId) {
+        DataVerifyTools.verifyChainIdParams(chainId);
         this.chainId = chainId;
         return this;
     }
@@ -62,6 +68,7 @@ public class SendVerificationCodeParams {
     }
 
     public SendVerificationCodeParams setOperationType(int operationType) {
+        DataVerifyTools.verifyOperationType(operationType);
         this.operationType = operationType;
         return this;
     }

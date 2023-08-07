@@ -5,7 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: register and recovery service API model">
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/verify/SendVerificationCodeResultDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/verify/SendVerificationCodeResultDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/apple/AppleExtraInfoParams.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/apple/AppleExtraInfoResultDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/apple/AppleVerifyTokenParams.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/common/TokenVerifyOriginType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/google/GoogleVerifyTokenParams.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/GetRecommendGuardianResultDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/GetRecommendationVerifierParams.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/GlobalOperationInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/behaviour/DataVerifyTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/behaviour/DataVerifyTools.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/common/CheckCaptchaParams.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/common/CheckCaptchaParams.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/common/OperationScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/common/OperationScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/verify/HeadVerifyCodeParams.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/verify/HeadVerifyCodeParams.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/verify/SendVerificationCodeParams.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/verify/SendVerificationCodeParams.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/APIGlobalInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/GlobalNetworkInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/slice/community/CommunityRecoveryAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/slice/account/AccountNetworkAPISlice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/slice/community/CommunityRecoveryAPIPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/slice/account/AccountAPIPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/IConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/api/slice/account/AccountOperationAPISlice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/ITestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/ITestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/WebServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/component/network/WebServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +44,20 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SIGN_OFF_COMMIT" value="true" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Carbon-AElf"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="ab4b92a9-d6c0-4375-9fef-78c766874af3" />
+        <option name="url" value="https://github.com/Carbon-AElf/portkey-java-sdk.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
@@ -59,6 +93,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="io.aelf.portkey.internal.model.guardian" />
       <recent name="io.aelf.portkey.internal.model.common" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
@@ -282,7 +317,15 @@
       <option name="project" value="LOCAL" />
       <updated>1691395535824</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="feat: register and recovery service API model">
+      <option name="closed" value="true" />
+      <created>1691395579570</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1691395579570</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -5,7 +5,7 @@ public interface OperationScene {
     int unknown = 0;
     // register
     int register = 1;
-    // community recovery
+    // account recovery
     int communityRecovery = 2;
     // add guardian
     int addGuardian = 3;

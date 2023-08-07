@@ -29,48 +29,55 @@ public class HeadVerifyCodeParams {
         return verifierSessionId;
     }
 
-    public void setVerifierSessionId(String verifierSessionId) {
+    public HeadVerifyCodeParams setVerifierSessionId(String verifierSessionId) {
         this.verifierSessionId = verifierSessionId;
+        return this;
     }
 
     public String getVerificationCode() {
         return verificationCode;
     }
 
-    public void setVerificationCode(String verificationCode) {
+    public HeadVerifyCodeParams setVerificationCode(String verificationCode) {
         this.verificationCode = verificationCode;
-    }
-
-    public void setGuardianIdentifier(String guardianIdentifier) {
-        this.guardianIdentifier = guardianIdentifier;
+        return this;
     }
 
     public String getGuardianIdentifier() {
         return guardianIdentifier;
     }
 
-    public void setVerifierId(String verifierId) {
-        this.verifierId = verifierId;
+    public HeadVerifyCodeParams setGuardianIdentifier(String guardianIdentifier) {
+        this.guardianIdentifier = guardianIdentifier;
+        return this;
     }
 
     public String getVerifierId() {
         return verifierId;
     }
 
-    public void setChainId(String chainId) {
-        this.chainId = chainId;
+    public HeadVerifyCodeParams setVerifierId(String verifierId) {
+        this.verifierId = verifierId;
+        return this;
     }
 
     public String getChainId() {
-        DataVerifyTools.verifyChainIdParams(chainId);
         return chainId;
     }
 
-    public void setOperationType(int operationType) {
-        this.operationType = operationType;
+    public HeadVerifyCodeParams setChainId(String chainId) {
+        DataVerifyTools.verifyChainIdParams(chainId);
+        this.chainId = chainId;
+        return this;
     }
 
     public int getOperationType() {
         return operationType;
+    }
+
+    public HeadVerifyCodeParams setOperationType(int operationType) {
+        DataVerifyTools.verifyOperationType(operationType);
+        this.operationType = operationType;
+        return this;
     }
 }

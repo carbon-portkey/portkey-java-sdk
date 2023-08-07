@@ -4,15 +4,23 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 import io.aelf.portkey.assertion.AssertChecker;
+import io.aelf.portkey.internal.model.apple.AppleExtraInfoParams;
+import io.aelf.portkey.internal.model.apple.AppleExtraInfoResultDTO;
+import io.aelf.portkey.internal.model.apple.AppleVerifyTokenParams;
 import io.aelf.portkey.internal.model.common.CheckCaptchaParams;
 import io.aelf.portkey.internal.model.common.CountryCodeInfoDTO;
+import io.aelf.portkey.internal.model.common.RegisterOrRecoveryResultDTO;
+import io.aelf.portkey.internal.model.google.GoogleVerifyTokenParams;
+import io.aelf.portkey.internal.model.guardian.GetRecommendGuardianResultDTO;
+import io.aelf.portkey.internal.model.guardian.GetRecommendationVerifierParams;
 import io.aelf.portkey.internal.model.guardian.GuardianInfoDTO;
+import io.aelf.portkey.internal.model.recovery.RequestRecoveryParams;
 import io.aelf.portkey.internal.model.register.*;
 import io.aelf.portkey.internal.model.verify.HeadVerifyCodeParams;
 import io.aelf.portkey.internal.model.verify.HeadVerifyCodeResultDTO;
 import io.aelf.portkey.internal.model.verify.SendVerificationCodeParams;
 import io.aelf.portkey.internal.model.verify.SendVerificationCodeResultDTO;
-import io.aelf.portkey.network.api.APIGlobalInterface;
+import io.aelf.portkey.network.api.slice.account.AccountOperationAPISlice;
 import io.aelf.portkey.network.retrofit.RetrofitProvider;
 import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.response.ResultCode;
@@ -25,15 +33,15 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 
-public class NetworkService implements IConnector {
-    protected static volatile APIGlobalInterface api;
+public class NetworkService implements AccountOperationAPISlice {
+    protected static volatile GlobalNetworkInterface api;
     protected static volatile Gson gson;
 
     public NetworkService() {
         if (api == null) {
             synchronized (NetworkService.class) {
                 if (api == null) {
-                    api = RetrofitProvider.getAPIService(APIGlobalInterface.class);
+                    api = RetrofitProvider.getAPIService(GlobalNetworkInterface.class);
                 }
             }
         }
@@ -117,7 +125,7 @@ public class NetworkService implements IConnector {
     }
 
     @Override
-    public SendVerificationCodeResultDTO getVerificationCode(@NotNull SendVerificationCodeParams params, @NotNull RegisterHeader headers) {
+    public SendVerificationCodeResultDTO sendVerificationCode(@NotNull SendVerificationCodeParams params, @NotNull RegisterHeader headers) {
         return realExecute(api.sendVerificationCode(params, headers.getReCaptchaToken()));
     }
 
@@ -126,5 +134,34 @@ public class NetworkService implements IConnector {
         return realExecute(api.checkVerificationCode(params));
     }
 
+    @Override
+    public RegisterOrRecoveryResultDTO requestRegister(@NonNull RequestRegisterParams params) throws AElfException {
+        return realExecute(api.requestRegister(params));
+    }
+
+    @Override
+    public RegisterOrRecoveryResultDTO requestRecovery(@NonNull RequestRecoveryParams params) throws AElfException {
+        return realExecute(api.requestRecovery(params));
+    }
+
+    @Override
+    public AppleExtraInfoResultDTO sendAppleUserExtraInfo(@NonNull AppleExtraInfoParams params) throws AElfException {
+        return realExecute(api.sendAppleUserExtraInfo(params));
+    }
+
+    @Override
+    public HeadVerifyCodeResultDTO verifyGoogleToken(@NonNull GoogleVerifyTokenParams params) throws AElfException {
+        return realExecute(api.verifyGoogleToken(params));
+    }
+
+    @Override
+    public HeadVerifyCodeResultDTO verifyAppleToken(@NonNull AppleVerifyTokenParams params) throws AElfException {
+        return realExecute(api.verifyAppleToken(params));
+    }
+
+    @Override
+    public GetRecommendGuardianResultDTO getRecommendGuardian(GetRecommendationVerifierParams params) throws AElfException {
+        return realExecute(api.getRecommendationGuardianInfo(params));
+    }
 
 }

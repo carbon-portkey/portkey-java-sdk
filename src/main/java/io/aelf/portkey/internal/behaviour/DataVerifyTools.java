@@ -1,6 +1,7 @@
 package io.aelf.portkey.internal.behaviour;
 
 import io.aelf.portkey.internal.model.common.AccountOriginalType;
+import io.aelf.portkey.internal.model.common.OperationScene;
 import io.aelf.response.ResultCode;
 import io.aelf.utils.AElfException;
 import org.jetbrains.annotations.Contract;
@@ -39,6 +40,19 @@ public class DataVerifyTools {
     public static void verifyAccountOriginType(int type) throws AElfException {
         if (type < AccountOriginalType.email || type > AccountOriginalType.apple) {
             throw new AElfException(ResultCode.PARAM_ERROR, "invalid account origin type");
+        }
+    }
+
+    /**
+     * Verify the operation type, which should be between unknown(0) and setLoginAccount(7).
+     *
+     * @param type the type of the operation
+     * @throws AElfException if not match
+     * @see io.aelf.portkey.internal.model.common.OperationScene
+     */
+    public static void verifyOperationType(int type) throws AElfException {
+        if (type < OperationScene.unknown || type > OperationScene.setLoginAccount) {
+            throw new AElfException(ResultCode.PARAM_ERROR, "invalid operation type");
         }
     }
 }
