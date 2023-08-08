@@ -37,6 +37,7 @@ public interface AccountOperationAPISlice {
     GuardianInfoDTO getGuardianInfo(String chainId, String caHash, String guardianIdentifier);
 
     RegisterInfoDTO getRegisterInfo(String loginGuardianIdentifier, String caHash);
+    SendVerificationCodeResultDTO sendVerificationCode(@NonNull SendVerificationCodeParams params) throws AElfException;
 
     SendVerificationCodeResultDTO sendVerificationCode(@NonNull SendVerificationCodeParams params,
                                                        @NonNull RegisterHeader headers) throws AElfException;

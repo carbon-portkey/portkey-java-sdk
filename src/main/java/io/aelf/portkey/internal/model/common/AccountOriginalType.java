@@ -7,9 +7,9 @@ package io.aelf.portkey.internal.model.common;
  * <p>
  * 1: phone
  * <p>
- * 2: google - which means it comes from Google account login
+ * 2: google - which means it comes from Google account guardian
  * <p>
- * 3: apple - which means it comes from iCloud account login
+ * 3: apple - which means it comes from iCloud account guardian
  */
 public interface AccountOriginalType {
     int email = 0;

@@ -38,7 +38,20 @@ public class NetworkService implements GlobalOperationInterface {
     protected static volatile GlobalNetworkInterface api;
     protected static volatile Gson gson;
 
-    public NetworkService() {
+    private static volatile NetworkService instance;
+
+    public static NetworkService getInstance() {
+        if (instance == null) {
+            synchronized (NetworkService.class) {
+                if (instance == null) {
+                    instance = new NetworkService();
+                }
+            }
+        }
+        return instance;
+    }
+
+    private NetworkService() {
         if (api == null) {
             synchronized (NetworkService.class) {
                 if (api == null) {
@@ -123,6 +136,11 @@ public class NetworkService implements GlobalOperationInterface {
     @Override
     public RegisterInfoDTO getRegisterInfo(String loginGuardianIdentifier, String caHash) {
         return realExecute(api.getRegisterInfo(loginGuardianIdentifier, caHash));
+    }
+
+    @Override
+    public SendVerificationCodeResultDTO sendVerificationCode(@NonNull SendVerificationCodeParams params) throws AElfException {
+        return realExecute(api.sendVerificationCode(params, null));
     }
 
     @Override

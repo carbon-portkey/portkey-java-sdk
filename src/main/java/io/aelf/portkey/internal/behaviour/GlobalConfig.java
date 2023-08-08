@@ -22,6 +22,7 @@ public class GlobalConfig {
             ENCRYPT_TEST_KEY_SET = Map.entry("encryptTestKey", "encryptTestValue");
 
     private static boolean underTestEnvironment = false;
+    private static String currentChainId = ChainIds.MAINNET_CHAIN_ID;
 
     public static boolean isTestEnvironment() {
         return underTestEnvironment;
@@ -29,5 +30,14 @@ public class GlobalConfig {
 
     public static void setTestEnv(boolean testEnvironment) {
         underTestEnvironment = testEnvironment;
+    }
+
+    public static String getCurrentChainId() {
+        return currentChainId;
+    }
+
+    public static void setCurrentChainId(String currentChainId) {
+        DataVerifyTools.verifyChainIdParams(currentChainId);
+        GlobalConfig.currentChainId = currentChainId;
     }
 }

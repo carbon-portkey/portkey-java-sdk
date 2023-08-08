@@ -20,7 +20,7 @@ public class WebServiceTest {
     @Before
     public void init() {
         RetrofitProvider.resetOrInitMainRetrofit(TestParams.TEST_PORTKEY_API_HOST);
-        networkService = new NetworkService();
+        networkService = NetworkService.getInstance();
         GlobalConfig.setTestEnv(true);
     }
 
