@@ -1,7 +1,7 @@
-package io.aelf.portkey.component.network;
+package io.aelf.portkey.network;
 
+import io.aelf.portkey.TestParams;
 import io.aelf.portkey.assertion.AssertChecker;
-import io.aelf.portkey.component.TestParams;
 import io.aelf.portkey.network.retrofit.RetrofitProvider;
 import org.junit.Before;
 import org.junit.Test;

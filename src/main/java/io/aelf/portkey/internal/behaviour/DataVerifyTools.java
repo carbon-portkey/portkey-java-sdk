@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static io.aelf.portkey.internal.behaviour.GlobalConfig.*;
+import static io.aelf.portkey.internal.behaviour.GlobalConfig.ChainIds.*;
 
 public class DataVerifyTools {
     private static final List<String> chainIdList =

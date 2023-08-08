@@ -93,4 +93,12 @@ public class AssertChecker {
             throw preset != null ? preset : new RuntimeException("assert error");
         }
     }
+
+    public static void assertTrue(boolean equals, String s) {
+        assertTrue(equals, new AElfException(ResultCode.INTERNAL_ERROR, s));
+    }
+
+    private static void assertTrue(boolean equals, AElfException e) {
+        innerThrow(!equals, e);
+    }
 }

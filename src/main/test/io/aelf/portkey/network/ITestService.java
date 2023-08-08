@@ -1,4 +1,4 @@
-package io.aelf.portkey.component.network;
+package io.aelf.portkey.network;
 
 import com.google.gson.JsonElement;
 import io.aelf.portkey.internal.model.common.CountryCodeInfoDTO;

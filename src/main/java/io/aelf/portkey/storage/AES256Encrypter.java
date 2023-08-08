@@ -1,4 +1,4 @@
-package io.aelf.portkey.utils.encrypt;
+package io.aelf.portkey.storage;
 
 import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.utils.AElfException;
@@ -6,6 +6,7 @@ import org.apache.http.util.TextUtils;
 import org.apache.logging.log4j.core.util.Assert;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -19,12 +20,12 @@ import java.util.Base64;
 
 import static io.aelf.utils.ByteArrayHelper.bytesToHex;
 
-public class AES256Encrypter implements IEncrypter {
+class AES256Encrypter implements IEncrypter {
 
     public String generateNewEncryptKey() {
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-            keyGenerator.init(128);
+            keyGenerator.init(128, new java.security.SecureRandom(String.valueOf(System.currentTimeMillis()).getBytes()));
             SecretKey secretKey = keyGenerator.generateKey();
             byte[] keyBytes = secretKey.getEncoded();
             return bytesToHex(keyBytes);
@@ -45,9 +46,10 @@ public class AES256Encrypter implements IEncrypter {
         }
     }
 
-    public String encryptMsg(@NotNull String msg, @NotNull String encryptKey) {
+    public String encryptMsg(@NotNull String msg, @Nullable String encryptKey) {
         if (TextUtils.isEmpty(msg)) return msg;
         try {
+            assert encryptKey != null;
             Cipher cipher = getCipher(encryptKey, Cipher.ENCRYPT_MODE);
             byte[] inputBytes = msg.getBytes(StandardCharsets.UTF_8);
             byte[] encrypted = cipher.doFinal(inputBytes);

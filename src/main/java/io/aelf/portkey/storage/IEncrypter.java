@@ -1,6 +1,7 @@
-package io.aelf.portkey.utils.encrypt;
+package io.aelf.portkey.storage;
 
 import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
@@ -18,6 +19,7 @@ public interface IEncrypter {
      * @param encryptKey The encryption key to check.
      * @return True if the encryption key is valid, false otherwise.
      */
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     @Contract(pure = true)
     boolean isValidEncryptKey(String encryptKey);
 
@@ -29,7 +31,7 @@ public interface IEncrypter {
      * @return The encrypted message.
      */
     @Contract(pure = true)
-    String encryptMsg(@Nonnull String msg, @Nonnull String encryptKey);
+    String encryptMsg(@Nonnull String msg, @Nullable String encryptKey);
 
     /**
      * Decrypt a message using the specified encryption key.

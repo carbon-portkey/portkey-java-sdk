@@ -1,6 +1,5 @@
-package io.aelf.portkey.component.assertion;
+package io.aelf.portkey.assertion;
 
-import io.aelf.portkey.assertion.AssertChecker;
 import io.aelf.utils.AElfException;
 import org.junit.Test;
 

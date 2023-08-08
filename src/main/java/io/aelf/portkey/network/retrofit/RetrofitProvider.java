@@ -56,7 +56,9 @@ public class RetrofitProvider {
      *}
      */
     public static <API> API getAPIService(@NotNull Class<API> clazz) throws AElfException {
-        return getAPIService(clazz, null, factory);
+        AssertChecker.assertNotNull(retrofit, new AElfException(ResultCode.INTERNAL_ERROR
+                , "retrofit is null, maybe you forgot to call resetOrInitMainRetrofit(String)?"));
+        return retrofit.create(clazz);
     }
 
     public static <API> API getAPIService(@NotNull Class<API> clazz,
@@ -117,7 +119,7 @@ public class RetrofitProvider {
             return factory.addInterceptors(generateOkHttpClient()).build();
         }
         if (client == null) {
-            client = generateOkHttpClient().build();
+            client = factory.addInterceptors(generateOkHttpClient()).build();
         }
         return client;
     }

@@ -1,6 +1,6 @@
-package io.aelf.portkey.component.network;
+package io.aelf.portkey.network;
 
-import io.aelf.portkey.component.TestParams;
+import io.aelf.portkey.TestParams;
 import io.aelf.portkey.internal.behaviour.GlobalConfig;
 import io.aelf.portkey.network.retrofit.RetrofitProvider;
 import okhttp3.Response;

@@ -1,4 +1,4 @@
-package io.aelf.portkey.storage.model;
+package io.aelf.portkey.storage;
 
 import io.aelf.internal.ISuccessCallback;
 
@@ -58,5 +58,10 @@ public interface IStorageBehaviour {
      * @param key The key to check.
      */
     boolean contains(String key);
+
+    /**
+     * Clear all the key-value pairs.
+     */
+    void clear();
 
 }

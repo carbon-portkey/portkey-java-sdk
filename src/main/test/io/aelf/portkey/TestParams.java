@@ -1,4 +1,4 @@
-package io.aelf.portkey.component;
+package io.aelf.portkey;
 
 public interface TestParams {
     String TEST_PORTKEY_API_HOST = "https://did-portkey-test.portkey.finance";

@@ -55,20 +55,20 @@ public class GLogger {
         return getGson().toJson(json);
     }
 
-    public static void e(@NotNull String msg, @NotNull AElfException exception) {
+    public static synchronized void e(@NotNull String msg, @NotNull AElfException exception) {
         getLogger().e(msg, exception);
     }
 
-    public static void t(@NotNull String... msg) {
+    public static synchronized void t(@NotNull String... msg) {
         if (!GlobalConfig.isTestEnvironment()) return;
         getLogger().i(msg);
     }
 
-    public static void i(@NotNull String... msg) {
+    public static synchronized void i(@NotNull String... msg) {
         getLogger().i(msg);
     }
 
-    public static void w(@NotNull String... msg) {
+    public static synchronized void w(@NotNull String... msg) {
         getLogger().w(msg);
     }
 }
