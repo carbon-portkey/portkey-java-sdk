@@ -1,12 +1,12 @@
 package io.aelf.portkey.internal.model.guardian;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.aelf.portkey.internal.behaviour.DataVerifyTools;
+import io.aelf.portkey.internal.tools.DataVerifyTools;
 import org.jetbrains.annotations.Nullable;
 
 public class GetGuardianInfoParams {
     /**
-     * @see DataVerifyTools#verifyChainIdParams(String)
+     * @see DataVerifyTools#verifyChainId(String)
      */
     @JsonProperty("chainId")
     private String chainId;
@@ -20,7 +20,7 @@ public class GetGuardianInfoParams {
     }
 
     public void setChainId(String chainId) {
-        DataVerifyTools.verifyChainIdParams(chainId);
+        DataVerifyTools.verifyChainId(chainId);
         this.chainId = chainId;
     }
 

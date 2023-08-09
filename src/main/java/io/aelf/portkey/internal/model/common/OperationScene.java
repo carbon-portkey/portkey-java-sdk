@@ -15,6 +15,6 @@ public interface OperationScene {
     int editGuardian = 5;
     // remove other managers
     int removeOtherManager = 6;
-    // set the guardian account
+    // set the login account
     int setLoginAccount = 7;
 }

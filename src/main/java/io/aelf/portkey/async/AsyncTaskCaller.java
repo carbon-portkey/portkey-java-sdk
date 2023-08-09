@@ -10,6 +10,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class AsyncTaskCaller extends AsyncCaller {
+    private static volatile AsyncTaskCaller caller;
+
     private AsyncTaskCaller() {
         super(
                 new AbstractAsyncExecutor() {
@@ -23,8 +25,6 @@ public class AsyncTaskCaller extends AsyncCaller {
                     }
                 });
     }
-
-    private static volatile AsyncTaskCaller caller;
 
     public static AsyncTaskCaller getInstance() {
         if (caller == null) {

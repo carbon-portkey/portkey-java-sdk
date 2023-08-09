@@ -1,8 +1,8 @@
 package io.aelf.portkey.internal.model.guardian;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.aelf.portkey.internal.behaviour.DataVerifyTools;
 import io.aelf.portkey.internal.model.common.AccountOriginalType;
+import io.aelf.portkey.internal.tools.DataVerifyTools;
 
 public class GuardianDTO {
 
@@ -58,6 +58,7 @@ public class GuardianDTO {
     public boolean getIsLoginGuardian() {
         return isLoginGuardian;
     }
+
     public void setIsLoginGuardian(boolean loginGuardian) {
         isLoginGuardian = loginGuardian;
     }

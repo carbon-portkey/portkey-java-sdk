@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import io.aelf.portkey.internal.behaviour.GlobalConfig;
+import io.aelf.portkey.internal.tools.GlobalConfig;
 import io.aelf.utils.AElfException;
 import org.jetbrains.annotations.NotNull;
 
@@ -12,10 +12,6 @@ public class GLogger {
     private static volatile ILogger logger;
 
     private static volatile Gson gson;
-
-    public static synchronized void setLogger(@NotNull ILogger logger) {
-        GLogger.logger = logger;
-    }
 
     public static @NotNull ILogger getLogger() {
         if (logger == null) {
@@ -26,6 +22,10 @@ public class GLogger {
             }
         }
         return logger;
+    }
+
+    public static synchronized void setLogger(@NotNull ILogger logger) {
+        GLogger.logger = logger;
     }
 
     protected static Gson getGson() {
@@ -40,9 +40,9 @@ public class GLogger {
     }
 
     public static <T> String prettyJSON(@NotNull T anything) {
-        try{
+        try {
             return prettyJSON(getGson().toJson(anything));
-        }catch (Throwable e){
+        } catch (Throwable e) {
             return anything.toString();
         }
     }

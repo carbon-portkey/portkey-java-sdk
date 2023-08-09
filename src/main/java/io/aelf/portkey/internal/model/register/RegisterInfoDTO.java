@@ -1,22 +1,24 @@
 package io.aelf.portkey.internal.model.register;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.aelf.portkey.internal.behaviour.DataVerifyTools;
+import io.aelf.portkey.internal.tools.DataVerifyTools;
 
 public class RegisterInfoDTO {
 
     /**
      * Actually, this field is the same as "chainId."
-     * @see DataVerifyTools#verifyChainIdParams(String)
+     *
+     * @see DataVerifyTools#verifyChainId(String)
      */
-        @JsonProperty("originChainId")
-        private String originChainId;
+    @JsonProperty("originChainId")
+    private String originChainId;
 
-        public String getOriginChainId() {
-            return originChainId;
-        }
+    public String getOriginChainId() {
+        return originChainId;
+    }
 
-        public void setOriginChainId(String originChainId) {
-            this.originChainId = originChainId;
-        }
+    public void setOriginChainId(String originChainId) {
+        DataVerifyTools.verifyChainId(originChainId);
+        this.originChainId = originChainId;
+    }
 }

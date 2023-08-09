@@ -1,7 +1,6 @@
 package io.aelf.portkey.storage;
 
 import io.aelf.internal.ISuccessCallback;
-
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -34,7 +33,7 @@ public interface IStorageBehaviour {
      * @param callback a callback method to take further operations.
      */
     void putValueAsync(String key, String value,
-            @Nullable ISuccessCallback<Boolean> callback);
+                       @Nullable ISuccessCallback<Boolean> callback);
 
     /**
      * Check if the value associated with the specified key matches the given value.
@@ -54,7 +53,7 @@ public interface IStorageBehaviour {
 
     /**
      * Detect if the specified key exists.
-     * 
+     *
      * @param key The key to check.
      */
     boolean contains(String key);

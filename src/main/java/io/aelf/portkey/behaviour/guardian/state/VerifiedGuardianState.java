@@ -1,10 +1,11 @@
 package io.aelf.portkey.behaviour.guardian.state;
 
+import io.aelf.portkey.behaviour.global.AbstractStateSubject;
 import io.aelf.portkey.behaviour.guardian.GuardianStateStub;
 import io.aelf.portkey.internal.model.verify.HeadVerifyCodeResultDTO;
 import io.aelf.utils.AElfException;
 
-public class VerifiedGuardianState extends AbstractGuardianState{
+public class VerifiedGuardianState extends AbstractStateSubject<GuardianStateStub> implements IGuardianState {
     private final HeadVerifyCodeResultDTO headVerifyCodeResultDTO;
 
     public VerifiedGuardianState(GuardianStateStub stub, HeadVerifyCodeResultDTO resultDTO) {
@@ -15,7 +16,7 @@ public class VerifiedGuardianState extends AbstractGuardianState{
 
     @Override
     public boolean sendVerificationCode() throws AElfException {
-       throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException();
     }
 
     @Override

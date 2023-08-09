@@ -1,7 +1,7 @@
 package io.aelf.portkey.network;
 
 import io.aelf.portkey.TestParams;
-import io.aelf.portkey.internal.behaviour.GlobalConfig;
+import io.aelf.portkey.internal.tools.GlobalConfig;
 import io.aelf.portkey.network.retrofit.RetrofitProvider;
 import okhttp3.Response;
 import org.junit.Before;

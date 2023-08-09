@@ -1,7 +1,7 @@
 package io.aelf.portkey.internal.model.common;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.aelf.portkey.internal.behaviour.DataVerifyTools;
+import io.aelf.portkey.internal.tools.DataVerifyTools;
 
 public class CheckCaptchaParams {
 

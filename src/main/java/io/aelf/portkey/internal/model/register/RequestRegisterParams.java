@@ -1,12 +1,12 @@
 package io.aelf.portkey.internal.model.register;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.aelf.portkey.internal.behaviour.DataVerifyTools;
 import io.aelf.portkey.internal.model.common.ContextDTO;
+import io.aelf.portkey.internal.tools.DataVerifyTools;
 
 public class RequestRegisterParams {
     /**
-     * @see DataVerifyTools#verifyChainIdParams(String)
+     * @see DataVerifyTools#verifyChainId(String)
      */
     @JsonProperty("chainId")
     private String chainId;
@@ -28,7 +28,7 @@ public class RequestRegisterParams {
     }
 
     public void setChainId(String chainId) {
-        DataVerifyTools.verifyChainIdParams(chainId);
+        DataVerifyTools.verifyChainId(chainId);
         this.chainId = chainId;
     }
 

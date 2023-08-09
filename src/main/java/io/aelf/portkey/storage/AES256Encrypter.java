@@ -22,6 +22,15 @@ import static io.aelf.utils.ByteArrayHelper.bytesToHex;
 
 class AES256Encrypter implements IEncrypter {
 
+    @Contract(pure = true)
+    private static Cipher getCipher(@NotNull String key, int mode) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+        byte[] keyBytes = key.getBytes(StandardCharsets.UTF_8);
+        SecretKeySpec secretKeySpec = new SecretKeySpec(keyBytes, "AES");
+        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+        cipher.init(mode, secretKeySpec);
+        return cipher;
+    }
+
     public String generateNewEncryptKey() {
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
@@ -59,15 +68,6 @@ class AES256Encrypter implements IEncrypter {
             GLogger.e("encrypt fail:", ex);
             throw ex;
         }
-    }
-
-    @Contract(pure = true)
-    private static Cipher getCipher(@NotNull String key, int mode) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
-        byte[] keyBytes = key.getBytes(StandardCharsets.UTF_8);
-        SecretKeySpec secretKeySpec = new SecretKeySpec(keyBytes, "AES");
-        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        cipher.init(mode, secretKeySpec);
-        return cipher;
     }
 
     public String decryptMsg(@NotNull String msg, @NotNull String encryptKey) {

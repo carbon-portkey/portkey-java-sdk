@@ -4,8 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import io.aelf.network.factories.NullOnEmptyConverterFactory;
 import io.aelf.portkey.assertion.AssertChecker;
-import io.aelf.portkey.network.interceptor.CommonHeaderInterceptor;
 import io.aelf.portkey.network.interceptor.BodyModifyInterceptor;
+import io.aelf.portkey.network.interceptor.CommonHeaderInterceptor;
 import io.aelf.response.ResultCode;
 import io.aelf.utils.AElfException;
 import okhttp3.Interceptor;
@@ -24,18 +24,14 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @SuppressWarnings("ALL")
 public class RetrofitProvider {
-    private static volatile Retrofit retrofit;
-
-    private static String mainHostUrl;
-
-    private static OkHttpClient client;
-
-    private static Map<String, Retrofit> foreignRetrofitList = new ConcurrentHashMap<>();
-
     private static final ClientInterceptorFactory factory = builder -> {
         getInterceptors().forEach(builder::addInterceptor);
         return builder;
     };
+    private static volatile Retrofit retrofit;
+    private static String mainHostUrl;
+    private static OkHttpClient client;
+    private static Map<String, Retrofit> foreignRetrofitList = new ConcurrentHashMap<>();
 
     /**
      * A basic way to create an API network service.

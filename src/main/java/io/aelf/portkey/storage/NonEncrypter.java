@@ -1,10 +1,10 @@
 package io.aelf.portkey.storage;
 
-import io.aelf.portkey.internal.behaviour.GlobalConfig;
+import io.aelf.portkey.internal.tools.GlobalConfig;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
- class NonEncrypter implements IEncrypter {
+class NonEncrypter implements IEncrypter {
 
     /**
      * NonEncrypter will always return {@link GlobalConfig#NOT_VALID_ENCRYPT_KEY}.

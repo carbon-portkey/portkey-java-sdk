@@ -1,9 +1,8 @@
 package io.aelf.portkey.assertion;
 
+import com.google.common.collect.Lists;
 import io.aelf.utils.AElfException;
 import org.junit.Test;
-
-import com.google.common.collect.Lists;
 
 public class AssertTest {
 

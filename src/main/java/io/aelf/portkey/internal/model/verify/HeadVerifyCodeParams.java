@@ -1,8 +1,8 @@
 package io.aelf.portkey.internal.model.verify;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.aelf.portkey.internal.behaviour.DataVerifyTools;
 import io.aelf.portkey.internal.model.common.OperationScene;
+import io.aelf.portkey.internal.tools.DataVerifyTools;
 
 public class HeadVerifyCodeParams {
 
@@ -15,7 +15,7 @@ public class HeadVerifyCodeParams {
     @JsonProperty("verifierId")
     private String verifierId;
     /**
-     * @see DataVerifyTools#verifyChainIdParams(String)
+     * @see DataVerifyTools#verifyChainId(String)
      */
     @JsonProperty("chainId")
     private String chainId;
@@ -66,7 +66,7 @@ public class HeadVerifyCodeParams {
     }
 
     public HeadVerifyCodeParams setChainId(String chainId) {
-        DataVerifyTools.verifyChainIdParams(chainId);
+        DataVerifyTools.verifyChainId(chainId);
         this.chainId = chainId;
         return this;
     }

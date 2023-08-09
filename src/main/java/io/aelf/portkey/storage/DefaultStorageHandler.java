@@ -3,17 +3,18 @@ package io.aelf.portkey.storage;
 import io.aelf.internal.AsyncResult;
 import io.aelf.internal.ISuccessCallback;
 import io.aelf.portkey.async.AsyncTaskCaller;
+import io.aelf.portkey.internal.tools.GlobalConfig;
 import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.response.ResultCode;
 import io.aelf.utils.AElfException;
+import io.fastkv.FastKV;
 import org.apache.http.util.TextUtils;
 import org.jetbrains.annotations.NotNull;
-
-import io.aelf.portkey.internal.behaviour.GlobalConfig;
-import io.fastkv.FastKV;
 import org.jetbrains.annotations.Nullable;
 
 class DefaultStorageHandler extends AbstractStorageHandler {
+
+    private final FastKV kvProvider;
 
     /**
      * Init the storage config without encryptKey.
@@ -88,8 +89,6 @@ class DefaultStorageHandler extends AbstractStorageHandler {
                 TextUtils.isEmpty(storageBucketName) ? GlobalConfig.NAME_PORTKEY_SDK : storageBucketName)
                 .build();
     }
-
-    private final FastKV kvProvider;
 
     public String getValue(@NotNull String key) {
         return encrypter.decryptMsg(kvProvider.getString(key), encryptKey);

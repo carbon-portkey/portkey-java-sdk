@@ -20,9 +20,8 @@ public class StorageTest {
     private final String testEncryptKey = "87bfda5e9290325d1a67895c4bc9de2b";
     private final String testEncryptBucketName = "portkey-test";
     private final String testNonEncryptBucketName = "portkey-test2";
-    private IStorageBehaviour useEncryptHandler, nonEncryptHandler;
-
     private final String expected = "i-am-mock", key = "mock";
+    private IStorageBehaviour useEncryptHandler, nonEncryptHandler;
 
     @Before
     public void init() {
@@ -111,7 +110,7 @@ public class StorageTest {
 
     @Test
     public void exportKeyNotTheSameTest() {
-        Set<String> set=new HashSet<>();
+        Set<String> set = new HashSet<>();
         for (int i = 0; i < 100; i++) {
             String key = StorageProvider.exportNewEncryptKey();
             Assert.assertFalse(set.contains(key));
@@ -139,7 +138,7 @@ public class StorageTest {
     }
 
     @Test
-    public void clearTest(){
+    public void clearTest() {
         putTest();
         useEncryptHandler.clear();
         nonEncryptHandler.clear();

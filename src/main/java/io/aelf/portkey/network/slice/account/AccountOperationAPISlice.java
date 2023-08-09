@@ -10,7 +10,9 @@ import io.aelf.portkey.internal.model.guardian.GetRecommendGuardianResultDTO;
 import io.aelf.portkey.internal.model.guardian.GetRecommendationVerifierParams;
 import io.aelf.portkey.internal.model.guardian.GuardianInfoDTO;
 import io.aelf.portkey.internal.model.recovery.RequestRecoveryParams;
-import io.aelf.portkey.internal.model.register.*;
+import io.aelf.portkey.internal.model.register.RegisterHeader;
+import io.aelf.portkey.internal.model.register.RegisterInfoDTO;
+import io.aelf.portkey.internal.model.register.RequestRegisterParams;
 import io.aelf.portkey.internal.model.verify.HeadVerifyCodeParams;
 import io.aelf.portkey.internal.model.verify.HeadVerifyCodeResultDTO;
 import io.aelf.portkey.internal.model.verify.SendVerificationCodeParams;
@@ -37,6 +39,7 @@ public interface AccountOperationAPISlice {
     GuardianInfoDTO getGuardianInfo(String chainId, String caHash, String guardianIdentifier);
 
     RegisterInfoDTO getRegisterInfo(String loginGuardianIdentifier, String caHash);
+
     SendVerificationCodeResultDTO sendVerificationCode(@NonNull SendVerificationCodeParams params) throws AElfException;
 
     SendVerificationCodeResultDTO sendVerificationCode(@NonNull SendVerificationCodeParams params,

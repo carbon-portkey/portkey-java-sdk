@@ -1,8 +1,8 @@
 package io.aelf.portkey.internal.model.guardian;
 
-import javax.annotation.Nullable;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.annotation.Nullable;
 
 public class ManagerInfoDTO {
 

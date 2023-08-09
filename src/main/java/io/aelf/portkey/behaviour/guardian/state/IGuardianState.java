@@ -27,7 +27,8 @@ public interface IGuardianState {
     boolean isVerified();
 
     /**
-     * Report the
+     * Report the observer that the guardian is verified.
+     *
      * @throws AElfException if not verified.
      */
     void next() throws AElfException;

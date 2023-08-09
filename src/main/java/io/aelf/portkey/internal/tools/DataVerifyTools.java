@@ -1,4 +1,4 @@
-package io.aelf.portkey.internal.behaviour;
+package io.aelf.portkey.internal.tools;
 
 import io.aelf.portkey.internal.model.common.AccountOriginalType;
 import io.aelf.portkey.internal.model.common.OperationScene;
@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static io.aelf.portkey.internal.behaviour.GlobalConfig.ChainIds.*;
+import static io.aelf.portkey.internal.tools.GlobalConfig.ChainIds.*;
 
 public class DataVerifyTools {
     private static final List<String> chainIdList =
@@ -23,7 +23,7 @@ public class DataVerifyTools {
      * @see GlobalConfig
      */
     @Contract(pure = true, value = "_ -> _")
-    public static void verifyChainIdParams(@NotNull String chainId) throws AElfException {
+    public static void verifyChainId(@NotNull String chainId) throws AElfException {
         if ((!chainIdList.contains(chainId))) {
             throw new AElfException(ResultCode.PARAM_ERROR, "invalid chainId");
         }

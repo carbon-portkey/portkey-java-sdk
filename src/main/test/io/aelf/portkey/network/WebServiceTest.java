@@ -2,13 +2,13 @@ package io.aelf.portkey.network;
 
 import io.aelf.portkey.TestParams;
 import io.aelf.portkey.assertion.AssertChecker;
-import io.aelf.portkey.internal.behaviour.GlobalConfig;
 import io.aelf.portkey.internal.model.common.CountryCodeInfoDTO;
 import io.aelf.portkey.internal.model.common.OperationScene;
 import io.aelf.portkey.internal.model.verify.SendVerificationCodeParams;
-import io.aelf.portkey.network.slice.account.AccountOperationAPISlice;
-import io.aelf.portkey.network.connecter.NetworkService;
+import io.aelf.portkey.internal.tools.GlobalConfig;
+import io.aelf.portkey.network.connecter.INetworkInterface;
 import io.aelf.portkey.network.retrofit.RetrofitProvider;
+import io.aelf.portkey.network.slice.account.AccountOperationAPISlice;
 import io.aelf.utils.AElfException;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -20,7 +20,7 @@ public class WebServiceTest {
     @Before
     public void init() {
         RetrofitProvider.resetOrInitMainRetrofit(TestParams.TEST_PORTKEY_API_HOST);
-        networkService = NetworkService.getInstance();
+        networkService = INetworkInterface.getInstance();
         GlobalConfig.setTestEnv(true);
     }
 
