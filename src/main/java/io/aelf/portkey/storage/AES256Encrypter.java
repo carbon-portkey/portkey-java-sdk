@@ -70,8 +70,9 @@ class AES256Encrypter implements IEncrypter {
         }
     }
 
-    public String decryptMsg(@NotNull String msg, @NotNull String encryptKey) {
+    public String decryptMsg(@NotNull String msg, @Nullable String encryptKey) {
         if (TextUtils.isEmpty(msg)) return msg;
+        assert encryptKey != null;
         try {
             Cipher cipher = getCipher(encryptKey, Cipher.DECRYPT_MODE);
             byte[] encryptedBytes = Base64.getDecoder().decode(msg);

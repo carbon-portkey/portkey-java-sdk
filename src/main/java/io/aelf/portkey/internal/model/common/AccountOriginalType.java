@@ -11,9 +11,19 @@ package io.aelf.portkey.internal.model.common;
  * <p>
  * 3: apple - which means it comes from iCloud account guardian
  */
-public interface AccountOriginalType {
-    int email = 0;
-    int phone = 1;
-    int google = 2;
-    int apple = 3;
+public enum AccountOriginalType {
+    Email(0),
+    Phone(1),
+    Google(2),
+    Apple(3);
+
+    private final int value;
+
+    AccountOriginalType(int i) {
+        this.value = i;
+    }
+
+    public int getValue() {
+        return value;
+    }
 }

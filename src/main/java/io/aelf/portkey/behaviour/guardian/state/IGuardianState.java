@@ -1,6 +1,8 @@
 package io.aelf.portkey.behaviour.guardian.state;
 
+import io.aelf.portkey.behaviour.global.InvalidOperationException;
 import io.aelf.utils.AElfException;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 public interface IGuardianState {
     /**
@@ -10,7 +12,20 @@ public interface IGuardianState {
      *
      * @return True if the verification code is sent.
      */
-    boolean sendVerificationCode() throws AElfException;
+    default boolean sendVerificationCode() throws AElfException {
+        throw new InvalidOperationException();
+    }
+
+    /**
+     * Send the verification code to the specified verification position.
+     * <p>
+     * Currently, we only support email verification.
+     *
+     * @return True if the verification code is sent.
+     */
+    default boolean sendVerificationCode(@NonNull String recaptchaToken) throws AElfException {
+        throw new InvalidOperationException();
+    }
 
     /**
      * Verify the verification code.
@@ -24,13 +39,29 @@ public interface IGuardianState {
      *
      * @return True if the verification is verified.
      */
-    boolean isVerified();
+    default boolean isVerified() {
+        return this.getStage() == Stage.VERIFIED;
+    }
+
 
     /**
-     * Report the observer that the guardian is verified.
+     * Get the current stage of the guardian.
+     * <p>
+     * INIT: The guardian is initialized.
+     * <p>
+     * SENT: The verify code is sent.
+     * <p>
+     * VERIFIED: The verify code is verified, it is able to call next().
      *
-     * @throws AElfException if not verified.
+     * @return The current stage of the guardian.
+     * @see Stage
      */
-    void next() throws AElfException;
+    Stage getStage();
+
+    enum Stage {
+        INIT,
+        SENT,
+        VERIFIED
+    }
 
 }

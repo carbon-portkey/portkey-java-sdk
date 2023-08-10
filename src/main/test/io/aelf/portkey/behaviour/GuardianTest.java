@@ -1,10 +1,11 @@
 package io.aelf.portkey.behaviour;
 
 import io.aelf.portkey.behaviour.guardian.GuardianBehaviourEntity;
+import io.aelf.portkey.behaviour.guardian.state.VerifiedGuardianState;
+import io.aelf.portkey.internal.model.common.AccountOriginalType;
 import io.aelf.portkey.internal.model.common.OperationScene;
 import io.aelf.portkey.internal.model.guardian.GuardianDTO;
-import io.aelf.portkey.utils.log.GLogger;
-import io.aelf.utils.AElfException;
+import io.aelf.portkey.internal.model.verify.HeadVerifyCodeResultDTO;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,8 +15,13 @@ public class GuardianTest {
 
     @Before
     public void setUp() {
-        guardianBehaviourEntity = new GuardianBehaviourEntity(new GuardianDTO(), OperationScene.register, (info, guardian) -> {
-        });
+        guardianBehaviourEntity = new GuardianBehaviourEntity(
+                new GuardianDTO(),
+                OperationScene.register,
+                guardianWrapper -> {
+                },
+                AccountOriginalType.Email
+        );
     }
 
     @Test
@@ -23,14 +29,10 @@ public class GuardianTest {
         Assert.assertFalse(guardianBehaviourEntity.isVerified());
     }
 
-    @Test(expected = AElfException.class)
-    public void callFinishWhenNotVerifiedTest() {
+    @Test
+    public void callFinishTest() {
         Assert.assertFalse(guardianBehaviourEntity.isVerified());
-        try {
-            guardianBehaviourEntity.next();
-        } catch (AElfException e) {
-            GLogger.e("assert exception:", e);
-            throw e;
-        }
+        guardianBehaviourEntity.setNextState(new VerifiedGuardianState(guardianBehaviourEntity, new HeadVerifyCodeResultDTO()));
+        assert guardianBehaviourEntity.isVerified();
     }
 }

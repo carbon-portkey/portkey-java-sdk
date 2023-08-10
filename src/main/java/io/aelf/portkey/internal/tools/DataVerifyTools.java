@@ -38,7 +38,7 @@ public class DataVerifyTools {
      */
     @Contract(pure = true, value = "_ -> _")
     public static void verifyAccountOriginType(int type) throws AElfException {
-        if (type < AccountOriginalType.email || type > AccountOriginalType.apple) {
+        if (type < AccountOriginalType.Email.getValue() || type > AccountOriginalType.Apple.getValue()) {
             throw new AElfException(ResultCode.PARAM_ERROR, "invalid account origin type");
         }
     }

@@ -11,8 +11,9 @@ public class RegisterHeader {
         return reCaptchaToken;
     }
 
-    public void setReCaptchaToken(String reCaptchaToken) {
+    public RegisterHeader setReCaptchaToken(String reCaptchaToken) {
         this.reCaptchaToken = reCaptchaToken;
+        return this;
     }
 
 }

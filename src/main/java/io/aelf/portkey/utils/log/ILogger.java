@@ -5,6 +5,14 @@ import io.aelf.utils.AElfException;
 import javax.annotation.Nonnull;
 
 public interface ILogger {
+
+    /**
+     * Logs an error message with no exception.
+     *
+     * @param msg The error message to log.
+     */
+    void e(@Nonnull String msg);
+
     /**
      * Logs an error message with an exception.
      *

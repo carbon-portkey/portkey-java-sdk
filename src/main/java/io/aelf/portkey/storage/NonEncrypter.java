@@ -34,7 +34,7 @@ class NonEncrypter implements IEncrypter {
      * NonEncrypter will ignore the decryption process.
      */
     @Override
-    public String decryptMsg(@NotNull String msg, @NotNull String encryptKey) {
+    public String decryptMsg(@NotNull String msg, @Nullable String encryptKey) {
         return msg;
     }
 }

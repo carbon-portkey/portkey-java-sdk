@@ -36,7 +36,11 @@ public interface AccountOperationAPISlice {
      */
     boolean checkGoogleRecaptcha(int scene) throws AElfException;
 
-    GuardianInfoDTO getGuardianInfo(String chainId, String caHash, String guardianIdentifier);
+    GuardianInfoDTO getGuardianInfo(String chainId, String guardianIdentifier);
+
+    GuardianInfoDTO getGuardianInfo(String chainId, String guardianIdentifier, String caHash);
+
+    RegisterInfoDTO getRegisterInfo(String loginGuardianIdentifier);
 
     RegisterInfoDTO getRegisterInfo(String loginGuardianIdentifier, String caHash);
 

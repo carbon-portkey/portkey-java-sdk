@@ -2,28 +2,46 @@ package io.aelf.portkey.behaviour.guardian.state;
 
 import io.aelf.portkey.behaviour.global.AbstractStateSubject;
 import io.aelf.portkey.behaviour.global.OperationNotFinishedException;
-import io.aelf.portkey.behaviour.guardian.GuardianStateStub;
+import io.aelf.portkey.behaviour.guardian.GuardianStub;
 import io.aelf.portkey.internal.model.guardian.GuardianDTO;
+import io.aelf.portkey.internal.model.register.RegisterHeader;
 import io.aelf.portkey.internal.model.verify.SendVerificationCodeParams;
 import io.aelf.portkey.internal.model.verify.SendVerificationCodeResultDTO;
 import io.aelf.portkey.internal.tools.GlobalConfig;
 import io.aelf.portkey.network.connecter.INetworkInterface;
 import io.aelf.utils.AElfException;
+import org.apache.http.util.TextUtils;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class InitGuardianState extends AbstractStateSubject<GuardianStateStub> implements IGuardianState {
-    public InitGuardianState(GuardianStateStub stub) {
+public class InitGuardianState extends AbstractStateSubject<GuardianStub> implements IGuardianState {
+    public InitGuardianState(GuardianStub stub) {
         super(stub);
     }
 
     @Override
     public boolean sendVerificationCode() throws AElfException {
+        return innerSendVerificationCode(null);
+    }
+
+    @Override
+    public boolean sendVerificationCode(@NotNull String recaptchaToken) throws AElfException {
+        return innerSendVerificationCode(recaptchaToken);
+    }
+
+    private boolean innerSendVerificationCode(@Nullable String recaptchaToken) throws AElfException {
         GuardianDTO guardian = stub.getOriginalGuardianInfo();
         SendVerificationCodeParams params = new SendVerificationCodeParams()
+                .setType(stub.getAccountOriginalType())
                 .setChainId(GlobalConfig.getCurrentChainId())
                 .setOperationType(stub.getOperationType())
                 .setGuardianIdentifier(guardian.getGuardianIdentifier())
                 .setVerifierId(guardian.getVerifierId());
-        SendVerificationCodeResultDTO resultDTO = INetworkInterface.getInstance().sendVerificationCode(params);
+        INetworkInterface networkInterface = INetworkInterface.getInstance();
+        SendVerificationCodeResultDTO resultDTO =
+                TextUtils.isEmpty(recaptchaToken)
+                        ? networkInterface.sendVerificationCode(params)
+                        : networkInterface.sendVerificationCode(params, new RegisterHeader().setReCaptchaToken(recaptchaToken));
         if (resultDTO.isSuccess()) {
             stub.setNextState(new SentVerificationState(stub, resultDTO));
             return true;
@@ -38,12 +56,7 @@ public class InitGuardianState extends AbstractStateSubject<GuardianStateStub> i
     }
 
     @Override
-    public boolean isVerified() {
-        return false;
-    }
-
-    @Override
-    public void next() throws AElfException {
-        throw new OperationNotFinishedException();
+    public Stage getStage() {
+        return Stage.INIT;
     }
 }

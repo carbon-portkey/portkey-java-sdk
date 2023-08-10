@@ -38,4 +38,8 @@ public class GlobalConfig {
         String TESTNET_CHAIN_ID = "tDVV";
         String TESTNET_CHAIN_ID_ALTERNATIVE = "tDVW";
     }
+
+    public interface StorageTags {
+        String TAG_SESSION_ID = "session_id";
+    }
 }

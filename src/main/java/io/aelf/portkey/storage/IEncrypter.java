@@ -41,5 +41,5 @@ public interface IEncrypter {
      * @return The decrypted message.
      */
     @Contract(pure = true)
-    String decryptMsg(@Nonnull String msg, @Nonnull String encryptKey);
+    String decryptMsg(@Nonnull String msg, @Nullable String encryptKey);
 }

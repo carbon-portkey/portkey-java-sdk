@@ -55,6 +55,10 @@ public class GLogger {
         return getGson().toJson(json);
     }
 
+    public static synchronized void e(@NotNull String msg) {
+        getLogger().e(msg);
+    }
+
     public static synchronized void e(@NotNull String msg, @NotNull AElfException exception) {
         getLogger().e(msg, exception);
     }

@@ -6,8 +6,13 @@ import org.jetbrains.annotations.NotNull;
 @SuppressWarnings("CallToPrintStackTrace")
 public class SystemOutLogger implements ILogger {
     @Override
-    public void e(@NotNull String msg, @NotNull AElfException exception) {
+    public void e(@NotNull String msg) {
         System.out.println("error: ".concat(msg));
+    }
+
+    @Override
+    public void e(@NotNull String msg, @NotNull AElfException exception) {
+        e(msg);
         exception.printStackTrace();
     }
 

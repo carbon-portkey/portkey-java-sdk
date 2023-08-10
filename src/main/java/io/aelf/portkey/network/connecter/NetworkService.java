@@ -157,8 +157,18 @@ public class NetworkService implements INetworkInterface {
     }
 
     @Override
-    public GuardianInfoDTO getGuardianInfo(String chainId, String caHash, String guardianIdentifier) {
-        return realExecute(api.getGuardianInfo(chainId, caHash, guardianIdentifier));
+    public GuardianInfoDTO getGuardianInfo(String chainId, String guardianIdentifier) {
+        return realExecute(api.getGuardianInfo(chainId, guardianIdentifier));
+    }
+
+    @Override
+    public GuardianInfoDTO getGuardianInfo(String chainId, String guardianIdentifier, String caHash) {
+        return realExecute(api.getGuardianInfo(chainId, guardianIdentifier, caHash));
+    }
+
+    @Override
+    public RegisterInfoDTO getRegisterInfo(String loginGuardianIdentifier) {
+        return realExecute(api.getRegisterInfo(loginGuardianIdentifier));
     }
 
     @Override

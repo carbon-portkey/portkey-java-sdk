@@ -1,22 +1,18 @@
 package io.aelf.portkey.behaviour.guardian.state;
 
 import io.aelf.portkey.behaviour.global.AbstractStateSubject;
-import io.aelf.portkey.behaviour.guardian.GuardianStateStub;
+import io.aelf.portkey.behaviour.guardian.GuardianStub;
+import io.aelf.portkey.internal.model.guardian.GuardianWrapper;
 import io.aelf.portkey.internal.model.verify.HeadVerifyCodeResultDTO;
 import io.aelf.utils.AElfException;
 
-public class VerifiedGuardianState extends AbstractStateSubject<GuardianStateStub> implements IGuardianState {
+public class VerifiedGuardianState extends AbstractStateSubject<GuardianStub> implements IGuardianState {
     private final HeadVerifyCodeResultDTO headVerifyCodeResultDTO;
 
-    public VerifiedGuardianState(GuardianStateStub stub, HeadVerifyCodeResultDTO resultDTO) {
+    public VerifiedGuardianState(GuardianStub stub, HeadVerifyCodeResultDTO resultDTO) {
         super(stub);
-
         this.headVerifyCodeResultDTO = resultDTO;
-    }
-
-    @Override
-    public boolean sendVerificationCode() throws AElfException {
-        throw new UnsupportedOperationException();
+        this.next();
     }
 
     @Override
@@ -24,13 +20,17 @@ public class VerifiedGuardianState extends AbstractStateSubject<GuardianStateStu
         throw new UnsupportedOperationException();
     }
 
-    @Override
-    public boolean isVerified() {
-        return true;
+    public void next() throws AElfException {
+        stub.getObserver().informGuardianReady(
+                new GuardianWrapper(
+                        stub.getOriginalGuardianInfo(),
+                        headVerifyCodeResultDTO
+                )
+        );
     }
 
     @Override
-    public void next() throws AElfException {
-        stub.getObserver().informGuardianReady(headVerifyCodeResultDTO, stub.getOriginalGuardianInfo());
+    public Stage getStage() {
+        return Stage.VERIFIED;
     }
 }

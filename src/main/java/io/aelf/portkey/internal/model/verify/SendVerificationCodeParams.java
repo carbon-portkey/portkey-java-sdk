@@ -9,7 +9,7 @@ public class SendVerificationCodeParams {
      * @see AccountOriginalType
      */
     @JsonProperty("type")
-    private int type;
+    private String type;
     @JsonProperty("guardianIdentifier")
     private String guardianIdentifier;
     @JsonProperty("verifierId")
@@ -26,13 +26,17 @@ public class SendVerificationCodeParams {
     private int operationType;
 
 
-    public int getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(int type) {
-        DataVerifyTools.verifyAccountOriginType(type);
-        this.type = type;
+    /**
+     * @see AccountOriginalType
+     */
+    public SendVerificationCodeParams setType(AccountOriginalType type) {
+        DataVerifyTools.verifyAccountOriginType(type.getValue());
+        this.type = type.name();
+        return this;
     }
 
     public String getGuardianIdentifier() {

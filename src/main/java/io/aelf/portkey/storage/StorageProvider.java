@@ -1,5 +1,8 @@
 package io.aelf.portkey.storage;
 
+import io.aelf.portkey.assertion.AssertChecker;
+import io.aelf.response.ResultCode;
+import io.aelf.utils.AElfException;
 import io.fastkv.FastKV;
 import org.jetbrains.annotations.NotNull;
 
@@ -59,6 +62,7 @@ public class StorageProvider {
     }
 
     public static IStorageBehaviour getHandler() {
+        AssertChecker.assertNotNull(handler, new AElfException(ResultCode.INTERNAL_ERROR, "StorageProvider has not been initialized yet."));
         return handler;
     }
 }
