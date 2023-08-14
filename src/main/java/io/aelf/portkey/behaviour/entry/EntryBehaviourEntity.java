@@ -38,6 +38,33 @@ public class EntryBehaviourEntity {
         return new CheckedEntry(isRegistered, config, registerInfo);
     }
 
+    protected static LoginBehaviourEntity createLoginStepEntity(RegisterInfoDTO registerInfoDTO, EntryCheckConfig config) throws AElfException {
+        GuardianInfoDTO guardianInfoDTO = INetworkInterface.getInstance().getGuardianInfo(registerInfoDTO.getOriginChainId(), config.getAccountIdentifier());
+        List<GuardianWrapper> guardianWrappers = Arrays.stream(guardianInfoDTO.getGuardianList().getGuardians())
+                .map(GuardianWrapper::new)
+                .collect(Collectors.toList());
+        return new LoginBehaviourEntity(guardianWrappers, config);
+    }
+
+    protected static RegisterBehaviourEntity createRegisterStepEntity(EntryCheckConfig config) {
+        return new RegisterBehaviourEntity(config);
+    }
+
+    private static boolean checkLoginConfig(EntryCheckConfig loginConfig) {
+        return DataVerifyTools.checkAccountOriginalType(loginConfig.getAccountOriginalType())
+                && !TextUtils.isEmpty(loginConfig.getAccountIdentifier());
+    }
+
+    @FunctionalInterface
+    public interface LogInChain {
+        void onLoginStep(LoginCallback callback) throws AElfException;
+    }
+
+    @FunctionalInterface
+    public interface RegisterChain {
+        void onRegisterStep(RegisterCallback callback) throws AElfException;
+    }
+
     public static class CheckedEntry implements LogInChain, RegisterChain {
         private final boolean isRegistered;
         private final EntryCheckConfig config;
@@ -77,33 +104,6 @@ public class EntryBehaviourEntity {
             callback.onRegisterStep(createRegisterStepEntity(config));
         }
 
-    }
-
-    @FunctionalInterface
-    public interface LogInChain {
-        void onLoginStep(LoginCallback callback);
-    }
-
-    @FunctionalInterface
-    public interface RegisterChain {
-        void onRegisterStep(RegisterCallback callback);
-    }
-
-    protected static LoginBehaviourEntity createLoginStepEntity(RegisterInfoDTO registerInfoDTO, EntryCheckConfig config) throws AElfException {
-        GuardianInfoDTO guardianInfoDTO = INetworkInterface.getInstance().getGuardianInfo(registerInfoDTO.getOriginChainId(), config.getAccountIdentifier());
-        List<GuardianWrapper> guardianWrappers = Arrays.stream(guardianInfoDTO.getGuardianList().getGuardians())
-                .map(GuardianWrapper::new)
-                .collect(Collectors.toList());
-        return new LoginBehaviourEntity(guardianWrappers, config.getAccountOriginalType());
-    }
-
-    protected static RegisterBehaviourEntity createRegisterStepEntity(EntryCheckConfig config) {
-        return new RegisterBehaviourEntity(config);
-    }
-
-    private static boolean checkLoginConfig(EntryCheckConfig loginConfig) {
-        return DataVerifyTools.checkAccountOriginalType(loginConfig.getAccountOriginalType())
-                && !TextUtils.isEmpty(loginConfig.getAccountIdentifier());
     }
 
 }

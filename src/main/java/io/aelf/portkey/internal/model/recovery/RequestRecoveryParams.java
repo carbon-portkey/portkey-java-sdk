@@ -7,6 +7,9 @@ import io.aelf.portkey.internal.model.guardian.ApprovedGuardianDTO;
 public class RequestRecoveryParams {
     @JsonProperty("loginGuardianIdentifier")
     private String loginGuardianIdentifier;
+    /**
+     * Actually, it's the keypair address that is about to sign.
+     */
     @JsonProperty("manager")
     private String manager;
     @JsonProperty("guardiansApproved")
@@ -22,48 +25,54 @@ public class RequestRecoveryParams {
         return loginGuardianIdentifier;
     }
 
-    public void setLoginGuardianIdentifier(String loginGuardianIdentifier) {
+    public RequestRecoveryParams setLoginGuardianIdentifier(String loginGuardianIdentifier) {
         this.loginGuardianIdentifier = loginGuardianIdentifier;
+        return this;
     }
 
     public String getManager() {
         return manager;
     }
 
-    public void setManager(String manager) {
+    public RequestRecoveryParams setManager(String manager) {
         this.manager = manager;
+        return this;
     }
 
     public ApprovedGuardianDTO[] getGuardiansApproved() {
         return guardiansApproved;
     }
 
-    public void setGuardiansApproved(ApprovedGuardianDTO[] guardiansApproved) {
+    public RequestRecoveryParams setGuardiansApproved(ApprovedGuardianDTO[] guardiansApproved) {
         this.guardiansApproved = guardiansApproved;
+        return this;
     }
 
     public String getExtraData() {
         return extraData;
     }
 
-    public void setExtraData(String extraData) {
+    public RequestRecoveryParams setExtraData(String extraData) {
         this.extraData = extraData;
+        return this;
     }
 
     public String getChainId() {
         return chainId;
     }
 
-    public void setChainId(String chainId) {
+    public RequestRecoveryParams setChainId(String chainId) {
         this.chainId = chainId;
+        return this;
     }
 
     public ContextDTO getContext() {
         return context;
     }
 
-    public void setContext(ContextDTO context) {
+    public RequestRecoveryParams setContext(ContextDTO context) {
         this.context = context;
+        return this;
     }
 }
 

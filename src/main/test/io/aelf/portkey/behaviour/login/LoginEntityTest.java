@@ -1,4 +1,4 @@
-package io.aelf.portkey.behaviour;
+package io.aelf.portkey.behaviour.login;
 
 import io.aelf.portkey.behaviour.guardian.GuardianBehaviourEntity;
 import io.aelf.portkey.behaviour.guardian.state.VerifiedGuardianState;

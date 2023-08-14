@@ -3,12 +3,14 @@ package io.aelf.portkey.network.connecter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
-import io.aelf.internal.sdkv2.AElfClientV2;
 import io.aelf.portkey.assertion.AssertChecker;
 import io.aelf.portkey.internal.model.apple.AppleExtraInfoParams;
 import io.aelf.portkey.internal.model.apple.AppleExtraInfoResultDTO;
 import io.aelf.portkey.internal.model.apple.AppleVerifyTokenParams;
-import io.aelf.portkey.internal.model.common.*;
+import io.aelf.portkey.internal.model.common.ChainInfoDTO;
+import io.aelf.portkey.internal.model.common.CheckCaptchaParams;
+import io.aelf.portkey.internal.model.common.CountryCodeInfoDTO;
+import io.aelf.portkey.internal.model.common.RegisterOrRecoveryResultDTO;
 import io.aelf.portkey.internal.model.google.GoogleVerifyTokenParams;
 import io.aelf.portkey.internal.model.guardian.GetRecommendGuardianResultDTO;
 import io.aelf.portkey.internal.model.guardian.GetRecommendationVerifierParams;
@@ -26,7 +28,6 @@ import io.aelf.portkey.network.retrofit.RetrofitProvider;
 import io.aelf.portkey.network.slice.common.GoogleNetworkAPISlice;
 import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.response.ResultCode;
-import io.aelf.schemas.ChainstatusDto;
 import io.aelf.utils.AElfException;
 import okhttp3.ResponseBody;
 import org.apache.http.util.TextUtils;
@@ -35,15 +36,11 @@ import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
 import retrofit2.Response;
 
-import java.io.IOException;
-import java.util.Arrays;
-
 
 public class NetworkService implements INetworkInterface {
     protected static volatile IRetrofitAPIs api;
     protected static volatile Gson gson;
     private static volatile NetworkService instance;
-    protected volatile AElfClientV2 aelfClientV2;
 
     private NetworkService() {
         if (api == null) {
@@ -79,7 +76,7 @@ public class NetworkService implements INetworkInterface {
     }
 
     @NotNull
-    protected static <T> T realExecute(@NotNull Call<T> call,boolean expectedToFail) throws AElfException {
+    protected static <T> T realExecute(@NotNull Call<T> call, boolean expectedToFail) throws AElfException {
         try {
             GLogger.i("Network connection start, path:"
                     .concat(call.request().url().toString()));
@@ -115,36 +112,11 @@ public class NetworkService implements INetworkInterface {
             return result;
         } catch (Throwable e) {
             AElfException exception = new AElfException(e);
-            if(!expectedToFail){
+            if (!expectedToFail) {
                 GLogger.e("Network failure! path: " + call.request().url(), exception);
             }
             throw exception;
         }
-    }
-
-    protected synchronized void syncAElfChainInfo(@NotNull ChainInfoDTO data, @NotNull String targetChainId) {
-        Arrays.stream(data.getItems())
-                .filter(item -> targetChainId.equals(item.getChainId()))
-                .findFirst()
-                .ifPresent(this::initAElfClient);
-    }
-
-    protected synchronized void initAElfClient(ChainInfoItemDTO item) {
-        String url = item.getEndPoint();
-        AssertChecker.assertNotBlank(url, new AElfException(ResultCode.INTERNAL_ERROR, "Chain url is blank."));
-        aelfClientV2 = new AElfClientV2(url);
-
-    }
-
-    public AElfClientV2 getAElfClient() throws AElfException {
-        AssertChecker.assertNotNull(
-                aelfClientV2,
-                new AElfException(
-                        ResultCode.INTERNAL_ERROR,
-                        "AElfClient is null, maybe you forgot to call initAElfClient()?"
-                )
-        );
-        return aelfClientV2;
     }
 
     /**
@@ -176,7 +148,7 @@ public class NetworkService implements INetworkInterface {
 
     @Override
     public RegisterInfoDTO getRegisterInfo(String loginGuardianIdentifier) {
-        return realExecute(api.getRegisterInfo(loginGuardianIdentifier),true);
+        return realExecute(api.getRegisterInfo(loginGuardianIdentifier), true);
     }
 
     @Override
@@ -237,13 +209,7 @@ public class NetworkService implements INetworkInterface {
 
     @Override
     public ChainInfoDTO getGlobalChainInfo() throws AElfException {
-        ChainInfoDTO result = realExecute(api.getChainsInfo());
-        syncAElfChainInfo(result, GlobalConfig.getCurrentChainId());
-        return result;
+        return realExecute(api.getChainsInfo());
     }
 
-    @Override
-    public ChainstatusDto getParticularChainInfo() throws IOException {
-        return getAElfClient().getChainStatus();
-    }
 }

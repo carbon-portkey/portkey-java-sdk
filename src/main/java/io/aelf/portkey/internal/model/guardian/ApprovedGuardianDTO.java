@@ -2,7 +2,6 @@ package io.aelf.portkey.internal.model.guardian;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.aelf.portkey.internal.model.common.AccountOriginalType;
-import io.aelf.portkey.internal.tools.DataVerifyTools;
 
 public class ApprovedGuardianDTO {
     /**
@@ -23,40 +22,44 @@ public class ApprovedGuardianDTO {
         return type;
     }
 
-    public void setType(int type) {
-        DataVerifyTools.verifyAccountOriginType(type);
+    public ApprovedGuardianDTO setType(int type) {
         this.type = type;
+        return this;
     }
 
     public String getIdentifier() {
         return identifier;
     }
 
-    public void setIdentifier(String identifier) {
+    public ApprovedGuardianDTO setIdentifier(String identifier) {
         this.identifier = identifier;
+        return this;
     }
 
     public String getVerifierId() {
         return verifierId;
     }
 
-    public void setVerifierId(String verifierId) {
+    public ApprovedGuardianDTO setVerifierId(String verifierId) {
         this.verifierId = verifierId;
+        return this;
     }
 
     public String getVerificationDoc() {
         return verificationDoc;
     }
 
-    public void setVerificationDoc(String verificationDoc) {
+    public ApprovedGuardianDTO setVerificationDoc(String verificationDoc) {
         this.verificationDoc = verificationDoc;
+        return this;
     }
 
     public String getSignature() {
         return signature;
     }
 
-    public void setSignature(String signature) {
+    public ApprovedGuardianDTO setSignature(String signature) {
         this.signature = signature;
+        return this;
     }
 }

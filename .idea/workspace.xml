@@ -9,22 +9,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: finish basic login logic">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: simplify login logic">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/ExtraStorageEncoder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/IAfterVerifiedBehaviour.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/PinManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/SetPinBehaviourEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/extraInfo/DeviceExtraInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/extraInfo/ExtraInfoWrapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/wallet/WalletBuildConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/async/AsyncTaskCaller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/async/PortkeyAsyncCaller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/entry/EntryBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/entry/EntryBehaviourEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/guardian/state/SentVerificationState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/guardian/state/SentVerificationState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/login/LoginBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/login/LoginBehaviourEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/register/RegisterBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/register/RegisterBehaviourEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/tools/DataVerifyTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/tools/DataVerifyTools.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/entry/PortkeyWallet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/wallet/PortkeyWallet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/common/ContextDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/common/ContextDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/ApprovedGuardianDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/ApprovedGuardianDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/recovery/RequestRecoveryParams.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/recovery/RequestRecoveryParams.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/register/RequestRegisterParams.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/register/RequestRegisterParams.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/tools/GlobalConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/tools/GlobalConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/interceptor/BodyModifyInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/interceptor/BodyModifyInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/DefaultStorageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/DefaultStorageHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/StorageProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/StorageProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/common/CommonOperationAPISlice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/common/CommonOperationAPISlice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/enums/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/enums/Platform.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/log/GLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/log/GLogger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/log/SystemOutLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/log/SystemOutLogger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/behaviour/EntryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/behaviour/EntryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/behaviour/LoginEntityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/behaviour/login/LoginEntityTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +79,7 @@
     <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/jbr-17.0.8/Contents/Home/lib/src.zip!/java.base/java/lang/System.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -112,6 +123,7 @@
       <recent name="io.aelf.portkey.network" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="io.aelf.portkey.behaviour.login" />
       <recent name="io.aelf.portkey.storage" />
     </key>
   </component>
@@ -120,7 +132,7 @@
       <module name="portkey-java-sdk" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="io.aelf.portkey.behaviour.*" />
+          <option name="PATTERN" value="io.aelf.portkey.behaviour.login.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -138,7 +150,7 @@
       <module name="portkey-java-sdk" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="io.aelf.portkey.behaviour.*" />
+          <option name="PATTERN" value="io.aelf.portkey.behaviour.login.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -156,7 +168,7 @@
       <module name="portkey-java-sdk" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="io.aelf.portkey.behaviour.*" />
+          <option name="PATTERN" value="io.aelf.portkey.behaviour.login.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -174,7 +186,7 @@
       <module name="portkey-java-sdk" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="io.aelf.portkey.behaviour.*" />
+          <option name="PATTERN" value="io.aelf.portkey.behaviour.login.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -192,7 +204,7 @@
       <module name="portkey-java-sdk" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="io.aelf.portkey.behaviour.*" />
+          <option name="PATTERN" value="io.aelf.portkey.behaviour.login.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -436,7 +448,15 @@
       <option name="project" value="LOCAL" />
       <updated>1691663167041</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="feat: simplify login logic">
+      <option name="closed" value="true" />
+      <created>1691982746683</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1691982746683</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -470,7 +490,8 @@
     <MESSAGE value="feat: code modify" />
     <MESSAGE value="feat: code modify and class refactor" />
     <MESSAGE value="feat: finish basic login logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: finish basic login logic" />
+    <MESSAGE value="feat: simplify login logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: simplify login logic" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

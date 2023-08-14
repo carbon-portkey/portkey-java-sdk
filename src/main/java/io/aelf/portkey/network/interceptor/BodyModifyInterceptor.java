@@ -29,7 +29,7 @@ public class BodyModifyInterceptor extends AbstractInterceptor {
                         continue;
                     }
                     try {
-                        JsonElement element = new JsonParser().parse(value);
+                        JsonElement element = JsonParser.parseString(value);
                         jsonObject.add(key, element);
                     } catch (JsonSyntaxException e) {
                         jsonObject.addProperty(key, value);

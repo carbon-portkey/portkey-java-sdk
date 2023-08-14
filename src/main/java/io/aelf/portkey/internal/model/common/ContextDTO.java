@@ -2,14 +2,21 @@ package io.aelf.portkey.internal.model.common;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.UUID;
+
 public class ContextDTO {
+    @JsonProperty("requestId")
+    private final String requestId = UUID.randomUUID().toString().replaceAll("-", "");
     @JsonProperty("clientId")
     private String clientId;
-    @JsonProperty("requestId")
-    private String requestId;
 
     public String getClientId() {
         return clientId;
+    }
+
+    public ContextDTO setClientId(String clientId) {
+        this.clientId = clientId;
+        return this;
     }
 
     public String getRequestId() {

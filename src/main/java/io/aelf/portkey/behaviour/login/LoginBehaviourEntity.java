@@ -1,34 +1,51 @@
 package io.aelf.portkey.behaviour.login;
 
+import com.google.gson.Gson;
 import io.aelf.portkey.assertion.AssertChecker;
+import io.aelf.portkey.behaviour.global.EntryCheckConfig;
 import io.aelf.portkey.behaviour.global.GuardianObserver;
 import io.aelf.portkey.behaviour.guardian.GuardianBehaviourEntity;
-import io.aelf.portkey.internal.model.common.AccountOriginalType;
-import io.aelf.portkey.internal.model.common.OperationScene;
+import io.aelf.portkey.behaviour.pin.IAfterVerifiedBehaviour;
+import io.aelf.portkey.behaviour.pin.SetPinBehaviourEntity;
+import io.aelf.portkey.internal.model.common.*;
+import io.aelf.portkey.internal.model.extraInfo.DeviceExtraInfo;
+import io.aelf.portkey.internal.model.extraInfo.ExtraInfoWrapper;
+import io.aelf.portkey.internal.model.guardian.ApprovedGuardianDTO;
 import io.aelf.portkey.internal.model.guardian.GuardianDTO;
 import io.aelf.portkey.internal.model.guardian.GuardianWrapper;
+import io.aelf.portkey.internal.model.recovery.RequestRecoveryParams;
+import io.aelf.portkey.internal.model.wallet.WalletBuildConfig;
+import io.aelf.portkey.internal.tools.GlobalConfig;
+import io.aelf.portkey.network.connecter.INetworkInterface;
+import io.aelf.portkey.utils.enums.Platform;
 import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.response.ResultCode;
+import io.aelf.schemas.KeyPairInfo;
 import io.aelf.utils.AElfException;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Stream;
 
-public class LoginBehaviourEntity implements GuardianObserver {
+public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBehaviour {
     private final List<GuardianWrapper> guardians;
     private final int guardianVerifyLimit;
     private final AccountOriginalType accountOriginalType;
+    private final String accountIdentifier;
 
-    public LoginBehaviourEntity(@NotNull List<GuardianWrapper> guardians) {
-        this(guardians, AccountOriginalType.Email);
+    protected LoginBehaviourEntity(@NotNull List<GuardianWrapper> guardians) {
+        this(guardians, new EntryCheckConfig());
     }
 
-    public LoginBehaviourEntity(@NotNull List<GuardianWrapper> guardians, AccountOriginalType accountOriginalType) {
+
+    public LoginBehaviourEntity(@NotNull List<GuardianWrapper> guardians, EntryCheckConfig config) {
         this.guardians = guardians;
         this.guardianVerifyLimit = getGuardianVerifyLimit(guardians);
-        this.accountOriginalType = accountOriginalType;
+        this.accountOriginalType = config.getAccountOriginalType();
+        this.accountIdentifier = config.getAccountIdentifier();
     }
 
     /**
@@ -95,5 +112,54 @@ public class LoginBehaviourEntity implements GuardianObserver {
     @Override
     public void informGuardianReady(GuardianWrapper wrapper) {
         setGuardianVerified(wrapper);
+    }
+
+    @Override
+    public SetPinBehaviourEntity afterVerified() throws AElfException {
+        if (!isFulfilled()) {
+            throw new AElfException(ResultCode.INTERNAL_ERROR, "guardian verify not fulfilled");
+        }
+        KeyPairInfo keyPairInfo = new KeyPairInfo();
+        RegisterOrRecoveryResultDTO resultDTO = INetworkInterface.getInstance().requestRecovery(
+                new RequestRecoveryParams()
+                        .setChainId(GlobalConfig.getCurrentChainId())
+                        .setManager(keyPairInfo.getAddress())
+                        .setExtraData(
+                                new Gson().toJson(new ExtraInfoWrapper(DeviceExtraInfo.fromPlatformEnum(Platform.OTHER)))
+                        )
+                        .setLoginGuardianIdentifier(accountIdentifier)
+                        .setGuardiansApproved(
+                                guardians.stream()
+                                        .filter(GuardianWrapper::isVerified)
+                                        .map(this::toApprovedGuardianDTO)
+                                        .toArray(ApprovedGuardianDTO[]::new)
+                        )
+                        .setContext(new ContextDTO().setClientId(keyPairInfo.getAddress()))
+        );
+        AssertChecker.assertNotNull(resultDTO.getSessionId(), new AElfException(ResultCode.INTERNAL_ERROR, "requestRecovery failed"));
+        ChainInfoDTO chainInfoDTO = INetworkInterface.getInstance().getGlobalChainInfo();
+        AtomicReference<String> endPoint = new AtomicReference<>();
+        Stream.of(chainInfoDTO.getItems())
+                .filter(item -> GlobalConfig.getCurrentChainId().equals(item.getChainName()))
+                .findFirst()
+                .ifPresentOrElse(
+                        item -> endPoint.set(item.getEndPoint()),
+                        () -> endPoint.set(chainInfoDTO.getItems()[0].getEndPoint())
+                );
+        return new SetPinBehaviourEntity(
+                new WalletBuildConfig()
+                        .setAElfEndpoint(endPoint.get())
+                        .setPrivKey(keyPairInfo.getPrivateKey())
+                        .setSessionId(resultDTO.getSessionId())
+        );
+    }
+
+    protected ApprovedGuardianDTO toApprovedGuardianDTO(GuardianWrapper wrapper) {
+        return new ApprovedGuardianDTO()
+                .setIdentifier(accountIdentifier)
+                .setSignature(wrapper.getVerifiedData().getSignature())
+                .setType(accountOriginalType.getValue())
+                .setVerificationDoc(wrapper.getVerifiedData().getVerificationDoc())
+                .setVerifierId(wrapper.getOriginalData().getVerifierId());
     }
 }

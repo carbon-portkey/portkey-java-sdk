@@ -41,5 +41,16 @@ public class GlobalConfig {
 
     public interface StorageTags {
         String TAG_SESSION_ID = "session_id";
+        String TAG_PIN = "pin_code";
+        String TAG_PRIV_KEY = "priv_key";
+    }
+
+    public interface PinConfig {
+        int MIN_LENGTH = 6;
+        int MAX_LENGTH = 16;
+        /**
+         * Only allow letters, numbers and underscores.
+         */
+        String REGEX = "^\\w+$";
     }
 }

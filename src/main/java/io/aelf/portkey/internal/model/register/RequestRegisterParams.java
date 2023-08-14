@@ -10,8 +10,6 @@ public class RequestRegisterParams {
      */
     @JsonProperty("chainId")
     private String chainId;
-    @JsonProperty("caHash")
-    private String caHash;
     @JsonProperty("loginGuardianIdentifier")
     private String loginGuardianIdentifier;
     @JsonProperty("verifierId")
@@ -22,62 +20,92 @@ public class RequestRegisterParams {
     private String signature;
     @JsonProperty("context")
     private ContextDTO context;
+    @JsonProperty("type")
+    private String type;
+    @JsonProperty("manager")
+    private String manager;
+    @JsonProperty("extraData")
+    private String extraData;
 
     public String getChainId() {
         return chainId;
     }
 
-    public void setChainId(String chainId) {
-        DataVerifyTools.verifyChainId(chainId);
+    public RequestRegisterParams setChainId(String chainId) {
         this.chainId = chainId;
-    }
-
-    public String getCaHash() {
-        return caHash;
-    }
-
-    public void setCaHash(String caHash) {
-        this.caHash = caHash;
+        return this;
     }
 
     public String getLoginGuardianIdentifier() {
         return loginGuardianIdentifier;
     }
 
-    public void setLoginGuardianIdentifier(String loginGuardianIdentifier) {
+    public RequestRegisterParams setLoginGuardianIdentifier(String loginGuardianIdentifier) {
         this.loginGuardianIdentifier = loginGuardianIdentifier;
+        return this;
     }
 
     public String getVerifierId() {
         return verifierId;
     }
 
-    public void setVerifierId(String verifierId) {
+    public RequestRegisterParams setVerifierId(String verifierId) {
         this.verifierId = verifierId;
+        return this;
     }
 
     public String getVerificationDoc() {
         return verificationDoc;
     }
 
-    public void setVerificationDoc(String verificationDoc) {
+    public RequestRegisterParams setVerificationDoc(String verificationDoc) {
         this.verificationDoc = verificationDoc;
+        return this;
     }
 
     public String getSignature() {
         return signature;
     }
 
-    public void setSignature(String signature) {
+    public RequestRegisterParams setSignature(String signature) {
         this.signature = signature;
+        return this;
     }
 
     public ContextDTO getContext() {
         return context;
     }
 
-    public void setContext(ContextDTO context) {
+    public RequestRegisterParams setContext(ContextDTO context) {
         this.context = context;
+        return this;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public RequestRegisterParams setType(String type) {
+        this.type = type;
+        return this;
+    }
+
+    public String getManager() {
+        return manager;
+    }
+
+    public RequestRegisterParams setManager(String manager) {
+        this.manager = manager;
+        return this;
+    }
+
+    public String getExtraData() {
+        return extraData;
+    }
+
+    public RequestRegisterParams setExtraData(String extraData) {
+        this.extraData = extraData;
+        return this;
     }
 }
 

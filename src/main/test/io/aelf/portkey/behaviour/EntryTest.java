@@ -5,7 +5,6 @@ import io.aelf.portkey.behaviour.entry.EntryBehaviourEntity;
 import io.aelf.portkey.behaviour.global.EntryCheckConfig;
 import io.aelf.portkey.internal.model.common.AccountOriginalType;
 import io.aelf.portkey.network.retrofit.RetrofitProvider;
-import io.aelf.utils.AElfException;
 import org.junit.Before;
 import org.junit.Test;
 
