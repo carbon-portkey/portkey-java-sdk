@@ -74,7 +74,12 @@ public class NetworkService implements INetworkInterface {
     }
 
     @NotNull
-    protected static <T> T realExecute(@NotNull Call<T> call) throws AElfException {
+    protected static <T> T realExecute(Call<T> call) throws AElfException {
+        return realExecute(call, false);
+    }
+
+    @NotNull
+    protected static <T> T realExecute(@NotNull Call<T> call,boolean expectedToFail) throws AElfException {
         try {
             GLogger.i("Network connection start, path:"
                     .concat(call.request().url().toString()));
@@ -110,7 +115,9 @@ public class NetworkService implements INetworkInterface {
             return result;
         } catch (Throwable e) {
             AElfException exception = new AElfException(e);
-            GLogger.e("Network failure! path: " + call.request().url(), exception);
+            if(!expectedToFail){
+                GLogger.e("Network failure! path: " + call.request().url(), exception);
+            }
             throw exception;
         }
     }
@@ -126,6 +133,7 @@ public class NetworkService implements INetworkInterface {
         String url = item.getEndPoint();
         AssertChecker.assertNotBlank(url, new AElfException(ResultCode.INTERNAL_ERROR, "Chain url is blank."));
         aelfClientV2 = new AElfClientV2(url);
+
     }
 
     public AElfClientV2 getAElfClient() throws AElfException {
@@ -168,7 +176,7 @@ public class NetworkService implements INetworkInterface {
 
     @Override
     public RegisterInfoDTO getRegisterInfo(String loginGuardianIdentifier) {
-        return realExecute(api.getRegisterInfo(loginGuardianIdentifier));
+        return realExecute(api.getRegisterInfo(loginGuardianIdentifier),true);
     }
 
     @Override

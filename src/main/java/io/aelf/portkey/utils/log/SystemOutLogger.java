@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 public class SystemOutLogger implements ILogger {
     @Override
     public void e(@NotNull String msg) {
-        System.out.println("error: ".concat(msg));
+        System.err.println("error: ".concat(msg));
     }
 
     @Override
@@ -26,7 +26,7 @@ public class SystemOutLogger implements ILogger {
     @Override
     public void w(@NotNull String @NotNull ... msg) {
         for (String s : msg) {
-            System.out.println("warn: ".concat(s));
+            System.err.println("warn: ".concat(s));
         }
     }
 }

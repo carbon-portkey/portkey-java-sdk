@@ -3,16 +3,17 @@ package io.aelf.portkey.async;
 import io.aelf.internal.AbstractAsyncExecutor;
 import io.aelf.internal.AsyncCaller;
 import io.aelf.internal.AsyncCommand;
+import io.aelf.internal.AsyncResult;
 import io.aelf.network.NetworkConfig;
 
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class AsyncTaskCaller extends AsyncCaller {
-    private static volatile AsyncTaskCaller caller;
+public class PortkeyAsyncCaller extends AsyncCaller {
+    private static volatile PortkeyAsyncCaller caller;
 
-    private AsyncTaskCaller() {
+    private PortkeyAsyncCaller() {
         super(
                 new AbstractAsyncExecutor() {
                     private final ThreadPoolExecutor service =
@@ -26,11 +27,21 @@ public class AsyncTaskCaller extends AsyncCaller {
                 });
     }
 
-    public static AsyncTaskCaller getInstance() {
+    public static void asyncCall(Runnable asyncFunction) {
+        getInstance().asyncCall(() -> {
+                    asyncFunction.run();
+                    return new AsyncResult<>(null);
+                },
+                null,
+                null
+        );
+    }
+
+    public static PortkeyAsyncCaller getInstance() {
         if (caller == null) {
-            synchronized (AsyncTaskCaller.class) {
+            synchronized (PortkeyAsyncCaller.class) {
                 if (caller == null) {
-                    caller = new AsyncTaskCaller();
+                    caller = new PortkeyAsyncCaller();
                 }
             }
         }

@@ -54,11 +54,11 @@ public class LoginBehaviourEntity implements GuardianObserver {
         return getGuardianBehaviourEntity(guardians.get(position).getOriginalData());
     }
 
-    public GuardianBehaviourEntity getGuardianBehaviourEntity(@NotNull GuardianDTO guardianDTO) {
+    public synchronized GuardianBehaviourEntity getGuardianBehaviourEntity(@NotNull GuardianDTO guardianDTO) {
         return new GuardianBehaviourEntity(guardianDTO, OperationScene.communityRecovery, this, accountOriginalType);
     }
 
-    public Optional<GuardianBehaviourEntity> nextWaitingGuardian() {
+    public synchronized Optional<GuardianBehaviourEntity> nextWaitingGuardian() {
         if (isFulfilled()) {
             GLogger.t("you have reached the verify limit, there's no need to call nextWaitingGuardian() now.");
             return Optional.empty();
@@ -73,7 +73,7 @@ public class LoginBehaviourEntity implements GuardianObserver {
         return Optional.ofNullable(getGuardianBehaviourEntity(wrapper.getOriginalData()));
     }
 
-    protected void setGuardianVerified(GuardianWrapper guardianWrapper) {
+    protected synchronized void setGuardianVerified(GuardianWrapper guardianWrapper) {
         guardians.stream()
                 .filter(guardian -> guardian.getOriginalData().equals(guardianWrapper.getOriginalData()))
                 .findFirst()
@@ -84,7 +84,7 @@ public class LoginBehaviourEntity implements GuardianObserver {
         return guardianVerifyLimit;
     }
 
-    public int getFullFilledGuardianCount() {
+    public synchronized int getFullFilledGuardianCount() {
         return (int) guardians.stream().filter(GuardianWrapper::isVerified).count();
     }
 

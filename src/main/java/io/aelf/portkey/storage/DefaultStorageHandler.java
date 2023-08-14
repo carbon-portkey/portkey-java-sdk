@@ -2,7 +2,7 @@ package io.aelf.portkey.storage;
 
 import io.aelf.internal.AsyncResult;
 import io.aelf.internal.ISuccessCallback;
-import io.aelf.portkey.async.AsyncTaskCaller;
+import io.aelf.portkey.async.PortkeyAsyncCaller;
 import io.aelf.portkey.internal.tools.GlobalConfig;
 import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.response.ResultCode;
@@ -100,7 +100,7 @@ class DefaultStorageHandler extends AbstractStorageHandler {
 
     @Override
     public void putValueAsync(@NotNull final String key, final String value, @Nullable ISuccessCallback<Boolean> callback) {
-        AsyncTaskCaller.getInstance().asyncCall(() -> {
+        PortkeyAsyncCaller.getInstance().asyncCall(() -> {
             try {
                 putValue(key, value);
                 return new AsyncResult<>(Boolean.TRUE);

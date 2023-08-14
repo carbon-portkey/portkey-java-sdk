@@ -2,6 +2,7 @@ package io.aelf.portkey.internal.tools;
 
 import io.aelf.portkey.internal.model.common.AccountOriginalType;
 import io.aelf.portkey.internal.model.common.OperationScene;
+import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.response.ResultCode;
 import io.aelf.utils.AElfException;
 import org.jetbrains.annotations.Contract;
@@ -54,5 +55,15 @@ public class DataVerifyTools {
         if (type < OperationScene.unknown || type > OperationScene.setLoginAccount) {
             throw new AElfException(ResultCode.PARAM_ERROR, "invalid operation type");
         }
+    }
+
+    public static boolean checkAccountOriginalType(AccountOriginalType accountOriginalType) {
+        boolean isAccessible = accountOriginalType != AccountOriginalType.Phone
+                && accountOriginalType != AccountOriginalType.Apple;
+        if (!isAccessible) {
+            GLogger.e("sorry but accountOriginalType : " + accountOriginalType.name() + " is not accessible by now, check for version update later.");
+            throw new AElfException();
+        }
+        return true;
     }
 }

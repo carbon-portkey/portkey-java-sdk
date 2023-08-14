@@ -48,7 +48,7 @@ public class StorageProvider {
         handler = new DefaultStorageHandler(encryptKey);
     }
 
-    protected static void init(@NotNull IStorageBehaviour storageHandler) {
+    public static void init(@NotNull IStorageBehaviour storageHandler) {
         handler = storageHandler;
     }
 

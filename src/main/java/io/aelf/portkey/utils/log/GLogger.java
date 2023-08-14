@@ -48,7 +48,7 @@ public class GLogger {
     }
 
     public static String prettyJSON(@NotNull String jsonStr) {
-        return prettyJSON(JsonParser.parseString(jsonStr));
+        return prettyJSON(new JsonParser().parse(jsonStr));
     }
 
     public static String prettyJSON(@NotNull JsonElement json) {
