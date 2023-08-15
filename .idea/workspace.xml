@@ -9,13 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: Basic Register function">
+    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: all function verified">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/WalletUnlockEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/login/LoginBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/login/LoginBehaviourEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/entry/EntryBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/entry/EntryBehaviourEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/guardian/state/SentVerificationState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/guardian/state/SentVerificationState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/PinManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/PinManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/register/RegisterBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/register/RegisterBehaviourEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/GuardianDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/GuardianDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/behaviour/login/LoginEntityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/behaviour/login/LoginEntityTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/DefaultStorageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/DefaultStorageHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -452,7 +455,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692001562299</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="feat: all function verified">
+      <option name="closed" value="true" />
+      <created>1692071907332</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1692071907332</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -488,7 +499,8 @@
     <MESSAGE value="feat: finish basic login logic" />
     <MESSAGE value="feat: simplify login logic" />
     <MESSAGE value="feat: Basic Register function" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Basic Register function" />
+    <MESSAGE value="feat: all function verified" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: all function verified" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

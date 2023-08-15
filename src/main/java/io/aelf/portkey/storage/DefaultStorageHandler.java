@@ -69,7 +69,7 @@ class DefaultStorageHandler extends AbstractStorageHandler {
         if (!isEncryptKeySame(encryptKey)) {
             GLogger.w("We detected that you were using a different encrypt key. This problem may be caused by:",
                     "1.You have provided an encrypt key before, but now you are using a different one. "
-                            .concat("You can only use StorageProvider.clear() to erase the data and start over."),
+                            .concat("You can only use StorageProvider.clearStorage() to erase the data and start over."),
                     "2.You have initialized the Storage Module with an encrypt key before, but now you are trying to use the Storage Module without an encrypt key. "
                             .concat("Try to find the original key and use it to initialize the Storage Module again."),
                     "3.You have initialized the Storage Module without an encrypt key before, but now you are trying to use the Storage Module with an encrypt key. "

@@ -2,6 +2,7 @@ package io.aelf.portkey.network.connecter;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import io.aelf.portkey.assertion.AssertChecker;
 import io.aelf.portkey.internal.model.apple.AppleExtraInfoParams;
@@ -75,7 +76,6 @@ public class NetworkService implements INetworkInterface {
         return realExecute(call, false);
     }
 
-    @NotNull
     protected static <T> T realExecute(@NotNull Call<T> call, boolean expectedToFail) throws AElfException {
         try {
             GLogger.i("Network connection start, path:"
@@ -104,11 +104,10 @@ public class NetworkService implements INetworkInterface {
 
             AssertChecker.assertNotNull(response);
             T result = response.body();
-            assert result != null;
             GLogger.t("Network connection end, path:"
                     .concat(call.request().url().toString())
                     .concat("\nresult: ")
-                    .concat(GLogger.prettyJSON(result)));
+                    .concat(GLogger.prettyJSON(result != null ? result : new JsonObject())));
             return result;
         } catch (Throwable e) {
             AElfException exception = new AElfException(e);

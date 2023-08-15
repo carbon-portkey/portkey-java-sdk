@@ -15,9 +15,20 @@ public class PinManager {
 
     public static synchronized boolean checkIfSessionExists() {
         IStorageBehaviour handler = StorageProvider.getHandler();
-        return handler.contains(TAG_PIN)
+        boolean walletExists = handler.contains(TAG_PIN)
                 && handler.contains(TAG_PRIV_KEY)
                 && handler.contains(TAG_SESSION_ID);
+        if (!walletExists) {
+            clearStorage();
+        }
+        return walletExists;
+    }
+
+    public static synchronized void clearStorage() {
+        IStorageBehaviour handler = StorageProvider.getHandler();
+        handler.removeValue(TAG_PIN);
+        handler.removeValue(TAG_PRIV_KEY);
+        handler.removeValue(TAG_SESSION_ID);
     }
 
     public static synchronized void lock(@NotNull String pinValue, @NotNull WalletBuildConfig session) throws AElfException {
@@ -28,7 +39,7 @@ public class PinManager {
         handler.putValue(TAG_PRIV_KEY, ExtraStorageEncoder.encode(session.getPrivKey(), pinValue));
     }
 
-    public static synchronized WalletBuildConfig unlock(@NotNull String pinValue) throws AElfException {
+    public static synchronized @NotNull WalletBuildConfig unlock(@NotNull String pinValue) throws AElfException {
         verifyPin(pinValue);
         IStorageBehaviour handler = StorageProvider.getHandler();
         if (!checkIfSessionExists() || !handler.headValue(TAG_PIN, pinValue)) {

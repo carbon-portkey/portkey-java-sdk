@@ -3,6 +3,8 @@ package io.aelf.portkey.behaviour.entry;
 import io.aelf.portkey.assertion.AssertChecker;
 import io.aelf.portkey.behaviour.global.EntryCheckConfig;
 import io.aelf.portkey.behaviour.login.LoginBehaviourEntity;
+import io.aelf.portkey.behaviour.pin.PinManager;
+import io.aelf.portkey.behaviour.pin.WalletUnlockEntity;
 import io.aelf.portkey.behaviour.register.RegisterBehaviourEntity;
 import io.aelf.portkey.internal.model.guardian.GuardianInfoDTO;
 import io.aelf.portkey.internal.model.guardian.GuardianWrapper;
@@ -18,10 +20,19 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class EntryBehaviourEntity {
-    public static CheckedEntry attemptAccountCheck(
+    public static boolean ifLockedWalletExists() {
+        return PinManager.checkIfSessionExists();
+    }
+
+    public static Optional<WalletUnlockEntity> attemptToGetLockedWallet() {
+        return Optional.ofNullable(ifLockedWalletExists() ? new WalletUnlockEntity() : null);
+    }
+
+    public static synchronized CheckedEntry attemptAccountCheck(
             EntryCheckConfig config) {
         if (!checkLoginConfig(config)) {
             throw new AElfException(ResultCode.INTERNAL_ERROR, "login config error.");

@@ -49,6 +49,7 @@ public class RegisterBehaviourEntity implements GuardianObserver, IAfterVerified
                         .setType(config.getAccountOriginalType().name())
                         .setVerifierId(resultDTO.getId())
         );
+        this.guardianWrapper = guardianWrapper;
         return new GuardianBehaviourEntity(
                 guardianWrapper.getOriginalData(),
                 OperationScene.register,
@@ -91,7 +92,7 @@ public class RegisterBehaviourEntity implements GuardianObserver, IAfterVerified
     }
 
     public boolean isVerified() {
-        return guardianWrapper.getVerifiedData() != null;
+        return guardianWrapper != null && guardianWrapper.getVerifiedData() != null;
     }
 
     @Override
