@@ -36,7 +36,7 @@ public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBeh
     private final AccountOriginalType accountOriginalType;
     private final String accountIdentifier;
 
-    protected LoginBehaviourEntity(@NotNull List<GuardianWrapper> guardians) {
+    public LoginBehaviourEntity(@NotNull List<GuardianWrapper> guardians) {
         this(guardians, new EntryCheckConfig());
     }
 

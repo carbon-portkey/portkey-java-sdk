@@ -2,7 +2,6 @@ package io.aelf.portkey.behaviour.login;
 
 import io.aelf.portkey.behaviour.guardian.GuardianBehaviourEntity;
 import io.aelf.portkey.behaviour.guardian.state.VerifiedGuardianState;
-import io.aelf.portkey.behaviour.login.LoginBehaviourEntity;
 import io.aelf.portkey.internal.model.guardian.GuardianDTO;
 import io.aelf.portkey.internal.model.guardian.GuardianWrapper;
 import io.aelf.portkey.internal.model.verify.HeadVerifyCodeResultDTO;

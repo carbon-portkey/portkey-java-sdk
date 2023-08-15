@@ -21,51 +21,57 @@ public class GuardianDTO {
     @JsonProperty("verifierId")
     private String verifierId;
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getVerifierId() {
-        return verifierId;
-    }
-
-    public void setVerifierId(String verifierId) {
-        this.verifierId = verifierId;
-    }
-
     public String getGuardianIdentifier() {
         return guardianIdentifier;
     }
 
-    public void setGuardianIdentifier(String guardianIdentifier) {
+    public GuardianDTO setGuardianIdentifier(String guardianIdentifier) {
         this.guardianIdentifier = guardianIdentifier;
+        return this;
     }
 
     public String getIdentifierHash() {
         return identifierHash;
     }
 
-    public void setIdentifierHash(String identifierHash) {
+    public GuardianDTO setIdentifierHash(String identifierHash) {
         this.identifierHash = identifierHash;
+        return this;
     }
 
-    public boolean getIsLoginGuardian() {
+    public boolean isLoginGuardian() {
         return isLoginGuardian;
     }
 
-    public void setIsLoginGuardian(boolean loginGuardian) {
+    public GuardianDTO setLoginGuardian(boolean loginGuardian) {
         isLoginGuardian = loginGuardian;
+        return this;
     }
 
     public String getSalt() {
         return salt;
     }
 
-    public void setSalt(String salt) {
+    public GuardianDTO setSalt(String salt) {
         this.salt = salt;
+        return this;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public GuardianDTO setType(String type) {
+        this.type = type;
+        return this;
+    }
+
+    public String getVerifierId() {
+        return verifierId;
+    }
+
+    public GuardianDTO setVerifierId(String verifierId) {
+        this.verifierId = verifierId;
+        return this;
     }
 }

@@ -9,11 +9,13 @@ import io.aelf.portkey.behaviour.pin.IAfterVerifiedBehaviour;
 import io.aelf.portkey.behaviour.pin.SetPinBehaviourEntity;
 import io.aelf.portkey.internal.model.common.ChainInfoDTO;
 import io.aelf.portkey.internal.model.common.ContextDTO;
+import io.aelf.portkey.internal.model.common.OperationScene;
 import io.aelf.portkey.internal.model.common.RegisterOrRecoveryResultDTO;
 import io.aelf.portkey.internal.model.extraInfo.DeviceExtraInfo;
 import io.aelf.portkey.internal.model.extraInfo.ExtraInfoWrapper;
 import io.aelf.portkey.internal.model.guardian.GetRecommendGuardianResultDTO;
 import io.aelf.portkey.internal.model.guardian.GetRecommendationVerifierParams;
+import io.aelf.portkey.internal.model.guardian.GuardianDTO;
 import io.aelf.portkey.internal.model.guardian.GuardianWrapper;
 import io.aelf.portkey.internal.model.register.RequestRegisterParams;
 import io.aelf.portkey.internal.model.wallet.WalletBuildConfig;
@@ -40,7 +42,19 @@ public class RegisterBehaviourEntity implements GuardianObserver, IAfterVerified
                 new GetRecommendationVerifierParams()
                         .setChainId(GlobalConfig.getCurrentChainId())
         );
-        return null;
+        GuardianWrapper guardianWrapper = new GuardianWrapper(
+                new GuardianDTO()
+                        .setGuardianIdentifier(config.getAccountIdentifier())
+                        .setLoginGuardian(true)
+                        .setType(config.getAccountOriginalType().name())
+                        .setVerifierId(resultDTO.getId())
+        );
+        return new GuardianBehaviourEntity(
+                guardianWrapper.getOriginalData(),
+                OperationScene.register,
+                this,
+                config.getAccountOriginalType()
+        );
     }
 
     @Override
@@ -77,7 +91,7 @@ public class RegisterBehaviourEntity implements GuardianObserver, IAfterVerified
     }
 
     public boolean isVerified() {
-        return guardianWrapper != null;
+        return guardianWrapper.getVerifiedData() != null;
     }
 
     @Override

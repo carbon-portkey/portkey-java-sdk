@@ -4,7 +4,7 @@
     <groupId>io.aelf</groupId>
     <artifactId>portkey-java-sdk</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <name>portkey-java-sdk</name>
     <description>Portkey project's Java version, base on AElf.Java.</description>
     <url>https://github.com/Portkey-Wallet/portkey-java-sdk</url>
