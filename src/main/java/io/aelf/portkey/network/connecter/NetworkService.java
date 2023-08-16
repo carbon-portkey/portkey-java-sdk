@@ -30,7 +30,9 @@ import io.aelf.portkey.network.slice.common.GoogleNetworkAPISlice;
 import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.response.ResultCode;
 import io.aelf.utils.AElfException;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import okio.Buffer;
 import org.apache.http.util.TextUtils;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.jetbrains.annotations.NotNull;
@@ -78,8 +80,16 @@ public class NetworkService implements INetworkInterface {
 
     protected static <T> T realExecute(@NotNull Call<T> call, boolean expectedToFail) throws AElfException {
         try {
-            GLogger.i("Network connection start, path:"
+            GLogger.t("Network connection start, path:"
                     .concat(call.request().url().toString()));
+            RequestBody body = call.request().body();
+            if (body != null) {
+                try(Buffer buffer=new Buffer()){
+                    body.writeTo(buffer);
+                    GLogger.t("body : \n"
+                            .concat(buffer.readUtf8()));
+                }
+            }
             Response<T> response = call.execute();
             if (!response.isSuccessful()) {
                 try (ResponseBody errorBody = response.errorBody()) {
