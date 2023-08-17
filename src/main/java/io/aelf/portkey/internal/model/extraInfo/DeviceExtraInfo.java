@@ -1,7 +1,7 @@
 package io.aelf.portkey.internal.model.extraInfo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.aelf.portkey.utils.enums.Platform;
+import io.aelf.portkey.utils.enums.ExtraDataPlatformEnum;
 
 public class DeviceExtraInfo {
     @JsonProperty("deviceName")
@@ -9,7 +9,7 @@ public class DeviceExtraInfo {
     @JsonProperty("deviceType")
     private int deviceType;
 
-    public static DeviceExtraInfo fromPlatformEnum(Platform platform) {
+    public static DeviceExtraInfo fromPlatformEnum(ExtraDataPlatformEnum platform) {
         return new DeviceExtraInfo()
                 .setDeviceName(platform.getName())
                 .setDeviceType(platform.getValue());

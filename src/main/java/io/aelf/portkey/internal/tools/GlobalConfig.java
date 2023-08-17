@@ -13,6 +13,10 @@ public class GlobalConfig {
     public static final String NOT_VALID_ENCRYPT_KEY = "not-valid-encrypt-key";
     public static final @NotNull Map.Entry<String, String>
             ENCRYPT_TEST_KEY_SET = Map.entry("encryptTestKey", "encryptTestValue");
+    /**
+     * Pass this SITE_KEY to Google Recaptcha Component.
+     */
+    public static final String GOOGLE_RECAPTCHA_SITE_KEY = "6LcENaYnAAAAAGenYUvyat1R-TAzQaMZdOYBNSHC";
     private static boolean underTestEnvironment = false;
     private static String currentChainId = ChainIds.MAINNET_CHAIN_ID;
 

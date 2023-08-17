@@ -1,6 +1,6 @@
 package io.aelf.portkey.utils.enums;
 
-public enum Platform {
+public enum ExtraDataPlatformEnum {
     OTHER(0),
     MAC(1),
     IOS(2),
@@ -10,7 +10,7 @@ public enum Platform {
 
     private final int value;
 
-    Platform(int value) {
+    ExtraDataPlatformEnum(int value) {
         this.value = value;
     }
 

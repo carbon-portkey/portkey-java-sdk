@@ -17,7 +17,7 @@ import io.aelf.portkey.internal.model.recovery.RequestRecoveryParams;
 import io.aelf.portkey.internal.model.wallet.WalletBuildConfig;
 import io.aelf.portkey.internal.tools.GlobalConfig;
 import io.aelf.portkey.network.connecter.INetworkInterface;
-import io.aelf.portkey.utils.enums.Platform;
+import io.aelf.portkey.utils.enums.ExtraDataPlatformEnum;
 import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.response.ResultCode;
 import io.aelf.schemas.KeyPairInfo;
@@ -125,7 +125,7 @@ public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBeh
                         .setChainId(GlobalConfig.getCurrentChainId())
                         .setManager(keyPairInfo.getAddress())
                         .setExtraData(
-                                new Gson().toJson(new ExtraInfoWrapper(DeviceExtraInfo.fromPlatformEnum(Platform.OTHER)))
+                                new Gson().toJson(new ExtraInfoWrapper(DeviceExtraInfo.fromPlatformEnum(ExtraDataPlatformEnum.OTHER)))
                         )
                         .setLoginGuardianIdentifier(accountIdentifier)
                         .setGuardiansApproved(
