@@ -78,8 +78,8 @@ class DefaultStorageHandler extends AbstractStorageHandler {
             );
             throw new AElfException(ResultCode.PARAM_ERROR, "The encrypt key is not the same as before.");
         }
-        if (!contains(GlobalConfig.ENCRYPT_TEST_KEY_SET.getKey())) {
-            putValue(GlobalConfig.ENCRYPT_TEST_KEY_SET.getKey(), GlobalConfig.ENCRYPT_TEST_KEY_SET.getValue());
+        if (!contains(GlobalConfig.ENCRYPT_DETECT_KEY_SET.getKey())) {
+            putValue(GlobalConfig.ENCRYPT_DETECT_KEY_SET.getKey(), GlobalConfig.ENCRYPT_DETECT_KEY_SET.getValue());
         }
     }
 
@@ -142,18 +142,18 @@ class DefaultStorageHandler extends AbstractStorageHandler {
 
     @Override
     protected boolean isEncryptKeySame(String encryptKey) {
-        String encrypted = this.kvProvider.getString(GlobalConfig.ENCRYPT_TEST_KEY_SET.getKey());
+        String encrypted = this.kvProvider.getString(GlobalConfig.ENCRYPT_DETECT_KEY_SET.getKey());
         // this is the first time to use encryptKey; there's no need to check the encrypted value.
         if (TextUtils.isEmpty(encrypted)) return true;
         if (this.encrypter.encryptMsg("test", encryptKey).equals("test")) {
             // the encrypter is NoneEncrypter, just need to check whether the tag is not encrypted.
-            return GlobalConfig.ENCRYPT_TEST_KEY_SET.getValue().equals(encrypted);
+            return GlobalConfig.ENCRYPT_DETECT_KEY_SET.getValue().equals(encrypted);
         }
         if (!this.encrypter.isValidEncryptKey(encryptKey)) {
             return false;
         }
         try {
-            assert GlobalConfig.ENCRYPT_TEST_KEY_SET.getValue()
+            assert GlobalConfig.ENCRYPT_DETECT_KEY_SET.getValue()
                     .equals(encrypter.decryptMsg(encrypted, encryptKey));
         } catch (Throwable e) {
             return false;

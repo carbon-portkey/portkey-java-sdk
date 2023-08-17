@@ -10,7 +10,6 @@ import io.aelf.portkey.internal.model.verify.SendVerificationCodeParams;
 import io.aelf.portkey.internal.model.verify.SendVerificationCodeResultDTO;
 import io.aelf.portkey.internal.tools.GlobalConfig;
 import io.aelf.portkey.network.connecter.INetworkInterface;
-import io.aelf.portkey.utils.enums.GoogleRecaptchaPlatformEnum;
 import io.aelf.utils.AElfException;
 import org.apache.http.util.TextUtils;
 import org.jetbrains.annotations.NotNull;
@@ -64,8 +63,7 @@ public class SentVerificationState extends AbstractStateSubject<GuardianStub> im
                 .setGuardianIdentifier(guardian.getGuardianIdentifier())
                 .setVerifierId(guardian.getVerifierId())
                 .setVerifierSessionId(sendVerificationCodeResult.getVerifierSessionId())
-                .setVerificationCode(code)
-                .setType(GoogleRecaptchaPlatformEnum.ANDROID.getValue());
+                .setVerificationCode(code);
         HeadVerifyCodeResultDTO resultDTO = INetworkInterface.getInstance().checkVerificationCode(config);
         if (resultDTO.isSuccess()) {
             stub.setNextState(new VerifiedGuardianState(stub, resultDTO));

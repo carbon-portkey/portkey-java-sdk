@@ -3,6 +3,7 @@ package io.aelf.portkey.internal.model.verify;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.aelf.portkey.internal.model.common.AccountOriginalType;
 import io.aelf.portkey.internal.tools.DataVerifyTools;
+import io.aelf.portkey.utils.enums.GoogleRecaptchaPlatformEnum;
 
 public class SendVerificationCodeParams {
     /**
@@ -24,6 +25,12 @@ public class SendVerificationCodeParams {
      */
     @JsonProperty("operationType")
     private int operationType;
+    @JsonProperty("platformType")
+    private final int platformType = initPlatformType();
+
+    protected int initPlatformType() {
+        return GoogleRecaptchaPlatformEnum.ANDROID.getValue();
+    }
 
 
     public String getType() {
@@ -76,4 +83,10 @@ public class SendVerificationCodeParams {
         this.operationType = operationType;
         return this;
     }
+
+    public int getPlatformType() {
+        return platformType;
+    }
+
+
 }

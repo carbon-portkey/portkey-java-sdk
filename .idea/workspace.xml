@@ -9,15 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: now RequestBody will be printed in Logger">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/enums/GoogleRecaptchaPlatformEnum.java" afterDir="false" />
+    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: add google recaptcha config">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/guardian/state/SentVerificationState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/guardian/state/SentVerificationState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/login/LoginBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/login/LoginBehaviourEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/register/RegisterBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/register/RegisterBehaviourEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/extraInfo/DeviceExtraInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/extraInfo/DeviceExtraInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/verify/HeadVerifyCodeParams.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/verify/HeadVerifyCodeParams.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/enums/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/utils/enums/ExtraDataPlatformEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/tools/GlobalConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/tools/GlobalConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/DefaultStorageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/storage/DefaultStorageHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,11 +208,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.EntryTest.LoginWhenNotRegisteredTest" />
         <item itemvalue="JUnit.EntryTest.loginWithRecaptchaTest" />
         <item itemvalue="JUnit.EntryTest.loginWithNoRecaptchaTest" />
-        <item itemvalue="JUnit.EntryTest" />
         <item itemvalue="JUnit.EntryTest.loginTest" />
+        <item itemvalue="JUnit.EntryTest.LoginWhenNotRegisteredTest" />
+        <item itemvalue="JUnit.EntryTest" />
       </list>
     </recent_temporary>
   </component>
@@ -478,7 +473,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692173229046</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="feat: add google recaptcha config">
+      <option name="closed" value="true" />
+      <created>1692242337032</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1692242337032</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -517,7 +520,8 @@
     <MESSAGE value="feat: all function verified" />
     <MESSAGE value="feat: fix guardian issues" />
     <MESSAGE value="feat: now RequestBody will be printed in Logger" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: now RequestBody will be printed in Logger" />
+    <MESSAGE value="feat: add google recaptcha config" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add google recaptcha config" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

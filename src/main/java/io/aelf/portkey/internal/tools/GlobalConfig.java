@@ -12,7 +12,7 @@ public class GlobalConfig {
     public static final String GOOGLE_HOST = "https://www.googleapis.com";
     public static final String NOT_VALID_ENCRYPT_KEY = "not-valid-encrypt-key";
     public static final @NotNull Map.Entry<String, String>
-            ENCRYPT_TEST_KEY_SET = Map.entry("encryptTestKey", "encryptTestValue");
+            ENCRYPT_DETECT_KEY_SET = Map.entry("encryptDetectKey", "encryptDetectValue");
     /**
      * Pass this SITE_KEY to Google Recaptcha Component.
      */

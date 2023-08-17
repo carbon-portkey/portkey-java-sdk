@@ -20,8 +20,6 @@ public class HeadVerifyCodeParams {
     @JsonProperty("chainId")
     private String chainId;
 
-    @JsonProperty("type")
-    private int type;
     /**
      * @see OperationScene
      */
@@ -84,12 +82,4 @@ public class HeadVerifyCodeParams {
         return this;
     }
 
-    public int getType() {
-        return type;
-    }
-
-    public HeadVerifyCodeParams setType(int type) {
-        this.type = type;
-        return this;
-    }
 }
