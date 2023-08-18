@@ -20,7 +20,7 @@ import java.util.Base64;
 
 import static io.aelf.utils.ByteArrayHelper.bytesToHex;
 
-class AES256Encrypter implements IEncrypter {
+public class AES256Encrypter implements IEncrypter {
 
     @Contract(pure = true)
     private static Cipher getCipher(@NotNull String key, int mode) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {

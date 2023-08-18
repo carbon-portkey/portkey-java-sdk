@@ -4,10 +4,15 @@ import io.aelf.portkey.internal.model.common.AccountOriginalType;
 import io.aelf.portkey.internal.model.common.OperationScene;
 import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.response.ResultCode;
+import io.aelf.schemas.KeyPairInfo;
 import io.aelf.utils.AElfException;
+import io.aelf.utils.Base58Ext;
+import org.bitcoinj.core.ECKey;
+import org.bitcoinj.core.Sha256Hash;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import static io.aelf.portkey.internal.tools.GlobalConfig.ChainIds.*;
@@ -65,5 +70,25 @@ public class DataVerifyTools {
             throw new AElfException();
         }
         return true;
+    }
+
+    public static KeyPairInfo generateKeyPairInfo() {
+        ECKey keyPair = new ECKey();
+        String privateKey = keyPair.getPrivateKeyAsHex();
+        String publicKey = keyPair.getPublicKeyAsHex();
+        String address = getAddressFromPrivateKey(privateKey);
+        KeyPairInfo keyPairInfo = new KeyPairInfo();
+        keyPairInfo.setPrivateKey(privateKey);
+        keyPairInfo.setPublicKey(publicKey);
+        keyPairInfo.setAddress(address);
+        return keyPairInfo;
+    }
+
+    public static String getAddressFromPrivateKey(String privateKey) {
+        org.bitcoinj.core.ECKey aelfKey = org.bitcoinj.core.ECKey
+                .fromPrivate(new BigInteger(privateKey, 16)).decompress();
+        byte[] publicKey = aelfKey.getPubKey();
+        byte[] hashTwice = Sha256Hash.hashTwice(publicKey);
+        return Base58Ext.encodeChecked(hashTwice);
     }
 }

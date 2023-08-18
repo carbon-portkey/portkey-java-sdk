@@ -124,8 +124,8 @@ public class NetworkService implements INetworkInterface {
             if (!expectedToFail) {
                 GLogger.e("Network failure! path: " + call.request().url(), exception);
             }
-            throw exception;
         }
+        return null;
     }
 
     /**

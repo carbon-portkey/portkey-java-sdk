@@ -19,13 +19,18 @@ import io.aelf.portkey.internal.model.guardian.GuardianDTO;
 import io.aelf.portkey.internal.model.guardian.GuardianWrapper;
 import io.aelf.portkey.internal.model.register.RequestRegisterParams;
 import io.aelf.portkey.internal.model.wallet.WalletBuildConfig;
+import io.aelf.portkey.internal.tools.DataVerifyTools;
 import io.aelf.portkey.internal.tools.GlobalConfig;
 import io.aelf.portkey.network.connecter.INetworkInterface;
 import io.aelf.portkey.utils.enums.ExtraDataPlatformEnum;
 import io.aelf.response.ResultCode;
 import io.aelf.schemas.KeyPairInfo;
 import io.aelf.utils.AElfException;
+import io.aelf.utils.Base58Ext;
+import org.bitcoinj.core.ECKey;
+import org.bitcoinj.core.Sha256Hash;
 
+import java.math.BigInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Stream;
 
@@ -61,7 +66,7 @@ public class RegisterBehaviourEntity implements GuardianObserver, IAfterVerified
     @Override
     public SetPinBehaviourEntity afterVerified() {
         if (!isVerified()) throw new AElfException(ResultCode.INTERNAL_ERROR, "Guardian not verified");
-        KeyPairInfo keyPairInfo = new KeyPairInfo();
+        KeyPairInfo keyPairInfo = DataVerifyTools.generateKeyPairInfo();
         RegisterOrRecoveryResultDTO resultDTO = INetworkInterface.getInstance().requestRegister(
                 new RequestRegisterParams()
                         .setLoginGuardianIdentifier(config.getAccountIdentifier())
@@ -69,6 +74,7 @@ public class RegisterBehaviourEntity implements GuardianObserver, IAfterVerified
                         .setSignature(guardianWrapper.getVerifiedData().getSignature())
                         .setContext(new ContextDTO().setClientId(keyPairInfo.getAddress()))
                         .setType(config.getAccountOriginalType().name())
+                        .setChainId(GlobalConfig.getCurrentChainId())
                         .setManager(keyPairInfo.getAddress())
                         .setVerifierId(guardianWrapper.getOriginalData().getVerifierId())
                         .setExtraData(new Gson().toJson(new ExtraInfoWrapper(DeviceExtraInfo.fromPlatformEnum(ExtraDataPlatformEnum.OTHER))))
@@ -90,6 +96,7 @@ public class RegisterBehaviourEntity implements GuardianObserver, IAfterVerified
                         .setSessionId(resultDTO.getSessionId())
         );
     }
+
 
     public boolean isVerified() {
         return guardianWrapper != null && guardianWrapper.getVerifiedData() != null;

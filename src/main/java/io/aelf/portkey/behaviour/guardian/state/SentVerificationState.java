@@ -65,7 +65,7 @@ public class SentVerificationState extends AbstractStateSubject<GuardianStub> im
                 .setVerifierSessionId(sendVerificationCodeResult.getVerifierSessionId())
                 .setVerificationCode(code);
         HeadVerifyCodeResultDTO resultDTO = INetworkInterface.getInstance().checkVerificationCode(config);
-        if (resultDTO.isSuccess()) {
+        if (resultDTO!=null && resultDTO.isSuccess()) {
             stub.setNextState(new VerifiedGuardianState(stub, resultDTO));
             return true;
         } else {

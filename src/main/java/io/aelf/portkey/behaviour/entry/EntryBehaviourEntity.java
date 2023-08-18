@@ -46,6 +46,9 @@ public class EntryBehaviourEntity {
             GLogger.t(config.getAccountIdentifier() + " is not registered, try to register it.");
             isRegistered = false;
         }
+        if(registerInfo==null){
+            isRegistered = false;
+        }
         return new CheckedEntry(isRegistered, config, registerInfo);
     }
 

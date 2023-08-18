@@ -7,7 +7,7 @@ import java.util.UUID;
 public class ContextDTO {
     @JsonProperty("requestId")
     private final String requestId = UUID.randomUUID().toString().replaceAll("-", "");
-    @JsonProperty("clientId")
+    @JsonProperty("ClientId")
     private String clientId;
 
     public String getClientId() {

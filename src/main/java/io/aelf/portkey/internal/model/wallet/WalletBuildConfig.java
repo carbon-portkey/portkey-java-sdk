@@ -9,6 +9,8 @@ public class WalletBuildConfig {
     protected String sessionId;
     @JsonProperty("AElfEndpoint")
     protected String AElfEndpoint;
+    @JsonProperty("originalChainId")
+    protected String originalChainId;
 
     public String getAElfEndpoint() {
         return AElfEndpoint;
@@ -34,6 +36,15 @@ public class WalletBuildConfig {
 
     public WalletBuildConfig setSessionId(String sessionId) {
         this.sessionId = sessionId;
+        return this;
+    }
+
+    public String getOriginalChainId() {
+        return originalChainId;
+    }
+
+    public WalletBuildConfig setOriginalChainId(String originalChainId) {
+        this.originalChainId = originalChainId;
         return this;
     }
 }

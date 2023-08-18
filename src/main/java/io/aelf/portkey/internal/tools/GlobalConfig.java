@@ -44,9 +44,8 @@ public class GlobalConfig {
     }
 
     public interface StorageTags {
-        String TAG_SESSION_ID = "session_id";
+        String TAG_WALLET_CONFIG = "wallet_config";
         String TAG_PIN = "pin_code";
-        String TAG_PRIV_KEY = "priv_key";
     }
 
     public interface PinConfig {

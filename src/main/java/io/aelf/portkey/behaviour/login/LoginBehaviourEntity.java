@@ -15,6 +15,7 @@ import io.aelf.portkey.internal.model.guardian.GuardianDTO;
 import io.aelf.portkey.internal.model.guardian.GuardianWrapper;
 import io.aelf.portkey.internal.model.recovery.RequestRecoveryParams;
 import io.aelf.portkey.internal.model.wallet.WalletBuildConfig;
+import io.aelf.portkey.internal.tools.DataVerifyTools;
 import io.aelf.portkey.internal.tools.GlobalConfig;
 import io.aelf.portkey.network.connecter.INetworkInterface;
 import io.aelf.portkey.utils.enums.ExtraDataPlatformEnum;
@@ -119,7 +120,7 @@ public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBeh
         if (!isFulfilled()) {
             throw new AElfException(ResultCode.INTERNAL_ERROR, "guardian verify not fulfilled");
         }
-        KeyPairInfo keyPairInfo = new KeyPairInfo();
+        KeyPairInfo keyPairInfo = DataVerifyTools.generateKeyPairInfo();
         RegisterOrRecoveryResultDTO resultDTO = INetworkInterface.getInstance().requestRecovery(
                 new RequestRecoveryParams()
                         .setChainId(GlobalConfig.getCurrentChainId())
@@ -127,6 +128,7 @@ public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBeh
                         .setExtraData(
                                 new Gson().toJson(new ExtraInfoWrapper(DeviceExtraInfo.fromPlatformEnum(ExtraDataPlatformEnum.OTHER)))
                         )
+                        .setChainId(GlobalConfig.getCurrentChainId())
                         .setLoginGuardianIdentifier(accountIdentifier)
                         .setGuardiansApproved(
                                 guardians.stream()

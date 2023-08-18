@@ -42,7 +42,7 @@ public class InitGuardianState extends AbstractStateSubject<GuardianStub> implem
                 TextUtils.isEmpty(recaptchaToken)
                         ? networkInterface.sendVerificationCode(params)
                         : networkInterface.sendVerificationCode(params, new RegisterHeader().setReCaptchaToken(recaptchaToken));
-        if (resultDTO.isSuccess()) {
+        if (resultDTO!=null && resultDTO.isSuccess()) {
             stub.setNextState(new SentVerificationState(stub, resultDTO));
             return true;
         } else {
