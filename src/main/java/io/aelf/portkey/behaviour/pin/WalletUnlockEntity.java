@@ -13,8 +13,12 @@ public class WalletUnlockEntity {
                 && pinValue.matches(GlobalConfig.PinConfig.REGEX);
     }
 
+    public boolean checkPin(@NotNull String pinValue) {
+        return PinManager.checkIfSessionExists() && PinManager.headPin(pinValue);
+    }
+
     public PortkeyWallet unlockAndBuildWallet(@NotNull String pinValue) throws AElfException {
-        if (!isValidPinValue(pinValue)) {
+        if (!isValidPinValue(pinValue) || !checkPin(pinValue)) {
             throw new IllegalArgumentException("Invalid pin value.");
         }
         WalletBuildConfig config = PinManager.unlock(pinValue);

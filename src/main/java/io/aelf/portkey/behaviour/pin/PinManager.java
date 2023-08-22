@@ -63,4 +63,8 @@ public class PinManager {
                 && pinValue.matches(GlobalConfig.PinConfig.REGEX);
     }
 
+    public static boolean headPin(String pinValue) {
+        IStorageBehaviour handler = StorageProvider.getHandler();
+        return handler.headValue(TAG_PIN, pinValue);
+    }
 }

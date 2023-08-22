@@ -73,7 +73,6 @@ public class NetworkService implements INetworkInterface {
         return instance;
     }
 
-    @NotNull
     protected static <T> T realExecute(Call<T> call) throws AElfException {
         return realExecute(call, false);
     }
