@@ -63,6 +63,14 @@ public class RegisterBehaviourEntity implements GuardianObserver, IAfterVerified
         );
     }
 
+    public EntryCheckConfig getConfig() {
+        return config;
+    }
+
+    public GuardianWrapper getGuardianWrapper() {
+        return guardianWrapper;
+    }
+
     @Override
     public SetPinBehaviourEntity afterVerified() {
         if (!isVerified()) throw new AElfException(ResultCode.INTERNAL_ERROR, "Guardian not verified");

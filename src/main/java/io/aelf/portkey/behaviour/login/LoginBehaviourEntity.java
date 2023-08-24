@@ -37,6 +37,7 @@ public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBeh
     private final AccountOriginalType accountOriginalType;
     private final String accountIdentifier;
 
+
     public LoginBehaviourEntity(@NotNull List<GuardianWrapper> guardians) {
         this(guardians, new EntryCheckConfig());
     }
@@ -61,6 +62,14 @@ public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBeh
         int length = guardians.size();
         if (length <= 3) return length;
         return (int) (guardians.size() * 0.6 + 1);
+    }
+
+    public AccountOriginalType getAccountOriginalType() {
+        return accountOriginalType;
+    }
+
+    public String getAccountIdentifier() {
+        return accountIdentifier;
     }
 
     public List<GuardianWrapper> getGuardians() {
