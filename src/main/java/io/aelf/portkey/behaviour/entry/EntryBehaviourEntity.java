@@ -6,6 +6,8 @@ import io.aelf.portkey.behaviour.login.LoginBehaviourEntity;
 import io.aelf.portkey.behaviour.pin.PinManager;
 import io.aelf.portkey.behaviour.pin.WalletUnlockEntity;
 import io.aelf.portkey.behaviour.register.RegisterBehaviourEntity;
+import io.aelf.portkey.internal.model.common.AccountOriginalType;
+import io.aelf.portkey.internal.model.google.GoogleAccount;
 import io.aelf.portkey.internal.model.guardian.GuardianInfoDTO;
 import io.aelf.portkey.internal.model.guardian.GuardianWrapper;
 import io.aelf.portkey.internal.model.register.RegisterInfoDTO;
@@ -33,7 +35,9 @@ public class EntryBehaviourEntity {
     }
 
     public static synchronized CheckedEntry attemptAccountCheck(
-            EntryCheckConfig config) {
+            EntryCheckConfig config,
+            @Nullable GoogleAccount givenGoogleAccount
+    ) {
         if (!checkLoginConfig(config)) {
             throw new AElfException(ResultCode.INTERNAL_ERROR, "login config error.");
         }
@@ -49,19 +53,36 @@ public class EntryBehaviourEntity {
         if (registerInfo == null) {
             isRegistered = false;
         }
-        return new CheckedEntry(isRegistered, config, registerInfo);
+        return new CheckedEntry(isRegistered, config, registerInfo, givenGoogleAccount);
     }
 
-    protected static LoginBehaviourEntity createLoginStepEntity(RegisterInfoDTO registerInfoDTO, EntryCheckConfig config) throws AElfException {
+    public static CheckedEntry googleAccountCheck(GoogleAccount googleAccount) {
+        return attemptAccountCheck(
+                new EntryCheckConfig()
+                        .setAccountOriginalType(AccountOriginalType.Google)
+                        .setAccountIdentifier(googleAccount.getId()
+                        ),
+                googleAccount
+        );
+    }
+
+    protected static LoginBehaviourEntity createLoginStepEntity(
+            RegisterInfoDTO registerInfoDTO,
+            EntryCheckConfig config,
+            @Nullable GoogleAccount googleAccount
+    ) throws AElfException {
         GuardianInfoDTO guardianInfoDTO = INetworkInterface.getInstance().getGuardianInfo(registerInfoDTO.getOriginChainId(), config.getAccountIdentifier());
         List<GuardianWrapper> guardianWrappers = Arrays.stream(guardianInfoDTO.getGuardianList().getGuardians())
-                .map(GuardianWrapper::new)
+                .map(it -> new GuardianWrapper(it, googleAccount))
                 .collect(Collectors.toList());
         return new LoginBehaviourEntity(guardianWrappers, config);
     }
 
-    protected static RegisterBehaviourEntity createRegisterStepEntity(EntryCheckConfig config) {
-        return new RegisterBehaviourEntity(config);
+    protected static RegisterBehaviourEntity createRegisterStepEntity(
+            EntryCheckConfig config,
+            @Nullable GoogleAccount googleAccount
+    ) {
+        return new RegisterBehaviourEntity(config, googleAccount);
     }
 
     private static boolean checkLoginConfig(EntryCheckConfig loginConfig) {
@@ -83,11 +104,18 @@ public class EntryBehaviourEntity {
         private final boolean isRegistered;
         private final EntryCheckConfig config;
         private final RegisterInfoDTO registerInfo;
+        private final GoogleAccount googleAccount;
 
-        public CheckedEntry(boolean isRegistered, @NotNull EntryCheckConfig config, @Nullable RegisterInfoDTO registerInfo) {
+        public CheckedEntry(
+                boolean isRegistered,
+                @NotNull EntryCheckConfig config,
+                @Nullable RegisterInfoDTO registerInfo,
+                @Nullable GoogleAccount googleAccount
+        ) {
             this.isRegistered = isRegistered;
             this.config = config;
             this.registerInfo = registerInfo;
+            this.googleAccount = googleAccount;
         }
 
         public boolean isRegistered() {
@@ -108,14 +136,14 @@ public class EntryBehaviourEntity {
         public void onLoginStep(LoginCallback callback) {
             AssertChecker.assertTrue(isRegistered, "isRegistered is false, better check it using isRegistered() first.");
             assert registerInfo != null;
-            callback.onLoginStep(createLoginStepEntity(registerInfo, config));
+            callback.onLoginStep(createLoginStepEntity(registerInfo, config, googleAccount));
         }
 
         @Override
         public void onRegisterStep(RegisterCallback callback) {
             AssertChecker.assertTrue(!isRegistered, "isRegistered is true, better check it using isRegistered() first.");
             assert registerInfo == null;
-            callback.onRegisterStep(createRegisterStepEntity(config));
+            callback.onRegisterStep(createRegisterStepEntity(config, googleAccount));
         }
 
     }

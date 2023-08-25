@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import io.aelf.portkey.assertion.AssertChecker;
 import io.aelf.portkey.behaviour.global.EntryCheckConfig;
 import io.aelf.portkey.behaviour.global.GuardianObserver;
+import io.aelf.portkey.behaviour.google_guardian.GuardianGenerator;
 import io.aelf.portkey.behaviour.guardian.GuardianBehaviourEntity;
 import io.aelf.portkey.behaviour.pin.IAfterVerifiedBehaviour;
 import io.aelf.portkey.behaviour.pin.SetPinBehaviourEntity;
@@ -13,6 +14,7 @@ import io.aelf.portkey.internal.model.common.OperationScene;
 import io.aelf.portkey.internal.model.common.RegisterOrRecoveryResultDTO;
 import io.aelf.portkey.internal.model.extraInfo.DeviceExtraInfo;
 import io.aelf.portkey.internal.model.extraInfo.ExtraInfoWrapper;
+import io.aelf.portkey.internal.model.google.GoogleAccount;
 import io.aelf.portkey.internal.model.guardian.GetRecommendGuardianResultDTO;
 import io.aelf.portkey.internal.model.guardian.GetRecommendationVerifierParams;
 import io.aelf.portkey.internal.model.guardian.GuardianDTO;
@@ -26,20 +28,19 @@ import io.aelf.portkey.utils.enums.ExtraDataPlatformEnum;
 import io.aelf.response.ResultCode;
 import io.aelf.schemas.KeyPairInfo;
 import io.aelf.utils.AElfException;
-import io.aelf.utils.Base58Ext;
-import org.bitcoinj.core.ECKey;
-import org.bitcoinj.core.Sha256Hash;
+import org.jetbrains.annotations.Nullable;
 
-import java.math.BigInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Stream;
 
 public class RegisterBehaviourEntity implements GuardianObserver, IAfterVerifiedBehaviour {
     private final EntryCheckConfig config;
     private GuardianWrapper guardianWrapper;
+    private final GoogleAccount googleAccount;
 
-    public RegisterBehaviourEntity(EntryCheckConfig config) {
+    public RegisterBehaviourEntity(EntryCheckConfig config, @Nullable GoogleAccount googleAccount) {
         this.config = config;
+        this.googleAccount = googleAccount;
     }
 
     public GuardianBehaviourEntity getGuardian() {
@@ -53,13 +54,18 @@ public class RegisterBehaviourEntity implements GuardianObserver, IAfterVerified
                         .setLoginGuardian(true)
                         .setType(config.getAccountOriginalType().name())
                         .setVerifierId(resultDTO.getId())
+                        .setId(resultDTO.getId())
+                        .setName(resultDTO.getName())
+                        .setImageUrl(resultDTO.getImageUrl()),
+                googleAccount
         );
         this.guardianWrapper = guardianWrapper;
-        return new GuardianBehaviourEntity(
+        return GuardianGenerator.getGuardianEntity(
                 guardianWrapper.getOriginalData(),
                 OperationScene.register,
                 this,
-                config.getAccountOriginalType()
+                config.getAccountOriginalType(),
+                googleAccount
         );
     }
 

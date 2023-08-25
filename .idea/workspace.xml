@@ -9,13 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: fix pin issues">
+    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: make config readable">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/google_guardian/GoogleGuardianEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/google_guardian/GuardianGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/google/GoogleAccount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/entry/EntryBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/entry/EntryBehaviourEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/PinManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/PinManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/WalletUnlockEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/WalletUnlockEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/login/LoginBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/login/LoginBehaviourEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/register/RegisterBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/register/RegisterBehaviourEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/GuardianDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/GuardianDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/GuardianWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/GuardianWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/behaviour/EntryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/behaviour/EntryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +31,8 @@
       <list>
         <option value="Interface" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Kotlin Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -73,29 +77,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "dev",
-    "ignore.preview.features.used": "true",
-    "project.structure.last.edited": "工件",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;ignore.preview.features.used&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;工件&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/新建临时文件": [
-      "kotlin"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/新建临时文件&quot;: [
+      &quot;kotlin&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="io.aelf.portkey.behaviour.global" />
@@ -506,7 +510,23 @@
       <option name="project" value="LOCAL" />
       <updated>1692344582892</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="feat: pin can be checked before unlocking">
+      <option name="closed" value="true" />
+      <created>1692686649417</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1692686649417</updated>
+    </task>
+    <task id="LOCAL-00036" summary="feat: make config readable">
+      <option name="closed" value="true" />
+      <created>1692864114557</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1692864114557</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -522,8 +542,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="feat: project init" />
-    <MESSAGE value="feat: basic assert settings" />
     <MESSAGE value="feat: finish basic storage config" />
     <MESSAGE value="feat: import async props from AElf.Java" />
     <MESSAGE value="feat: rm unexpected files" />
@@ -547,24 +565,21 @@
     <MESSAGE value="feat: now RequestBody will be printed in Logger" />
     <MESSAGE value="feat: add google recaptcha config" />
     <MESSAGE value="feat: fix pin issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: fix pin issues" />
+    <MESSAGE value="feat: pin can be checked before unlocking" />
+    <MESSAGE value="feat: make config readable" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: make config readable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/register/RegisterBehaviourEntity.java</url>
-          <line>79</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/register/RegisterBehaviourEntity.java</url>
-          <line>82</line>
+          <line>96</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/register/RegisterBehaviourEntity.java</url>
-          <line>81</line>
+          <line>95</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

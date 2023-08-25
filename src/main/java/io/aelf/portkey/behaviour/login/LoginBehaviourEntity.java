@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import io.aelf.portkey.assertion.AssertChecker;
 import io.aelf.portkey.behaviour.global.EntryCheckConfig;
 import io.aelf.portkey.behaviour.global.GuardianObserver;
+import io.aelf.portkey.behaviour.google_guardian.GuardianGenerator;
 import io.aelf.portkey.behaviour.guardian.GuardianBehaviourEntity;
 import io.aelf.portkey.behaviour.pin.IAfterVerifiedBehaviour;
 import io.aelf.portkey.behaviour.pin.SetPinBehaviourEntity;
@@ -11,7 +12,6 @@ import io.aelf.portkey.internal.model.common.*;
 import io.aelf.portkey.internal.model.extraInfo.DeviceExtraInfo;
 import io.aelf.portkey.internal.model.extraInfo.ExtraInfoWrapper;
 import io.aelf.portkey.internal.model.guardian.ApprovedGuardianDTO;
-import io.aelf.portkey.internal.model.guardian.GuardianDTO;
 import io.aelf.portkey.internal.model.guardian.GuardianWrapper;
 import io.aelf.portkey.internal.model.recovery.RequestRecoveryParams;
 import io.aelf.portkey.internal.model.wallet.WalletBuildConfig;
@@ -78,11 +78,17 @@ public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBeh
 
     public GuardianBehaviourEntity getGuardianBehaviourEntity(int position) {
         AssertChecker.assertTrue(position >= 0 && position < guardians.size(), "position out of range");
-        return getGuardianBehaviourEntity(guardians.get(position).getOriginalData());
+        return getGuardianBehaviourEntity(guardians.get(position));
     }
 
-    public synchronized GuardianBehaviourEntity getGuardianBehaviourEntity(@NotNull GuardianDTO guardianDTO) {
-        return new GuardianBehaviourEntity(guardianDTO, OperationScene.communityRecovery, this, accountOriginalType);
+    public synchronized GuardianBehaviourEntity getGuardianBehaviourEntity(@NotNull GuardianWrapper guardianWrapper) {
+        return GuardianGenerator.getGuardianEntity(
+                guardianWrapper.getOriginalData(),
+                OperationScene.communityRecovery,
+                this,
+                accountOriginalType,
+                null
+        );
     }
 
     public synchronized Optional<GuardianBehaviourEntity> nextWaitingGuardian() {
@@ -97,7 +103,7 @@ public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBeh
         if (wrapper == null) {
             throw new AElfException(ResultCode.INTERNAL_ERROR, "No waiting guardian found");
         }
-        return Optional.ofNullable(getGuardianBehaviourEntity(wrapper.getOriginalData()));
+        return Optional.ofNullable(getGuardianBehaviourEntity(wrapper));
     }
 
     protected synchronized void setGuardianVerified(GuardianWrapper guardianWrapper) {

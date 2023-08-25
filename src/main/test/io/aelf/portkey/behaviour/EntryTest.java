@@ -21,7 +21,7 @@ public class EntryTest {
         EntryCheckConfig loginConfig = new EntryCheckConfig()
                 .setAccountOriginalType(AccountOriginalType.Email)
                 .setAccountIdentifier(TEST_IDENTIFIER);
-        EntryBehaviourEntity.CheckedEntry checkedEntry = EntryBehaviourEntity.attemptAccountCheck(loginConfig);
+        EntryBehaviourEntity.CheckedEntry checkedEntry = EntryBehaviourEntity.attemptAccountCheck(loginConfig,null);
         if (checkedEntry.isRegistered()) {
             checkedEntry.asLogInChain().onLoginStep(
                     loginEntry -> {
@@ -44,7 +44,7 @@ public class EntryTest {
         EntryCheckConfig loginConfig = new EntryCheckConfig()
                 .setAccountOriginalType(AccountOriginalType.Email)
                 .setAccountIdentifier(TEST_IDENTIFIER);
-        EntryBehaviourEntity.CheckedEntry checkedEntry = EntryBehaviourEntity.attemptAccountCheck(loginConfig);
+        EntryBehaviourEntity.CheckedEntry checkedEntry = EntryBehaviourEntity.attemptAccountCheck(loginConfig,null);
         assert checkedEntry.isRegistered();
         checkedEntry.asRegisterChain().onRegisterStep(
                 registerEntry -> {
@@ -58,7 +58,7 @@ public class EntryTest {
         EntryCheckConfig loginConfig = new EntryCheckConfig()
                 .setAccountOriginalType(AccountOriginalType.Email)
                 .setAccountIdentifier(TEST_IDENTIFIER.concat("a"));
-        EntryBehaviourEntity.CheckedEntry checkedEntry = EntryBehaviourEntity.attemptAccountCheck(loginConfig);
+        EntryBehaviourEntity.CheckedEntry checkedEntry = EntryBehaviourEntity.attemptAccountCheck(loginConfig,null);
         assert checkedEntry.isRegistered();
         checkedEntry.asLogInChain().onLoginStep(
                 loginBehaviourEntity -> {
