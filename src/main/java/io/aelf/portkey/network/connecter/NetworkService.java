@@ -12,6 +12,7 @@ import io.aelf.portkey.internal.model.common.ChainInfoDTO;
 import io.aelf.portkey.internal.model.common.CheckCaptchaParams;
 import io.aelf.portkey.internal.model.common.CountryCodeInfoDTO;
 import io.aelf.portkey.internal.model.common.RegisterOrRecoveryResultDTO;
+import io.aelf.portkey.internal.model.google.GoogleAuthResult;
 import io.aelf.portkey.internal.model.google.GoogleVerifyTokenParams;
 import io.aelf.portkey.internal.model.guardian.GetRecommendGuardianResultDTO;
 import io.aelf.portkey.internal.model.guardian.GetRecommendationVerifierParams;
@@ -26,6 +27,7 @@ import io.aelf.portkey.internal.model.verify.SendVerificationCodeParams;
 import io.aelf.portkey.internal.model.verify.SendVerificationCodeResultDTO;
 import io.aelf.portkey.internal.tools.GlobalConfig;
 import io.aelf.portkey.network.retrofit.RetrofitProvider;
+import io.aelf.portkey.network.slice.common.CommonAPIPath;
 import io.aelf.portkey.network.slice.common.GoogleNetworkAPISlice;
 import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.response.ResultCode;
@@ -38,6 +40,15 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
 import retrofit2.Response;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Header;
+import retrofit2.http.POST;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Properties;
 
 
 public class NetworkService implements INetworkInterface {
@@ -62,7 +73,7 @@ public class NetworkService implements INetworkInterface {
         }
     }
 
-    protected static NetworkService getInstance() {
+    public static NetworkService getInstance() {
         if (instance == null) {
             synchronized (NetworkService.class) {
                 if (instance == null) {
@@ -83,7 +94,7 @@ public class NetworkService implements INetworkInterface {
                     .concat(call.request().url().toString()));
             RequestBody body = call.request().body();
             if (body != null) {
-                try(Buffer buffer=new Buffer()){
+                try (Buffer buffer = new Buffer()) {
                     body.writeTo(buffer);
                     GLogger.t("body : \n"
                             .concat(buffer.readUtf8()));
@@ -146,17 +157,40 @@ public class NetworkService implements INetworkInterface {
 
     @Override
     public GuardianInfoDTO getGuardianInfo(String chainId, String guardianIdentifier) {
-        return realExecute(api.getGuardianInfo(chainId, guardianIdentifier));
+        return realExecute(api.getGuardianInfo(chainId, guardianIdentifier, guardianIdentifier));
     }
 
     @Override
     public GuardianInfoDTO getGuardianInfo(String chainId, String guardianIdentifier, String caHash) {
-        return realExecute(api.getGuardianInfo(chainId, guardianIdentifier, caHash));
+        return realExecute(api.getGuardianInfo(chainId, guardianIdentifier, guardianIdentifier, caHash));
     }
 
     @Override
     public RegisterInfoDTO getRegisterInfo(String loginGuardianIdentifier) {
-        return realExecute(api.getRegisterInfo(loginGuardianIdentifier), true);
+        Call<RegisterInfoDTO> call = api.getRegisterInfo(loginGuardianIdentifier);
+        try {
+            Response<RegisterInfoDTO> response = call.execute();
+            if (response.isSuccessful()) {
+                return response.body();
+            } else {
+                try (ResponseBody errBody = response.errorBody()) {
+                    if (errBody != null) {
+                        JsonObject jsonObject = JsonParser.parseString(errBody.string()).getAsJsonObject();
+                        if (!jsonObject.has("error")) return null;
+                        jsonObject = jsonObject.getAsJsonObject("error");
+                        if (jsonObject.has("code") && "3002".equals(jsonObject.get("code").getAsString())) {
+                            return new RegisterInfoDTO()
+                                    .setErrCodeMatchNotRegistered(true);
+                        }
+                    } else {
+                        return null;
+                    }
+                }
+            }
+        } catch (Exception ignored) {
+        }
+        return null;
+
     }
 
     @Override
@@ -175,8 +209,14 @@ public class NetworkService implements INetworkInterface {
     }
 
     @Override
-    public HeadVerifyCodeResultDTO checkVerificationCode(@NonNull HeadVerifyCodeParams params) throws AElfException {
-        return realExecute(api.checkVerificationCode(params));
+    public HeadVerifyCodeResultDTO checkVerificationCode(@NonNull HeadVerifyCodeParams params) throws AElfException, IOException {
+        Call<HeadVerifyCodeResultDTO> call=api.checkVerificationCode(params);
+        Response<HeadVerifyCodeResultDTO> response = call.execute();
+        if(response.isSuccessful()){
+            return response.body();
+        }else{
+            return new HeadVerifyCodeResultDTO();
+        }
     }
 
     @Override
@@ -195,8 +235,14 @@ public class NetworkService implements INetworkInterface {
     }
 
     @Override
-    public HeadVerifyCodeResultDTO verifyGoogleToken(@NonNull GoogleVerifyTokenParams params) throws AElfException {
-        return realExecute(api.verifyGoogleToken(params));
+    public HeadVerifyCodeResultDTO verifyGoogleToken(@NonNull GoogleVerifyTokenParams params) throws AElfException, IOException {
+        Call<HeadVerifyCodeResultDTO> call=api.verifyGoogleToken(params);
+        Response<HeadVerifyCodeResultDTO> response = call.execute();
+        if(response.isSuccessful()){
+            return response.body();
+        }else{
+            return new HeadVerifyCodeResultDTO();
+        }
     }
 
     @Override
@@ -211,7 +257,7 @@ public class NetworkService implements INetworkInterface {
 
     @Override
     public String getGoogleAccessToken(@NotNull String authorization) {
-        GoogleNetworkAPISlice service = RetrofitProvider.getAPIService(GoogleNetworkAPISlice.class, GlobalConfig.GOOGLE_HOST);
+        GoogleNetworkAPISlice service = RetrofitProvider.getAPIService(GoogleNetworkAPISlice.class, GlobalConfig.GOOGLE_API_HOST);
         return realExecute(service.getGoogleAccessToken("Bearer ".concat(authorization)));
     }
 
@@ -220,4 +266,39 @@ public class NetworkService implements INetworkInterface {
         return realExecute(api.getChainsInfo());
     }
 
+    public GoogleAuthResult getGoogleAuthResult(String code) {
+        GoogleAuthAPI service = RetrofitProvider.getAPIService(GoogleAuthAPI.class, GlobalConfig.GOOGLE_AUTH_HOST);
+        try {
+            Properties properties = new Properties();
+            try {
+                properties.load(Files.newInputStream(Paths.get("config.properties")));
+            } catch (Throwable e) {
+                properties.load(NetworkService.class.getClassLoader().getResourceAsStream("config.properties"));
+            }
+            return realExecute(service.getGoogleAccessToken(
+                    code,
+                    properties.getProperty("client_id"),
+                    properties.getProperty("client_secret"),
+                    properties.getProperty("redirect_uri"),
+                    properties.getProperty("grant_type"),
+                    "application/x-www-form-urlencoded"
+            ));
+        } catch (Exception e) {
+            GLogger.e("Network failure! path: " + CommonAPIPath.GET_GOOGLE_AUTH_RESULT, new AElfException(e));
+            return null;
+        }
+    }
+}
+
+interface GoogleAuthAPI {
+    @FormUrlEncoded
+    @POST(CommonAPIPath.GET_GOOGLE_AUTH_RESULT)
+    Call<GoogleAuthResult> getGoogleAccessToken(
+            @Field("code") String code,
+            @Field("client_id") String clientId,
+            @Field("client_secret") String clientSecret,
+            @Field("redirect_uri") String redirectUri,
+            @Field("grant_type") String grantType,
+            @Header("Content-Type") String contentType
+    );
 }

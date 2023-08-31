@@ -17,8 +17,10 @@ public class GuardianBehaviourEntity extends GuardianStub implements IGuardianSt
             @NotNull GuardianDTO guardian,
             int operationType,
             @NotNull GuardianObserver observer,
-            AccountOriginalType accountOriginalType) {
-        super(observer, operationType, guardian, accountOriginalType);
+            AccountOriginalType accountOriginalType,
+            boolean isAlreadyVerified
+    ) {
+        super(observer, operationType, guardian, accountOriginalType, isAlreadyVerified);
     }
 
     public boolean checkForReCaptcha() {
@@ -51,7 +53,7 @@ public class GuardianBehaviourEntity extends GuardianStub implements IGuardianSt
 
     @Override
     public boolean isVerified() {
-        return state.isVerified();
+        return state.isVerified() || isAlreadyVerified;
     }
 
     @Override

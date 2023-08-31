@@ -13,6 +13,8 @@ public class RegisterInfoDTO {
     @JsonProperty("originChainId")
     private String originChainId;
 
+    private boolean errCodeMatchNotRegistered = false;
+
     public String getOriginChainId() {
         return originChainId;
     }
@@ -20,5 +22,14 @@ public class RegisterInfoDTO {
     public void setOriginChainId(String originChainId) {
         DataVerifyTools.verifyChainId(originChainId);
         this.originChainId = originChainId;
+    }
+
+    public boolean isErrCodeMatchNotRegistered() {
+        return errCodeMatchNotRegistered;
+    }
+
+    public RegisterInfoDTO setErrCodeMatchNotRegistered(boolean errCodeMatchNotRegistered) {
+        this.errCodeMatchNotRegistered = errCodeMatchNotRegistered;
+        return this;
     }
 }

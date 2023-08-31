@@ -9,17 +9,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: make config readable">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/google_guardian/GoogleGuardianEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/google_guardian/GuardianGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/google/GoogleAccount.java" afterDir="false" />
+    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: create a Google Auth path">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/google/GoogleAuthResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/behaviour/ContractContentChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/entry/EntryBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/entry/EntryBehaviourEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/google_guardian/GoogleGuardianEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/google_guardian/GoogleGuardianEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/google_guardian/GuardianGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/google_guardian/GuardianGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/guardian/GuardianBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/guardian/GuardianBehaviourEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/guardian/GuardianStub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/guardian/GuardianStub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/guardian/state/SentVerificationState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/guardian/state/SentVerificationState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/login/LoginBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/login/LoginBehaviourEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/IAfterVerifiedBehaviour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/IAfterVerifiedBehaviour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/SetPinBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/SetPinBehaviourEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/register/RegisterBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/register/RegisterBehaviourEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/apple/AppleVerifyTokenParams.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/apple/AppleVerifyTokenParams.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/google/GoogleAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/google/GoogleAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/google/GoogleVerifyTokenParams.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/google/GoogleVerifyTokenParams.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/GuardianDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/GuardianDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/GuardianWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/guardian/GuardianWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/register/RegisterInfoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/register/RegisterInfoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/tools/GlobalConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/tools/GlobalConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/account/AccountNetworkAPISlice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/account/AccountNetworkAPISlice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/account/AccountOperationAPISlice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/account/AccountOperationAPISlice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/common/CommonAPIPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/common/CommonAPIPath.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/behaviour/EntryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/behaviour/EntryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/behaviour/GuardianTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/behaviour/GuardianTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/network/WebServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/network/WebServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,35 +94,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;ignore.preview.features.used&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;工件&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "dev",
+    "ignore.preview.features.used": "true",
+    "last_opened_file_path": "/Users/lvzhiwei/Desktop/Projects/portkey-java-sdk",
+    "project.structure.last.edited": "工件",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/新建临时文件&quot;: [
-      &quot;kotlin&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/新建临时文件": [
+      "kotlin"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="io.aelf.portkey.behaviour.global" />
       <recent name="io.aelf.portkey.behaviour.entry.state" />
       <recent name="io.aelf.portkey.internal.model.common" />
       <recent name="io.aelf.portkey.internal.model.guardian" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="io.aelf.portkey.behaviour.entry" />
@@ -117,12 +142,30 @@
       <recent name="io.aelf.portkey.storage" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PinBehaviourTest">
+  <component name="RunManager" selected="JUnit.EntryTest.LoginWhenNotRegisteredTest">
+    <configuration name="ContractContentChecker" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="portkey-java-sdk" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.aelf.portkey.behaviour.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="jbr-17" />
+      <option name="PACKAGE_NAME" value="io.aelf.portkey.behaviour" />
+      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.behaviour.ContractContentChecker" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="EntryTest.LoginWhenNotRegisteredTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="portkey-java-sdk" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="io.aelf.portkey.behaviour.login.*" />
+          <option name="PATTERN" value="io.aelf.portkey.behaviour.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -131,42 +174,6 @@
       <option name="PACKAGE_NAME" value="io.aelf.portkey.behaviour" />
       <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.behaviour.EntryTest" />
       <option name="METHOD_NAME" value="LoginWhenNotRegisteredTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EntryTest.loginTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="portkey-java-sdk" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.aelf.portkey.behaviour.login.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="jbr-17" />
-      <option name="PACKAGE_NAME" value="io.aelf.portkey.behaviour" />
-      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.behaviour.EntryTest" />
-      <option name="METHOD_NAME" value="loginTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EntryTest.loginWithNoRecaptchaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="portkey-java-sdk" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.aelf.portkey.behaviour.login.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="jbr-17" />
-      <option name="PACKAGE_NAME" value="io.aelf.portkey.behaviour" />
-      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.behaviour.EntryTest" />
-      <option name="METHOD_NAME" value="loginWithNoRecaptchaTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -208,6 +215,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="WebServiceTest.getGoogleAuthResultTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="portkey-java-sdk" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.aelf.portkey.network.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="jbr-17" />
+      <option name="PACKAGE_NAME" value="io.aelf.portkey.network" />
+      <option name="MAIN_CLASS_NAME" value="io.aelf.portkey.network.WebServiceTest" />
+      <option name="METHOD_NAME" value="getGoogleAuthResultTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <module name="portkey-java-sdk" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -221,11 +246,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.EntryTest.LoginWhenNotRegisteredTest" />
+        <item itemvalue="JUnit.WebServiceTest.getGoogleAuthResultTest" />
+        <item itemvalue="JUnit.ContractContentChecker" />
         <item itemvalue="JUnit.PinBehaviourTest" />
         <item itemvalue="JUnit.EntryTest.loginWithRecaptchaTest" />
-        <item itemvalue="JUnit.EntryTest.loginWithNoRecaptchaTest" />
-        <item itemvalue="JUnit.EntryTest.loginTest" />
-        <item itemvalue="JUnit.EntryTest.LoginWhenNotRegisteredTest" />
       </list>
     </recent_temporary>
   </component>
@@ -526,7 +551,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692864114557</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="feat: create a Google Auth path">
+      <option name="closed" value="true" />
+      <created>1692962542791</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1692962542791</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -542,7 +575,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="feat: finish basic storage config" />
     <MESSAGE value="feat: import async props from AElf.Java" />
     <MESSAGE value="feat: rm unexpected files" />
     <MESSAGE value="feat: import AElf's async ability" />
@@ -567,20 +599,21 @@
     <MESSAGE value="feat: fix pin issues" />
     <MESSAGE value="feat: pin can be checked before unlocking" />
     <MESSAGE value="feat: make config readable" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: make config readable" />
+    <MESSAGE value="feat: create a Google Auth path" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: create a Google Auth path" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/register/RegisterBehaviourEntity.java</url>
-          <line>96</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java</url>
+          <line>94</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/register/RegisterBehaviourEntity.java</url>
-          <line>95</line>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java</url>
+          <line>177</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -589,6 +622,11 @@
         <PinnedItemInfo parentTag="retrofit2.Response" memberName="errorBody" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="call.request().headers" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

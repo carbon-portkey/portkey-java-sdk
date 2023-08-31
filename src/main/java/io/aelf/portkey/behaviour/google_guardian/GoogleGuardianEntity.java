@@ -10,7 +10,6 @@ import io.aelf.portkey.internal.model.guardian.GuardianWrapper;
 import io.aelf.portkey.internal.model.verify.HeadVerifyCodeResultDTO;
 import io.aelf.portkey.internal.tools.GlobalConfig;
 import io.aelf.portkey.network.connecter.INetworkInterface;
-import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.utils.AElfException;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.jetbrains.annotations.NotNull;
@@ -25,9 +24,10 @@ public class GoogleGuardianEntity extends GuardianBehaviourEntity {
             int operationType,
             @NotNull GuardianObserver observer,
             AccountOriginalType accountOriginalType,
+            boolean isAlreadyVerified,
             GoogleAccount googleAccount
     ) {
-        super(guardian, operationType, observer, accountOriginalType);
+        super(guardian, operationType, observer, accountOriginalType, isAlreadyVerified);
         this.googleAccount = googleAccount;
     }
 
@@ -50,15 +50,15 @@ public class GoogleGuardianEntity extends GuardianBehaviourEntity {
 
     @Override
     public boolean verifyVerificationCode(String code) throws AElfException {
-        if (isVerified) return true;
+        if (isVerified()) return true;
         try {
-            GoogleVerifyTokenParams params = (GoogleVerifyTokenParams) new GoogleVerifyTokenParams()
+            GoogleVerifyTokenParams params = new GoogleVerifyTokenParams()
                     .setVerifierId(this.getOriginalGuardianInfo().getVerifierId())
                     .setChainId(GlobalConfig.getCurrentChainId())
-                    .setOperationType(this.getOperationType());
-            params.setToken(this.googleAccount.getIdToken());
+                    .setOperationType(this.getOperationType())
+                    .setToken(this.googleAccount.getAccessToken());
             HeadVerifyCodeResultDTO result = INetworkInterface.getInstance().verifyGoogleToken(params);
-            if (result != null) {
+            if (result.isSuccess()) {
                 this.getObserver().informGuardianReady(
                         new GuardianWrapper(
                                 this.getOriginalGuardianInfo(),
@@ -67,15 +67,17 @@ public class GoogleGuardianEntity extends GuardianBehaviourEntity {
                         )
                 );
                 this.isVerified = true;
+            } else {
+                return false;
             }
         } catch (Throwable e) {
-            GLogger.e("GoogleGuardianEntity verifyVerificationCode error: ", new AElfException(e));
+            throw new AElfException(e);
         }
-        return this.isVerified;
+        return isVerified();
     }
 
     @Override
     public boolean isVerified() {
-        return this.isVerified;
+        return this.isVerified || super.isVerified();
     }
 }

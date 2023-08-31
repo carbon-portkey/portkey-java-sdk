@@ -9,7 +9,8 @@ public class GlobalConfig {
     public static final String URL_SYMBOL_PORTKEY = "portkey";
     public static final String DO_NOT_OVERRIDE_HEADERS_SYMBOL = "do-not-override-headers";
     public static final String MAIN_STORAGE_PATH_PREFIX = "/storage/";
-    public static final String GOOGLE_HOST = "https://www.googleapis.com";
+    public static final String GOOGLE_API_HOST = "https://www.googleapis.com";
+    public static final String GOOGLE_AUTH_HOST = "https://oauth2.googleapis.com";
     public static final String NOT_VALID_ENCRYPT_KEY = "not-valid-encrypt-key";
     public static final @NotNull Map.Entry<String, String>
             ENCRYPT_DETECT_KEY_SET = Map.entry("encryptDetectKey", "encryptDetectValue");

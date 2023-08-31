@@ -13,7 +13,6 @@ import io.aelf.portkey.internal.model.guardian.GuardianWrapper;
 import io.aelf.portkey.internal.model.register.RegisterInfoDTO;
 import io.aelf.portkey.internal.tools.DataVerifyTools;
 import io.aelf.portkey.network.connecter.INetworkInterface;
-import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.response.ResultCode;
 import io.aelf.utils.AElfException;
 import org.apache.http.util.TextUtils;
@@ -35,23 +34,42 @@ public class EntryBehaviourEntity {
     }
 
     public static synchronized CheckedEntry attemptAccountCheck(
+            EntryCheckConfig config
+    ) {
+        return attemptAccountCheck(config, null);
+    }
+
+    public static synchronized CheckedEntry attemptAccountCheck(
             EntryCheckConfig config,
             @Nullable GoogleAccount givenGoogleAccount
-    ) {
+    ) throws AElfException {
         if (!checkLoginConfig(config)) {
             throw new AElfException(ResultCode.INTERNAL_ERROR, "login config error.");
         }
         boolean isRegistered = true;
-        RegisterInfoDTO registerInfo = null;
-        // If the account is not registered, getRegisterInfo() will throw an exception.
-        try {
-            registerInfo = INetworkInterface.getInstance().getRegisterInfo(config.getAccountIdentifier());
-        } catch (Throwable e) {
-            GLogger.t(config.getAccountIdentifier() + " is not registered, try to register it.");
-            isRegistered = false;
-        }
+        RegisterInfoDTO registerInfo = INetworkInterface
+                .getInstance()
+                .getRegisterInfo(config.getAccountIdentifier());
         if (registerInfo == null) {
+            throw new AElfException();
+        }
+        if (registerInfo.isErrCodeMatchNotRegistered() && TextUtils.isEmpty(registerInfo.getOriginChainId())) {
             isRegistered = false;
+            registerInfo = null;
+        } else {
+            // if there's no guardian for this account, it is not registered either.
+            try {
+                GuardianInfoDTO guardianInfoDTO = INetworkInterface
+                        .getInstance()
+                        .getGuardianInfo(
+                                registerInfo.getOriginChainId(),
+                                config.getAccountIdentifier()
+                        );
+                if (guardianInfoDTO == null) throw new AElfException();
+            } catch (Exception e) {
+                isRegistered = false;
+                registerInfo = null;
+            }
         }
         return new CheckedEntry(isRegistered, config, registerInfo, givenGoogleAccount);
     }
@@ -75,7 +93,7 @@ public class EntryBehaviourEntity {
         List<GuardianWrapper> guardianWrappers = Arrays.stream(guardianInfoDTO.getGuardianList().getGuardians())
                 .map(it -> new GuardianWrapper(it, googleAccount))
                 .collect(Collectors.toList());
-        return new LoginBehaviourEntity(guardianWrappers, config);
+        return new LoginBehaviourEntity(guardianWrappers, config, googleAccount);
     }
 
     protected static RegisterBehaviourEntity createRegisterStepEntity(

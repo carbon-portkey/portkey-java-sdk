@@ -20,7 +20,8 @@ public class GuardianTest {
                 OperationScene.register,
                 guardianWrapper -> {
                 },
-                AccountOriginalType.Email
+                AccountOriginalType.Email,
+                false
         );
     }
 

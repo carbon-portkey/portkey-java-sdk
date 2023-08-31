@@ -14,4 +14,11 @@ public interface CommonAPIPath {
      * Its base host is <a href="https://www.googleapis.com">https://www.googleapis.com</a>
      */
     String GET_GOOGLE_ACCESS_TOKEN = "/userinfo/v2/me";
+    /**
+     * Need to remember it's not Portkey's API.
+     * <p>
+     * Its base host is <a href="https://www.googleapis.com">https://oauth2.googleapis.com</a>
+     */
+    String GET_GOOGLE_AUTH_RESULT = "/token";
+
 }

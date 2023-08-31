@@ -11,13 +11,21 @@ public abstract class GuardianStub extends IStateEntity<IGuardianState> {
     private final int operationType;
     private final GuardianDTO guardian;
     private final AccountOriginalType accountOriginalType;
+    protected final boolean isAlreadyVerified;
 
-    protected GuardianStub(GuardianObserver observer, int operationType, GuardianDTO guardian, AccountOriginalType accountOriginalType) {
+    protected GuardianStub(
+            GuardianObserver observer,
+            int operationType,
+            GuardianDTO guardian,
+            AccountOriginalType accountOriginalType,
+            boolean isAlreadyVerified
+    ) {
         super();
         this.observer = observer;
         this.operationType = operationType;
         this.guardian = guardian;
         this.accountOriginalType = accountOriginalType;
+        this.isAlreadyVerified = isAlreadyVerified;
     }
 
     public GuardianObserver getObserver() {

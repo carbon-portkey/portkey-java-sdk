@@ -21,7 +21,7 @@ public class EntryTest {
         EntryCheckConfig loginConfig = new EntryCheckConfig()
                 .setAccountOriginalType(AccountOriginalType.Email)
                 .setAccountIdentifier(TEST_IDENTIFIER);
-        EntryBehaviourEntity.CheckedEntry checkedEntry = EntryBehaviourEntity.attemptAccountCheck(loginConfig,null);
+        EntryBehaviourEntity.CheckedEntry checkedEntry = EntryBehaviourEntity.attemptAccountCheck(loginConfig, null);
         if (checkedEntry.isRegistered()) {
             checkedEntry.asLogInChain().onLoginStep(
                     loginEntry -> {
@@ -44,7 +44,8 @@ public class EntryTest {
         EntryCheckConfig loginConfig = new EntryCheckConfig()
                 .setAccountOriginalType(AccountOriginalType.Email)
                 .setAccountIdentifier(TEST_IDENTIFIER);
-        EntryBehaviourEntity.CheckedEntry checkedEntry = EntryBehaviourEntity.attemptAccountCheck(loginConfig,null);
+        EntryBehaviourEntity.CheckedEntry checkedEntry = EntryBehaviourEntity.attemptAccountCheck(loginConfig, null);
+
         assert checkedEntry.isRegistered();
         checkedEntry.asRegisterChain().onRegisterStep(
                 registerEntry -> {
@@ -53,21 +54,12 @@ public class EntryTest {
         );
     }
 
-    @Test(expected = AssertionError.class)
+    @Test()
     public void LoginWhenNotRegisteredTest() {
         EntryCheckConfig loginConfig = new EntryCheckConfig()
                 .setAccountOriginalType(AccountOriginalType.Email)
                 .setAccountIdentifier(TEST_IDENTIFIER.concat("a"));
-        EntryBehaviourEntity.CheckedEntry checkedEntry = EntryBehaviourEntity.attemptAccountCheck(loginConfig,null);
-        assert checkedEntry.isRegistered();
-        checkedEntry.asLogInChain().onLoginStep(
-                loginBehaviourEntity -> {
-                    throw new RuntimeException();
-                }
-        );
+        EntryBehaviourEntity.CheckedEntry checkedEntry = EntryBehaviourEntity.attemptAccountCheck(loginConfig, null);
+        assert !checkedEntry.isRegistered();
     }
-
-
-
-
 }

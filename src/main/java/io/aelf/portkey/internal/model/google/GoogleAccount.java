@@ -4,6 +4,7 @@ public class GoogleAccount {
     private String id;
     private String idToken;
     private String email;
+    private String accessToken;
 
     public String getId() {
         return id;
@@ -29,6 +30,15 @@ public class GoogleAccount {
 
     public GoogleAccount setEmail(String email) {
         this.email = email;
+        return this;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public GoogleAccount setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
         return this;
     }
 }

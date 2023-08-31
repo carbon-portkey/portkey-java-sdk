@@ -4,6 +4,7 @@ import io.aelf.portkey.TestParams;
 import io.aelf.portkey.assertion.AssertChecker;
 import io.aelf.portkey.internal.model.common.CountryCodeInfoDTO;
 import io.aelf.portkey.internal.model.common.OperationScene;
+import io.aelf.portkey.internal.model.google.GoogleAuthResult;
 import io.aelf.portkey.internal.model.verify.SendVerificationCodeParams;
 import io.aelf.portkey.internal.tools.GlobalConfig;
 import io.aelf.portkey.network.connecter.INetworkInterface;
@@ -43,6 +44,15 @@ public class WebServiceTest {
         AssertChecker.assertNotNull(countryCodeItem);
         AssertChecker.assertNotEmptyList(countryCodeItem.getData());
         AssertChecker.assertNotNull(countryCodeItem.getLocateData());
+    }
+
+    @Ignore
+    @Test
+    public void getGoogleAuthResultTest(){
+        GoogleAuthResult googleAuthResult = INetworkInterface.getInstance().getGoogleAuthResult(
+                "4/0Adeu5BUvsF7fd9asEo2QRnJwf07Mg0xcCaWjRj6lx9LBc1qGos7f8kE04fk5koqqHqCXkQ"
+        );
+        AssertChecker.assertNotNull(googleAuthResult);
     }
 
 

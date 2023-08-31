@@ -11,6 +11,7 @@ import io.aelf.portkey.behaviour.pin.SetPinBehaviourEntity;
 import io.aelf.portkey.internal.model.common.*;
 import io.aelf.portkey.internal.model.extraInfo.DeviceExtraInfo;
 import io.aelf.portkey.internal.model.extraInfo.ExtraInfoWrapper;
+import io.aelf.portkey.internal.model.google.GoogleAccount;
 import io.aelf.portkey.internal.model.guardian.ApprovedGuardianDTO;
 import io.aelf.portkey.internal.model.guardian.GuardianWrapper;
 import io.aelf.portkey.internal.model.recovery.RequestRecoveryParams;
@@ -25,6 +26,7 @@ import io.aelf.schemas.KeyPairInfo;
 import io.aelf.utils.AElfException;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,6 +38,7 @@ public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBeh
     private final int guardianVerifyLimit;
     private final AccountOriginalType accountOriginalType;
     private final String accountIdentifier;
+    private final GoogleAccount googleAccount;
 
 
     public LoginBehaviourEntity(@NotNull List<GuardianWrapper> guardians) {
@@ -44,10 +47,15 @@ public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBeh
 
 
     public LoginBehaviourEntity(@NotNull List<GuardianWrapper> guardians, EntryCheckConfig config) {
+        this(guardians, config, null);
+    }
+
+    public LoginBehaviourEntity(@NotNull List<GuardianWrapper> guardians, EntryCheckConfig config, @Nullable GoogleAccount googleAccount) {
         this.guardians = guardians;
         this.guardianVerifyLimit = getGuardianVerifyLimit(guardians);
         this.accountOriginalType = config.getAccountOriginalType();
         this.accountIdentifier = config.getAccountIdentifier();
+        this.googleAccount = googleAccount;
     }
 
     /**
@@ -83,11 +91,11 @@ public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBeh
 
     public synchronized GuardianBehaviourEntity getGuardianBehaviourEntity(@NotNull GuardianWrapper guardianWrapper) {
         return GuardianGenerator.getGuardianEntity(
-                guardianWrapper.getOriginalData(),
+                guardianWrapper,
                 OperationScene.communityRecovery,
                 this,
                 accountOriginalType,
-                null
+                googleAccount
         );
     }
 
@@ -132,6 +140,11 @@ public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBeh
 
     @Override
     public SetPinBehaviourEntity afterVerified() throws AElfException {
+        return new SetPinBehaviourEntity(this);
+    }
+
+    @Override
+    public WalletBuildConfig buildConfig() throws AElfException {
         if (!isFulfilled()) {
             throw new AElfException(ResultCode.INTERNAL_ERROR, "guardian verify not fulfilled");
         }
@@ -163,12 +176,10 @@ public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBeh
                         item -> endPoint.set(item.getEndPoint()),
                         () -> endPoint.set(chainInfoDTO.getItems()[0].getEndPoint())
                 );
-        return new SetPinBehaviourEntity(
-                new WalletBuildConfig()
-                        .setAElfEndpoint(endPoint.get())
-                        .setPrivKey(keyPairInfo.getPrivateKey())
-                        .setSessionId(resultDTO.getSessionId())
-        );
+        return new WalletBuildConfig()
+                .setAElfEndpoint(endPoint.get())
+                .setPrivKey(keyPairInfo.getPrivateKey())
+                .setSessionId(resultDTO.getSessionId());
     }
 
     protected ApprovedGuardianDTO toApprovedGuardianDTO(GuardianWrapper wrapper) {

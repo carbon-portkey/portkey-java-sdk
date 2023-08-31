@@ -5,6 +5,7 @@ import io.aelf.portkey.internal.model.apple.AppleExtraInfoResultDTO;
 import io.aelf.portkey.internal.model.apple.AppleVerifyTokenParams;
 import io.aelf.portkey.internal.model.common.CountryCodeInfoDTO;
 import io.aelf.portkey.internal.model.common.RegisterOrRecoveryResultDTO;
+import io.aelf.portkey.internal.model.google.GoogleAuthResult;
 import io.aelf.portkey.internal.model.google.GoogleVerifyTokenParams;
 import io.aelf.portkey.internal.model.guardian.GetRecommendGuardianResultDTO;
 import io.aelf.portkey.internal.model.guardian.GetRecommendationVerifierParams;
@@ -19,6 +20,8 @@ import io.aelf.portkey.internal.model.verify.SendVerificationCodeParams;
 import io.aelf.portkey.internal.model.verify.SendVerificationCodeResultDTO;
 import io.aelf.utils.AElfException;
 import org.checkerframework.checker.nullness.qual.NonNull;
+
+import java.io.IOException;
 
 public interface AccountOperationAPISlice {
 
@@ -49,7 +52,7 @@ public interface AccountOperationAPISlice {
     SendVerificationCodeResultDTO sendVerificationCode(@NonNull SendVerificationCodeParams params,
                                                        @NonNull RegisterHeader headers) throws AElfException;
 
-    HeadVerifyCodeResultDTO checkVerificationCode(@NonNull HeadVerifyCodeParams params) throws AElfException;
+    HeadVerifyCodeResultDTO checkVerificationCode(@NonNull HeadVerifyCodeParams params) throws AElfException, IOException;
 
     RegisterOrRecoveryResultDTO requestRegister(@NonNull RequestRegisterParams params) throws AElfException;
 
@@ -57,9 +60,11 @@ public interface AccountOperationAPISlice {
 
     AppleExtraInfoResultDTO sendAppleUserExtraInfo(@NonNull AppleExtraInfoParams params) throws AElfException;
 
-    HeadVerifyCodeResultDTO verifyGoogleToken(@NonNull GoogleVerifyTokenParams params) throws AElfException;
+    HeadVerifyCodeResultDTO verifyGoogleToken(@NonNull GoogleVerifyTokenParams params) throws AElfException, IOException;
 
     HeadVerifyCodeResultDTO verifyAppleToken(@NonNull AppleVerifyTokenParams params) throws AElfException;
 
     GetRecommendGuardianResultDTO getRecommendGuardian(GetRecommendationVerifierParams params) throws AElfException;
+
+    GoogleAuthResult getGoogleAuthResult(String code) throws AElfException;
 }

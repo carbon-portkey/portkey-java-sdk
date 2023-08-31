@@ -41,11 +41,13 @@ public interface AccountNetworkAPISlice {
 
     @GET(AccountAPIPath.GET_GUARDIAN_INFO)
     Call<GuardianInfoDTO> getGuardianInfo(@Query("chainId") String chainId,
+                                          @Query("loginGuardianIdentifier") String loginGuardianIdentifier,
                                           @Query("guardianIdentifier") String guardianIdentifier);
 
     @GET(AccountAPIPath.GET_GUARDIAN_INFO)
     Call<GuardianInfoDTO> getGuardianInfo(@Query("chainId") String chainId,
                                           @Query("guardianIdentifier") String guardianIdentifier,
+                                          @Query("loginGuardianIdentifier") String loginGuardianIdentifier,
                                           @Query("caHash") String caHash);
 
     @GET(AccountAPIPath.GET_REGISTER_INFO)

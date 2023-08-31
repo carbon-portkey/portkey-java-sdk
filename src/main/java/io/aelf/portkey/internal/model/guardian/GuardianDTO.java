@@ -26,6 +26,14 @@ public class GuardianDTO {
     private String name;
     @JsonProperty("imageUrl")
     private String imageUrl;
+    @JsonProperty("thirdPartyEmail")
+    private String thirdPartyEmail;
+    @JsonProperty("isPrivate")
+    private boolean isPrivate;
+    @JsonProperty("firstName")
+    private String firstName;
+    @JsonProperty("lastName")
+    private String lastName;
 
     public String getGuardianIdentifier() {
         return guardianIdentifier;
@@ -105,6 +113,42 @@ public class GuardianDTO {
 
     public GuardianDTO setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+        return this;
+    }
+
+    public String getThirdPartyEmail() {
+        return thirdPartyEmail;
+    }
+
+    public GuardianDTO setThirdPartyEmail(String thirdPartyEmail) {
+        this.thirdPartyEmail = thirdPartyEmail;
+        return this;
+    }
+
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
+    public GuardianDTO setPrivate(boolean aPrivate) {
+        isPrivate = aPrivate;
+        return this;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public GuardianDTO setFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public GuardianDTO setLastName(String lastName) {
+        this.lastName = lastName;
         return this;
     }
 }

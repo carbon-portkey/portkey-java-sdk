@@ -61,7 +61,7 @@ public class RegisterBehaviourEntity implements GuardianObserver, IAfterVerified
         );
         this.guardianWrapper = guardianWrapper;
         return GuardianGenerator.getGuardianEntity(
-                guardianWrapper.getOriginalData(),
+                guardianWrapper,
                 OperationScene.register,
                 this,
                 config.getAccountOriginalType(),
@@ -79,6 +79,11 @@ public class RegisterBehaviourEntity implements GuardianObserver, IAfterVerified
 
     @Override
     public SetPinBehaviourEntity afterVerified() {
+        return new SetPinBehaviourEntity(this);
+    }
+
+    @Override
+    public WalletBuildConfig buildConfig() throws AElfException{
         if (!isVerified()) throw new AElfException(ResultCode.INTERNAL_ERROR, "Guardian not verified");
         KeyPairInfo keyPairInfo = DataVerifyTools.generateKeyPairInfo();
         RegisterOrRecoveryResultDTO resultDTO = INetworkInterface.getInstance().requestRegister(
@@ -103,12 +108,10 @@ public class RegisterBehaviourEntity implements GuardianObserver, IAfterVerified
                         item -> endPoint.set(item.getEndPoint()),
                         () -> endPoint.set(chainInfoDTO.getItems()[0].getEndPoint())
                 );
-        return new SetPinBehaviourEntity(
-                new WalletBuildConfig()
-                        .setAElfEndpoint(endPoint.get())
-                        .setPrivKey(keyPairInfo.getPrivateKey())
-                        .setSessionId(resultDTO.getSessionId())
-        );
+        return new WalletBuildConfig()
+                .setAElfEndpoint(endPoint.get())
+                .setPrivKey(keyPairInfo.getPrivateKey())
+                .setSessionId(resultDTO.getSessionId());
     }
 
 
