@@ -1,12 +1,13 @@
-package io.aelf.portkey.behaviour.google_guardian;
+package io.aelf.portkey.behaviour.guardian;
 
 import io.aelf.portkey.behaviour.global.GuardianObserver;
-import io.aelf.portkey.behaviour.guardian.GuardianBehaviourEntity;
+import io.aelf.portkey.behaviour.guardian.google_guardian.GoogleGuardianEntity;
 import io.aelf.portkey.internal.model.common.AccountOriginalType;
 import io.aelf.portkey.internal.model.google.GoogleAccount;
 import io.aelf.portkey.internal.model.guardian.GuardianDTO;
 import io.aelf.portkey.internal.model.guardian.GuardianWrapper;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class GuardianGenerator {
     public static GuardianBehaviourEntity getGuardianEntity(
@@ -14,11 +15,11 @@ public class GuardianGenerator {
             int operationType,
             @NotNull GuardianObserver observer,
             AccountOriginalType accountOriginalType,
-            GoogleAccount googleAccount
+            @Nullable GoogleAccount googleAccount
     ) {
         GuardianDTO original=guardian.getOriginalData();
         String type = original.getType();
-        if (AccountOriginalType.Google.name().equals(type) && googleAccount != null) {
+        if (AccountOriginalType.Google.name().equals(type)) {
             return new GoogleGuardianEntity(
                     original,
                     operationType,

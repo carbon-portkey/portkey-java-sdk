@@ -1,6 +1,7 @@
-package io.aelf.portkey.behaviour.google_guardian;
+package io.aelf.portkey.behaviour.guardian.google_guardian;
 
 import io.aelf.portkey.behaviour.global.GuardianObserver;
+import io.aelf.portkey.behaviour.global.InvalidOperationException;
 import io.aelf.portkey.behaviour.guardian.GuardianBehaviourEntity;
 import io.aelf.portkey.internal.model.common.AccountOriginalType;
 import io.aelf.portkey.internal.model.google.GoogleAccount;
@@ -10,6 +11,7 @@ import io.aelf.portkey.internal.model.guardian.GuardianWrapper;
 import io.aelf.portkey.internal.model.verify.HeadVerifyCodeResultDTO;
 import io.aelf.portkey.internal.tools.GlobalConfig;
 import io.aelf.portkey.network.connecter.INetworkInterface;
+import io.aelf.portkey.utils.log.GLogger;
 import io.aelf.utils.AElfException;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.jetbrains.annotations.NotNull;
@@ -37,7 +39,7 @@ public class GoogleGuardianEntity extends GuardianBehaviourEntity {
         return false;
     }
 
-    // Google account verifies guardian doesn't need send verification code
+    // Google account verifies guardian doesn't need to send verification code
     @Override
     public boolean sendVerificationCode() throws AElfException {
         return true;
@@ -49,21 +51,39 @@ public class GoogleGuardianEntity extends GuardianBehaviourEntity {
     }
 
     @Override
+    public boolean requireOutsideGoogleAccount() {
+        return googleAccount == null
+                || googleAccount.getEmail() == null
+                || !googleAccount.getEmail().equals(getOriginalGuardianInfo().getThirdPartyEmail());
+    }
+
+    @Override
     public boolean verifyVerificationCode(String code) throws AElfException {
+        GLogger.e("It's google's guardian, better check it with verifyVerificationCodeWithGoogle() first.");
+        throw new InvalidOperationException();
+    }
+
+    @Override
+    public boolean verifyVerificationCodeWithGoogle() throws AElfException {
+        return this.verifyVerificationCodeWithGoogle(this.googleAccount);
+    }
+
+    @Override
+    public boolean verifyVerificationCodeWithGoogle(@NotNull GoogleAccount account) throws AElfException {
         if (isVerified()) return true;
         try {
             GoogleVerifyTokenParams params = new GoogleVerifyTokenParams()
                     .setVerifierId(this.getOriginalGuardianInfo().getVerifierId())
                     .setChainId(GlobalConfig.getCurrentChainId())
                     .setOperationType(this.getOperationType())
-                    .setToken(this.googleAccount.getAccessToken());
+                    .setToken(account.getAccessToken());
             HeadVerifyCodeResultDTO result = INetworkInterface.getInstance().verifyGoogleToken(params);
             if (result.isSuccess()) {
                 this.getObserver().informGuardianReady(
                         new GuardianWrapper(
                                 this.getOriginalGuardianInfo(),
                                 result,
-                                this.googleAccount
+                                account
                         )
                 );
                 this.isVerified = true;

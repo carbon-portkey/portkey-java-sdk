@@ -1,9 +1,11 @@
 package io.aelf.portkey.behaviour.guardian;
 
 import io.aelf.portkey.behaviour.global.GuardianObserver;
+import io.aelf.portkey.behaviour.global.InvalidOperationException;
 import io.aelf.portkey.behaviour.guardian.state.IGuardianState;
 import io.aelf.portkey.behaviour.guardian.state.InitGuardianState;
 import io.aelf.portkey.internal.model.common.AccountOriginalType;
+import io.aelf.portkey.internal.model.google.GoogleAccount;
 import io.aelf.portkey.internal.model.guardian.GuardianDTO;
 import io.aelf.portkey.network.connecter.INetworkInterface;
 import io.aelf.portkey.utils.log.GLogger;
@@ -49,6 +51,21 @@ public class GuardianBehaviourEntity extends GuardianStub implements IGuardianSt
     @Override
     public boolean verifyVerificationCode(String code) throws AElfException {
         return state.verifyVerificationCode(code);
+    }
+
+    public boolean requireOutsideGoogleAccount(){
+        GLogger.w("It's not a Google's guardian, better check it with getAccountOriginalType() first.");
+        return false;
+    }
+
+    public boolean verifyVerificationCodeWithGoogle() throws AElfException {
+        GLogger.w("It's not a Google's guardian, better check it with getAccountOriginalType() first.");
+        throw new InvalidOperationException();
+    }
+
+    public boolean verifyVerificationCodeWithGoogle(@NotNull GoogleAccount account) throws AElfException {
+        GLogger.w("It's not a Google's guardian, better check it with getAccountOriginalType() first.");
+        throw new InvalidOperationException();
     }
 
     @Override

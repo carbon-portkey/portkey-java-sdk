@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import io.aelf.portkey.assertion.AssertChecker;
 import io.aelf.portkey.behaviour.global.EntryCheckConfig;
 import io.aelf.portkey.behaviour.global.GuardianObserver;
-import io.aelf.portkey.behaviour.google_guardian.GuardianGenerator;
+import io.aelf.portkey.behaviour.guardian.GuardianGenerator;
 import io.aelf.portkey.behaviour.guardian.GuardianBehaviourEntity;
 import io.aelf.portkey.behaviour.pin.IAfterVerifiedBehaviour;
 import io.aelf.portkey.behaviour.pin.SetPinBehaviourEntity;
