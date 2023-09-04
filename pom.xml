@@ -56,6 +56,16 @@
             <groupId>io.aelf</groupId>
             <artifactId>aelf-sdk</artifactId>
             <version>0.2.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.realityforge.org.jetbrains.annotations</groupId>
+                    <artifactId>org.jetbrains.annotations</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bouncycastle</groupId>
+                    <artifactId>bcprov-jdk15to18</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>io.github.billywei01</groupId>
@@ -75,7 +85,7 @@
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test</artifactId>
+            <artifactId>kotlin-test-junit</artifactId>
             <version>${kotlin.version}</version>
             <scope>test</scope>
         </dependency>
