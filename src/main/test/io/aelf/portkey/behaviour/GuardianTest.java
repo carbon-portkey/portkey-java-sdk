@@ -21,7 +21,8 @@ public class GuardianTest {
                 guardianWrapper -> {
                 },
                 AccountOriginalType.Email,
-                false
+                false,
+                ""
         );
     }
 

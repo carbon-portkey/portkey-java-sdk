@@ -20,9 +20,10 @@ public class GuardianBehaviourEntity extends GuardianStub implements IGuardianSt
             int operationType,
             @NotNull GuardianObserver observer,
             AccountOriginalType accountOriginalType,
-            boolean isAlreadyVerified
+            boolean isAlreadyVerified,
+            String accountIdentifier
     ) {
-        super(observer, operationType, guardian, accountOriginalType, isAlreadyVerified);
+        super(observer, operationType, guardian, accountOriginalType, isAlreadyVerified, accountIdentifier);
     }
 
     public boolean checkForReCaptcha() {
@@ -53,7 +54,7 @@ public class GuardianBehaviourEntity extends GuardianStub implements IGuardianSt
         return state.verifyVerificationCode(code);
     }
 
-    public boolean requireOutsideGoogleAccount(){
+    public boolean requireOutsideGoogleAccount() {
         GLogger.w("It's not a Google's guardian, better check it with getAccountOriginalType() first.");
         return false;
     }

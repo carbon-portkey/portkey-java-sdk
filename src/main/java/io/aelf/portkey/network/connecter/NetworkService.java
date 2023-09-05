@@ -187,7 +187,8 @@ public class NetworkService implements INetworkInterface {
                     }
                 }
             }
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            GLogger.e("GetRegisterInfo failed!", new AElfException(e));
         }
         return null;
 
@@ -210,11 +211,18 @@ public class NetworkService implements INetworkInterface {
 
     @Override
     public HeadVerifyCodeResultDTO checkVerificationCode(@NonNull HeadVerifyCodeParams params) throws AElfException, IOException {
-        Call<HeadVerifyCodeResultDTO> call=api.checkVerificationCode(params);
+        Call<HeadVerifyCodeResultDTO> call = api.checkVerificationCode(params);
         Response<HeadVerifyCodeResultDTO> response = call.execute();
-        if(response.isSuccessful()){
+        if (response.isSuccessful()) {
             return response.body();
-        }else{
+        } else {
+            String errMsg = "Network Failed.";
+            try (ResponseBody errorBody = response.errorBody()) {
+                if (errorBody != null) {
+                    errMsg = errorBody.string();
+                }
+            }
+            GLogger.e("Check verify code failed! Reason:\n" + errMsg);
             return new HeadVerifyCodeResultDTO();
         }
     }
@@ -236,11 +244,11 @@ public class NetworkService implements INetworkInterface {
 
     @Override
     public HeadVerifyCodeResultDTO verifyGoogleToken(@NonNull GoogleVerifyTokenParams params) throws AElfException, IOException {
-        Call<HeadVerifyCodeResultDTO> call=api.verifyGoogleToken(params);
+        Call<HeadVerifyCodeResultDTO> call = api.verifyGoogleToken(params);
         Response<HeadVerifyCodeResultDTO> response = call.execute();
-        if(response.isSuccessful()){
+        if (response.isSuccessful()) {
             return response.body();
-        }else{
+        } else {
             return new HeadVerifyCodeResultDTO();
         }
     }

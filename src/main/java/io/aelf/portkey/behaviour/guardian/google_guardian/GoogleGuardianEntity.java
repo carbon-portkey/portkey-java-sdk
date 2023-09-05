@@ -12,6 +12,7 @@ import io.aelf.portkey.internal.model.verify.HeadVerifyCodeResultDTO;
 import io.aelf.portkey.internal.tools.GlobalConfig;
 import io.aelf.portkey.network.connecter.INetworkInterface;
 import io.aelf.portkey.utils.log.GLogger;
+import io.aelf.response.ResultCode;
 import io.aelf.utils.AElfException;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.jetbrains.annotations.NotNull;
@@ -27,9 +28,10 @@ public class GoogleGuardianEntity extends GuardianBehaviourEntity {
             @NotNull GuardianObserver observer,
             AccountOriginalType accountOriginalType,
             boolean isAlreadyVerified,
-            GoogleAccount googleAccount
+            GoogleAccount googleAccount,
+            String accountIdentifier
     ) {
-        super(guardian, operationType, observer, accountOriginalType, isAlreadyVerified);
+        super(guardian, operationType, observer, accountOriginalType, isAlreadyVerified, accountIdentifier);
         this.googleAccount = googleAccount;
     }
 
@@ -68,9 +70,18 @@ public class GoogleGuardianEntity extends GuardianBehaviourEntity {
         return this.verifyVerificationCodeWithGoogle(this.googleAccount);
     }
 
+    private boolean isGoogleAccountMatch(GoogleAccount account) {
+        return account != null
+                && account.getEmail() != null
+                && account.getEmail().equals(getOriginalGuardianInfo().getThirdPartyEmail());
+    }
+
     @Override
     public boolean verifyVerificationCodeWithGoogle(@NotNull GoogleAccount account) throws AElfException {
         if (isVerified()) return true;
+        if (!isGoogleAccountMatch(account)) {
+            throw new AElfException(ResultCode.PARAM_ERROR, "Google account doesn't match.");
+        }
         try {
             GoogleVerifyTokenParams params = new GoogleVerifyTokenParams()
                     .setVerifierId(this.getOriginalGuardianInfo().getVerifierId())

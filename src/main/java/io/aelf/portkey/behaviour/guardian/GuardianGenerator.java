@@ -15,7 +15,8 @@ public class GuardianGenerator {
             int operationType,
             @NotNull GuardianObserver observer,
             AccountOriginalType accountOriginalType,
-            @Nullable GoogleAccount googleAccount
+            @Nullable GoogleAccount googleAccount,
+            @NotNull String accountIdentifier
     ) {
         GuardianDTO original=guardian.getOriginalData();
         String type = original.getType();
@@ -26,7 +27,8 @@ public class GuardianGenerator {
                     observer,
                     accountOriginalType,
                     guardian.isVerified(),
-                    googleAccount
+                    googleAccount,
+                    accountIdentifier
             );
         } else {
             return new GuardianBehaviourEntity(
@@ -34,7 +36,8 @@ public class GuardianGenerator {
                     operationType,
                     observer,
                     accountOriginalType,
-                    guardian.isVerified()
+                    guardian.isVerified(),
+                    accountIdentifier
             );
         }
     }

@@ -95,7 +95,8 @@ public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBeh
                 OperationScene.communityRecovery,
                 this,
                 accountOriginalType,
-                googleAccount
+                googleAccount,
+                accountIdentifier
         );
     }
 

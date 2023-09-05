@@ -65,7 +65,8 @@ public class RegisterBehaviourEntity implements GuardianObserver, IAfterVerified
                 OperationScene.register,
                 this,
                 config.getAccountOriginalType(),
-                googleAccount
+                googleAccount,
+                config.getAccountIdentifier()
         );
     }
 

@@ -51,7 +51,7 @@ public class EntryBehaviourEntity {
                 .getInstance()
                 .getRegisterInfo(config.getAccountIdentifier());
         if (registerInfo == null) {
-            throw new AElfException();
+            throw new AElfException(ResultCode.INTERNAL_ERROR, "register info with null means internal error.");
         }
         if (registerInfo.isErrCodeMatchNotRegistered() && TextUtils.isEmpty(registerInfo.getOriginChainId())) {
             isRegistered = false;
@@ -65,7 +65,8 @@ public class EntryBehaviourEntity {
                                 registerInfo.getOriginChainId(),
                                 config.getAccountIdentifier()
                         );
-                if (guardianInfoDTO == null) throw new AElfException();
+                if (guardianInfoDTO == null)
+                    throw new AElfException(ResultCode.INTERNAL_ERROR, "guardian info with null means internal error.");
             } catch (Exception e) {
                 isRegistered = false;
                 registerInfo = null;
