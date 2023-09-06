@@ -18,6 +18,8 @@ import io.aelf.portkey.internal.model.verify.HeadVerifyCodeParams;
 import io.aelf.portkey.internal.model.verify.HeadVerifyCodeResultDTO;
 import io.aelf.portkey.internal.model.verify.SendVerificationCodeParams;
 import io.aelf.portkey.internal.model.verify.SendVerificationCodeResultDTO;
+import io.aelf.portkey.internal.model.wallet.RecoveryStatusDTO;
+import io.aelf.portkey.internal.model.wallet.RegisterStatusDTO;
 import io.aelf.utils.AElfException;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
@@ -67,4 +69,8 @@ public interface AccountOperationAPISlice {
     GetRecommendGuardianResultDTO getRecommendGuardian(GetRecommendationVerifierParams params) throws AElfException;
 
     GoogleAuthResult getGoogleAuthResult(String code) throws AElfException;
+
+    RecoveryStatusDTO getRecoveryStatus(String sessionId) throws AElfException;
+
+    RegisterStatusDTO getRegisterStatus(String sessionId) throws AElfException;
 }

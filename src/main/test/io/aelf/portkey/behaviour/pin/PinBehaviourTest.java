@@ -27,7 +27,6 @@ public class PinBehaviourTest {
                 new WalletBuildConfig()
                         .setSessionId("mock")
                         .setPrivKey(keyPairInfo.getPrivateKey())
-                        .setAElfEndpoint(TestParams.TEST_AELF_NODE_HOST)
         );
     }
 

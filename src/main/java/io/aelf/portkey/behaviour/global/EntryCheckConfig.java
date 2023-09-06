@@ -8,6 +8,7 @@ public class EntryCheckConfig {
      */
     private AccountOriginalType accountOriginalType;
     private String accountIdentifier;
+    protected String originalChainId;
 
     public AccountOriginalType getAccountOriginalType() {
         return accountOriginalType;
@@ -24,6 +25,15 @@ public class EntryCheckConfig {
 
     public EntryCheckConfig setAccountIdentifier(String accountIdentifier) {
         this.accountIdentifier = accountIdentifier;
+        return this;
+    }
+
+    public String getOriginalChainId() {
+        return originalChainId;
+    }
+
+    public EntryCheckConfig setOriginalChainId(String originalChainId) {
+        this.originalChainId = originalChainId;
         return this;
     }
 }

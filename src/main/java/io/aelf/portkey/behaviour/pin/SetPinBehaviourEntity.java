@@ -3,6 +3,7 @@ package io.aelf.portkey.behaviour.pin;
 import io.aelf.portkey.behaviour.login.LoginBehaviourEntity;
 import io.aelf.portkey.behaviour.register.RegisterBehaviourEntity;
 import io.aelf.portkey.behaviour.wallet.PortkeyWallet;
+import io.aelf.portkey.behaviour.wallet.WalletInitObserver;
 import io.aelf.portkey.internal.model.wallet.WalletBuildConfig;
 import io.aelf.response.ResultCode;
 import io.aelf.utils.AElfException;
@@ -45,7 +46,7 @@ public class SetPinBehaviourEntity {
         return PinManager.isValidPin(pinValue);
     }
 
-    public @Nullable PortkeyWallet lockAndGetWallet(@NotNull String pinValue) {
+    public @Nullable PortkeyWallet lockAndGetWallet(@NotNull String pinValue, @NotNull WalletInitObserver observer) throws AElfException {
         if (!PinManager.isValidPin(pinValue)) {
             return null;
         }
@@ -54,7 +55,7 @@ public class SetPinBehaviourEntity {
             return null;
         }
         PinManager.lock(pinValue, config);
-        return new PortkeyWallet(config);
+        return new PortkeyWallet(config, observer);
     }
 
     protected WalletBuildConfig getConfig() throws AElfException {

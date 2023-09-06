@@ -14,4 +14,6 @@ public interface AccountAPIPath {
     String VERIFY_APPLE_TOKEN = "/api/app/account/verifyAppleToken";
     String GET_PHONE_COUNTRY_CODE = "/api/app/phone/info";
     String GET_RECOMMEND_GUARDIAN = "/api/app/account/getVerifierServer";
+    String CHECK_SOCIAL_RECOVERY_STATUS="/api/app/search/accountrecoverindex";
+    String CHECK_REGISTER_STATUS="/api/app/search/accountregisterindex";
 }

@@ -30,8 +30,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Stream;
 
 public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBehaviour {
     private final List<GuardianWrapper> guardians;
@@ -39,6 +37,7 @@ public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBeh
     private final AccountOriginalType accountOriginalType;
     private final String accountIdentifier;
     private final GoogleAccount googleAccount;
+    protected String originalChainId;
 
 
     public LoginBehaviourEntity(@NotNull List<GuardianWrapper> guardians) {
@@ -55,6 +54,7 @@ public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBeh
         this.guardianVerifyLimit = getGuardianVerifyLimit(guardians);
         this.accountOriginalType = config.getAccountOriginalType();
         this.accountIdentifier = config.getAccountIdentifier();
+        this.originalChainId = config.getOriginalChainId();
         this.googleAccount = googleAccount;
     }
 
@@ -168,19 +168,13 @@ public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBeh
                         .setContext(new ContextDTO().setClientId(keyPairInfo.getAddress()))
         );
         AssertChecker.assertNotNull(resultDTO.getSessionId(), new AElfException(ResultCode.INTERNAL_ERROR, "requestRecovery failed"));
-        ChainInfoDTO chainInfoDTO = INetworkInterface.getInstance().getGlobalChainInfo();
-        AtomicReference<String> endPoint = new AtomicReference<>();
-        Stream.of(chainInfoDTO.getItems())
-                .filter(item -> GlobalConfig.getCurrentChainId().equals(item.getChainName()))
-                .findFirst()
-                .ifPresentOrElse(
-                        item -> endPoint.set(item.getEndPoint()),
-                        () -> endPoint.set(chainInfoDTO.getItems()[0].getEndPoint())
-                );
         return new WalletBuildConfig()
-                .setAElfEndpoint(endPoint.get())
                 .setPrivKey(keyPairInfo.getPrivateKey())
-                .setSessionId(resultDTO.getSessionId());
+                .setSessionId(resultDTO.getSessionId())
+                .setAccountIdentifier(accountIdentifier)
+                .setFromRegister(false)
+                .setOriginalChainId(originalChainId)
+                ;
     }
 
     protected ApprovedGuardianDTO toApprovedGuardianDTO(GuardianWrapper wrapper) {

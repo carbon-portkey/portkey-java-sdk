@@ -17,6 +17,8 @@ import io.aelf.portkey.internal.model.verify.HeadVerifyCodeParams;
 import io.aelf.portkey.internal.model.verify.HeadVerifyCodeResultDTO;
 import io.aelf.portkey.internal.model.verify.SendVerificationCodeParams;
 import io.aelf.portkey.internal.model.verify.SendVerificationCodeResultDTO;
+import io.aelf.portkey.internal.model.wallet.RecoveryStatusDTO;
+import io.aelf.portkey.internal.model.wallet.RegisterStatusDTO;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -80,5 +82,11 @@ public interface AccountNetworkAPISlice {
 
     @POST(AccountAPIPath.GET_RECOMMEND_GUARDIAN)
     Call<GetRecommendGuardianResultDTO> getRecommendationGuardianInfo(@Body GetRecommendationVerifierParams params);
+
+    @GET(AccountAPIPath.CHECK_SOCIAL_RECOVERY_STATUS)
+    Call<RecoveryStatusDTO> checkSocialRecoveryStatus(@Query("filter") String filter);
+
+    @GET(AccountAPIPath.CHECK_REGISTER_STATUS)
+    Call<RegisterStatusDTO> checkRegisterStatus(@Query("filter") String filter);
 }
 

@@ -25,6 +25,8 @@ import io.aelf.portkey.internal.model.verify.HeadVerifyCodeParams;
 import io.aelf.portkey.internal.model.verify.HeadVerifyCodeResultDTO;
 import io.aelf.portkey.internal.model.verify.SendVerificationCodeParams;
 import io.aelf.portkey.internal.model.verify.SendVerificationCodeResultDTO;
+import io.aelf.portkey.internal.model.wallet.RecoveryStatusDTO;
+import io.aelf.portkey.internal.model.wallet.RegisterStatusDTO;
 import io.aelf.portkey.internal.tools.GlobalConfig;
 import io.aelf.portkey.network.retrofit.RetrofitProvider;
 import io.aelf.portkey.network.slice.common.CommonAPIPath;
@@ -84,11 +86,8 @@ public class NetworkService implements INetworkInterface {
         return instance;
     }
 
-    protected static <T> T realExecute(Call<T> call) throws AElfException {
-        return realExecute(call, false);
-    }
 
-    protected static <T> T realExecute(@NotNull Call<T> call, boolean expectedToFail) throws AElfException {
+    protected static <T> T realExecute(@NotNull Call<T> call) throws AElfException {
         try {
             GLogger.t("Network connection start, path:"
                     .concat(call.request().url().toString()));
@@ -131,9 +130,7 @@ public class NetworkService implements INetworkInterface {
             return result;
         } catch (Throwable e) {
             AElfException exception = new AElfException(e);
-            if (!expectedToFail) {
-                GLogger.e("Network failure! path: " + call.request().url(), exception);
-            }
+            GLogger.e("Network failure! path: " + call.request().url(), exception);
         }
         return null;
     }
@@ -152,7 +149,7 @@ public class NetworkService implements INetworkInterface {
     public boolean checkGoogleRecaptcha(int scene) throws AElfException {
         CheckCaptchaParams params = new CheckCaptchaParams();
         params.setOperationType(scene);
-        return realExecute(api.checkGoogleRecaptcha(params));
+        return Boolean.TRUE.equals(realExecute(api.checkGoogleRecaptcha(params)));
     }
 
     @Override
@@ -295,6 +292,16 @@ public class NetworkService implements INetworkInterface {
             GLogger.e("Network failure! path: " + CommonAPIPath.GET_GOOGLE_AUTH_RESULT, new AElfException(e));
             return null;
         }
+    }
+
+    @Override
+    public RecoveryStatusDTO getRecoveryStatus(String sessionId) throws AElfException {
+        return realExecute(api.checkSocialRecoveryStatus("_id:".concat(sessionId)));
+    }
+
+    @Override
+    public RegisterStatusDTO getRegisterStatus(String sessionId) throws AElfException {
+        return realExecute(api.checkRegisterStatus("_id:".concat(sessionId)));
     }
 }
 

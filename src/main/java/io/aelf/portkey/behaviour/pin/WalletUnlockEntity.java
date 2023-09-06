@@ -1,6 +1,7 @@
 package io.aelf.portkey.behaviour.pin;
 
 import io.aelf.portkey.behaviour.wallet.PortkeyWallet;
+import io.aelf.portkey.behaviour.wallet.WalletInitObserver;
 import io.aelf.portkey.internal.model.wallet.WalletBuildConfig;
 import io.aelf.portkey.internal.tools.GlobalConfig;
 import io.aelf.utils.AElfException;
@@ -17,11 +18,11 @@ public class WalletUnlockEntity {
         return PinManager.checkIfSessionExists() && PinManager.headPin(pinValue);
     }
 
-    public PortkeyWallet unlockAndBuildWallet(@NotNull String pinValue) throws AElfException {
+    public PortkeyWallet unlockAndBuildWallet(@NotNull String pinValue,@NotNull WalletInitObserver observer) throws AElfException {
         if (!isValidPinValue(pinValue) || !checkPin(pinValue)) {
             throw new IllegalArgumentException("Invalid pin value.");
         }
         WalletBuildConfig config = PinManager.unlock(pinValue);
-        return new PortkeyWallet(config);
+        return new PortkeyWallet(config,observer);
     }
 }

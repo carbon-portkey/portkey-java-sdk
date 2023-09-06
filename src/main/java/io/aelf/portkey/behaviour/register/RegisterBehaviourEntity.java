@@ -4,11 +4,10 @@ import com.google.gson.Gson;
 import io.aelf.portkey.assertion.AssertChecker;
 import io.aelf.portkey.behaviour.global.EntryCheckConfig;
 import io.aelf.portkey.behaviour.global.GuardianObserver;
-import io.aelf.portkey.behaviour.guardian.GuardianGenerator;
 import io.aelf.portkey.behaviour.guardian.GuardianBehaviourEntity;
+import io.aelf.portkey.behaviour.guardian.GuardianGenerator;
 import io.aelf.portkey.behaviour.pin.IAfterVerifiedBehaviour;
 import io.aelf.portkey.behaviour.pin.SetPinBehaviourEntity;
-import io.aelf.portkey.internal.model.common.ChainInfoDTO;
 import io.aelf.portkey.internal.model.common.ContextDTO;
 import io.aelf.portkey.internal.model.common.OperationScene;
 import io.aelf.portkey.internal.model.common.RegisterOrRecoveryResultDTO;
@@ -30,17 +29,17 @@ import io.aelf.schemas.KeyPairInfo;
 import io.aelf.utils.AElfException;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Stream;
-
 public class RegisterBehaviourEntity implements GuardianObserver, IAfterVerifiedBehaviour {
     private final EntryCheckConfig config;
     private GuardianWrapper guardianWrapper;
     private final GoogleAccount googleAccount;
+    protected String originalChainId;
+
 
     public RegisterBehaviourEntity(EntryCheckConfig config, @Nullable GoogleAccount googleAccount) {
         this.config = config;
         this.googleAccount = googleAccount;
+        this.originalChainId = config.getOriginalChainId();
     }
 
     public GuardianBehaviourEntity getGuardian() {
@@ -84,7 +83,7 @@ public class RegisterBehaviourEntity implements GuardianObserver, IAfterVerified
     }
 
     @Override
-    public WalletBuildConfig buildConfig() throws AElfException{
+    public WalletBuildConfig buildConfig() throws AElfException {
         if (!isVerified()) throw new AElfException(ResultCode.INTERNAL_ERROR, "Guardian not verified");
         KeyPairInfo keyPairInfo = DataVerifyTools.generateKeyPairInfo();
         RegisterOrRecoveryResultDTO resultDTO = INetworkInterface.getInstance().requestRegister(
@@ -100,19 +99,13 @@ public class RegisterBehaviourEntity implements GuardianObserver, IAfterVerified
                         .setExtraData(new Gson().toJson(new ExtraInfoWrapper(DeviceExtraInfo.fromPlatformEnum(ExtraDataPlatformEnum.OTHER))))
         );
         AssertChecker.assertNotNull(resultDTO.getSessionId(), new AElfException(ResultCode.INTERNAL_ERROR, "requestRecovery failed"));
-        ChainInfoDTO chainInfoDTO = INetworkInterface.getInstance().getGlobalChainInfo();
-        AtomicReference<String> endPoint = new AtomicReference<>();
-        Stream.of(chainInfoDTO.getItems())
-                .filter(item -> GlobalConfig.getCurrentChainId().equals(item.getChainName()))
-                .findFirst()
-                .ifPresentOrElse(
-                        item -> endPoint.set(item.getEndPoint()),
-                        () -> endPoint.set(chainInfoDTO.getItems()[0].getEndPoint())
-                );
         return new WalletBuildConfig()
-                .setAElfEndpoint(endPoint.get())
                 .setPrivKey(keyPairInfo.getPrivateKey())
-                .setSessionId(resultDTO.getSessionId());
+                .setSessionId(resultDTO.getSessionId())
+                .setAccountIdentifier(config.getAccountIdentifier())
+                .setFromRegister(true)
+                .setOriginalChainId(originalChainId)
+                ;
     }
 
 

@@ -49,6 +49,12 @@ public class GlobalConfig {
         String TAG_PIN = "pin_code";
     }
 
+    public interface Status {
+        String PENDING = "pending";
+        String PASS = "pass";
+        String FAIL = "fail";
+    }
+
     public interface PinConfig {
         int MIN_LENGTH = 6;
         int MAX_LENGTH = 16;

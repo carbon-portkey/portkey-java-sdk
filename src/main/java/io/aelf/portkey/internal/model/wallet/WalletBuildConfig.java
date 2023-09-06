@@ -7,19 +7,12 @@ public class WalletBuildConfig {
     protected String privKey;
     @JsonProperty("sessionId")
     protected String sessionId;
-    @JsonProperty("AElfEndpoint")
-    protected String AElfEndpoint;
+    @JsonProperty("accountIdentifier")
+    protected String accountIdentifier;
+    @JsonProperty("fromRegister")
+    protected boolean fromRegister;
     @JsonProperty("originalChainId")
     protected String originalChainId;
-
-    public String getAElfEndpoint() {
-        return AElfEndpoint;
-    }
-
-    public WalletBuildConfig setAElfEndpoint(String AElfEndpoint) {
-        this.AElfEndpoint = AElfEndpoint;
-        return this;
-    }
 
     public String getPrivKey() {
         return privKey;
@@ -36,6 +29,24 @@ public class WalletBuildConfig {
 
     public WalletBuildConfig setSessionId(String sessionId) {
         this.sessionId = sessionId;
+        return this;
+    }
+
+    public String getAccountIdentifier() {
+        return accountIdentifier;
+    }
+
+    public WalletBuildConfig setAccountIdentifier(String accountIdentifier) {
+        this.accountIdentifier = accountIdentifier;
+        return this;
+    }
+
+    public boolean isFromRegister() {
+        return fromRegister;
+    }
+
+    public WalletBuildConfig setFromRegister(boolean fromRegister) {
+        this.fromRegister = fromRegister;
         return this;
     }
 
