@@ -246,6 +246,7 @@ public class NetworkService implements INetworkInterface {
         if (response.isSuccessful()) {
             return response.body();
         } else {
+            GLogger.e("Google access token verify failed!");
             return new HeadVerifyCodeResultDTO();
         }
     }

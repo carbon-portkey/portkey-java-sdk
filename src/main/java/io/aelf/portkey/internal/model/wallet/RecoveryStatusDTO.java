@@ -3,48 +3,26 @@ package io.aelf.portkey.internal.model.wallet;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RecoveryStatusDTO {
-    @JsonProperty("caAddress")
-    private String caAddress;
-    @JsonProperty("caHash")
-    private String caHash;
-    @JsonProperty("recoveryStatus")
-    private String recoveryStatus;
-    @JsonProperty("recoveryMessage")
-    private String recoveryMessage;
+        @JsonProperty("totalCount")
+        private int totalCount;
+        @JsonProperty("items")
+        private RecoveryStatusItemDTO[] items;
 
-    public String getCaAddress() {
-        return caAddress;
-    }
+        public int getTotalCount() {
+            return totalCount;
+        }
 
-    public RecoveryStatusDTO setCaAddress(String caAddress) {
-        this.caAddress = caAddress;
-        return this;
-    }
+        public RecoveryStatusDTO setTotalCount(int totalCount) {
+            this.totalCount = totalCount;
+            return this;
+        }
 
-    public String getCaHash() {
-        return caHash;
-    }
+        public RecoveryStatusItemDTO[] getItems() {
+            return items;
+        }
 
-    public RecoveryStatusDTO setCaHash(String caHash) {
-        this.caHash = caHash;
-        return this;
-    }
-
-    public String getRecoveryStatus() {
-        return recoveryStatus;
-    }
-
-    public RecoveryStatusDTO setRecoveryStatus(String recoveryStatus) {
-        this.recoveryStatus = recoveryStatus;
-        return this;
-    }
-
-    public String getRecoveryMessage() {
-        return recoveryMessage;
-    }
-
-    public RecoveryStatusDTO setRecoveryMessage(String recoveryMessage) {
-        this.recoveryMessage = recoveryMessage;
-        return this;
-    }
+        public RecoveryStatusDTO setItems(RecoveryStatusItemDTO[] items) {
+            this.items = items;
+            return this;
+        }
 }

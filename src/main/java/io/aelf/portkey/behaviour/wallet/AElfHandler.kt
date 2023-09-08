@@ -4,12 +4,15 @@ import io.aelf.internal.sdkv2.AElfClientV2
 import io.aelf.portkey.internal.model.common.ChainInfoDTO
 import io.aelf.portkey.internal.tools.GlobalConfig
 import io.aelf.portkey.network.connecter.INetworkInterface
+import io.aelf.response.ResultCode
+import io.aelf.utils.AElfException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 internal object AElfHolder {
     private val aelfMap = mutableMapOf<AElfChainType, AElfClientV2>()
+    private var originalInfo: ChainInfoDTO? = null
 
     @Synchronized
     @JvmName("triggerUpdate")
@@ -28,12 +31,20 @@ internal object AElfHolder {
     private fun setChainsInfo(info: ChainInfoDTO) {
         CoroutineScope(Dispatchers.IO).launch {
             aelfMap.clear()
+            originalInfo = info
             info.items.forEach {
                 val chainType = stringToAElfChainType(it.chainId)
                 val aelfClient = AElfClientV2(it.endPoint)
                 aelfMap[chainType] = aelfClient
             }
         }
+    }
+
+    internal fun getCaAddress(chainType: String): String {
+        if (originalInfo == null) {
+            throw AElfException(ResultCode.INTERNAL_ERROR, "Please call setChainsInfo() first.")
+        }
+        return originalInfo?.items?.first { it.chainId == chainType }?.caContractAddress ?: ""
     }
 
     internal fun getAElfClient(chainType: String): AElfClientV2 =

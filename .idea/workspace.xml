@@ -9,27 +9,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: accountIdentifier added">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/wallet/AElfHandler.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/wallet/WalletAbilitiesAddOn.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/wallet/WalletInitObserver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/wallet/CAInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/wallet/RecoveryStatusDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/wallet/RegisterStatusDTO.java" afterDir="false" />
+    <list default="true" id="09bc478a-6499-47f9-bd0f-a118d58485d5" name="更改" comment="feat: process after account request">
+      <change afterPath="$PROJECT_DIR$/src/main/java/acs12/Acs12.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/aelf/Core.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/aelf/Options.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ca/AuthorityInfoOuterClass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ca/CaContract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/core/build.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/core/proto/acs12.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/core/proto/aelf/core.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/core/proto/aelf/options.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/core/proto/authority_info.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/core/proto/ca_contract.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/wallet/RecoveryStatusItemDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/wallet/RegisterStatusItemDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/global/EntryCheckConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/global/EntryCheckConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/entry/EntryBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/entry/EntryBehaviourEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/login/LoginBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/login/LoginBehaviourEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/SetPinBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/SetPinBehaviourEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/WalletUnlockEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/WalletUnlockEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/PinManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/pin/PinManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/register/RegisterBehaviourEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/register/RegisterBehaviourEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/wallet/PortkeyWallet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/wallet/PortkeyWallet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/wallet/WalletBuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/wallet/WalletBuildConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/tools/GlobalConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/tools/GlobalConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/wallet/AElfHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/wallet/AElfHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/wallet/WalletAbilitiesAddOn.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/behaviour/wallet/WalletAbilitiesAddOn.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/wallet/RecoveryStatusDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/wallet/RecoveryStatusDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/wallet/RegisterStatusDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/internal/model/wallet/RegisterStatusDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/connecter/NetworkService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/account/AccountAPIPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/account/AccountAPIPath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/account/AccountNetworkAPISlice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/account/AccountNetworkAPISlice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/account/AccountOperationAPISlice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/aelf/portkey/network/slice/account/AccountOperationAPISlice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/behaviour/pin/PinBehaviourTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/io/aelf/portkey/behaviour/pin/PinBehaviourTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,9 +46,9 @@
       <list>
         <option value="Enum" />
         <option value="Kotlin Class" />
-        <option value="Class" />
         <option value="Kotlin File" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -76,7 +80,7 @@
     <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/jbr-17.0.8/Contents/Home/lib/src.zip!/java.base/java/lang/System.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -109,6 +113,7 @@
   },
   "keyToStringList": {
     "com.intellij.ide.scratch.ScratchImplUtil$2/新建临时文件": [
+      "JSON",
       "kotlin"
     ]
   }
@@ -125,6 +130,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/io/aelf/portkey/core" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -587,7 +593,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693902387233</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="feat: process after account request">
+      <option name="closed" value="true" />
+      <created>1693980795241</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1693980795241</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -603,7 +617,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="feat: network implement 10%" />
     <MESSAGE value="feat: deconstruct APIs into sub packages" />
     <MESSAGE value="feat: register and recovery service API model" />
     <MESSAGE value="feat: service slice refactor" />
@@ -628,7 +641,8 @@
     <MESSAGE value="feat: verify other google guardians" />
     <MESSAGE value="feat: avoid dependency conflict" />
     <MESSAGE value="feat: accountIdentifier added" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: accountIdentifier added" />
+    <MESSAGE value="feat: process after account request" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: process after account request" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

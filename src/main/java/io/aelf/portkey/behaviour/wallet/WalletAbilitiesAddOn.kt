@@ -1,9 +1,8 @@
 package io.aelf.portkey.behaviour.wallet
 
-import com.google.gson.JsonObject
+import com.google.protobuf.MessageLite
 import io.aelf.portkey.internal.model.wallet.CAInfo
 import io.aelf.portkey.internal.tools.GlobalConfig.Status
-import io.aelf.portkey.internal.tools.GsonProvider
 import io.aelf.portkey.network.connecter.INetworkInterface
 import io.aelf.portkey.utils.log.GLogger
 import io.aelf.response.ResultCode
@@ -12,7 +11,7 @@ import kotlinx.coroutines.*
 import org.apache.http.util.TextUtils
 
 private const val CHECK_DELAY = 1000L
-private const val CHECK_TIMES = 10
+private const val CHECK_TIMEOUT = 30 * 1000
 
 internal fun PortkeyWallet.initWallet() {
     CoroutineScope(Dispatchers.IO).launch {
@@ -21,15 +20,14 @@ internal fun PortkeyWallet.initWallet() {
 }
 
 internal suspend fun PortkeyWallet.updateWalletStatus() {
-    var checkTimes = 0
+    val startTime = System.currentTimeMillis()
     CoroutineScope(Dispatchers.IO).launch {
         while (this@updateWalletStatus.walletStage == WalletStage.INIT) {
             val job = CoroutineScope(Dispatchers.IO).launch {
                 dealWithSessionProcess()
             }
             joinAll(job)
-            checkTimes++
-            if (checkTimes > CHECK_TIMES) {
+            if (System.currentTimeMillis() - startTime > CHECK_TIMEOUT) {
                 this@updateWalletStatus.walletStage = WalletStage.FAILED
                 break
             }
@@ -46,24 +44,22 @@ internal fun PortkeyWallet.dealWithSessionProcess() {
         } catch (ignore: Exception) {
             null
         }
-        if (result != null) updateCAInfo(result.caAddress!!, result.caHash!!)
-        if (!TextUtils.isEmpty(result?.registerStatus)) {
-            result?.registerStatus!!
-        } else {
-            Status.PENDING
+        val statusItem = result?.items?.firstOrNull()
+        if (statusItem != null) {
+            updateCAInfo(statusItem.caAddress, statusItem.caHash)
         }
+        statusItem?.registerStatus ?: Status.PENDING
     } else {
         val result = try {
             INetworkInterface.getInstance().getRecoveryStatus(this.sessionId)
         } catch (ignore: Exception) {
             null
         }
-        if (result != null) updateCAInfo(result.caAddress!!, result.caHash!!)
-        if (!TextUtils.isEmpty(result?.recoveryStatus)) {
-            result?.recoveryStatus!!
-        } else {
-            Status.PENDING
+        val statusItem = result?.items?.firstOrNull()
+        if (statusItem != null) {
+            updateCAInfo(statusItem.caAddress, statusItem.caHash)
         }
+        statusItem?.recoveryStatus ?: Status.PENDING
     }
     this.walletStage = when (statusMsg) {
         Status.PENDING -> WalletStage.INIT
@@ -73,10 +69,10 @@ internal fun PortkeyWallet.dealWithSessionProcess() {
     }
 }
 
-internal fun PortkeyWallet.updateCAInfo(caAddress: String, caHash: String) {
+internal fun PortkeyWallet.updateCAInfo(caAddress: String?, caHash: String?) {
     this.caInfo = CAInfo().apply {
-        this.caAddress = caAddress
-        this.caHash = caHash
+        if (!TextUtils.isEmpty(caAddress)) this.caAddress = caAddress
+        if (!TextUtils.isEmpty(caHash)) this.caHash = caHash
     }
 }
 
@@ -97,24 +93,76 @@ internal fun PortkeyWallet.handleWalletState() {
 
 @Throws(AElfException::class)
 @JvmName("callCAContractMethod")
+fun <R> PortkeyWallet.callCAContractMethod(
+        methodName: String,
+        isViewMethod: Boolean,
+        params: ByteArray = ByteArray(0),
+        parser: (String) -> R
+): R? {
+    val res = callCAContractMethod(methodName, isViewMethod, params)
+    return res?.let { parseResult(it, parser) }
+}
+
+@Throws(AElfException::class)
+@JvmName("callCAContractMethod")
+fun <T : MessageLite, R> PortkeyWallet.callCAContractMethod(
+        methodName: String,
+        isViewMethod: Boolean,
+        params: T,
+        parser: (String) -> R
+): R? {
+    return callCAContractMethod(methodName, isViewMethod, params.toByteArray() ?: ByteArray(0), parser)
+}
+
+@Throws(AElfException::class)
+@JvmName("callCAContractMethod")
+fun <T : MessageLite> PortkeyWallet.callCAContractMethod(
+        methodName: String,
+        isViewMethod: Boolean,
+        params: T,
+): String? {
+    return callCAContractMethod(methodName, isViewMethod, params.toByteArray() ?: ByteArray(0))
+}
+
+@Throws(AElfException::class)
+@JvmName("callCAContractMethod")
 fun PortkeyWallet.callCAContractMethod(
         methodName: String,
         isViewMethod: Boolean,
-        params: JsonObject = JsonObject()
-): String {
+): String? {
+    return callCAContractMethod(methodName, isViewMethod, ByteArray(0))
+}
+
+@Throws(AElfException::class)
+@JvmName("callCAContractMethod")
+private fun PortkeyWallet.callCAContractMethod(
+        methodName: String,
+        isViewMethod: Boolean,
+        params: ByteArray = ByteArray(0),
+): String? {
     val isReady = isAvailable
+    val chainId = this.originalChainId
     if (!isReady) {
         throw AElfException(ResultCode.INTERNAL_ERROR, "Wallet is not available by now.")
     }
-    val aelfClient = AElfHolder.getAElfClient(this.originalChainId)
-    return aelfClient.callContractMethodWithAddress(
-            this.caInfo.caAddress,
-            methodName,
-            this.keyPairInfo.privateKey,
-            isViewMethod,
-            GsonProvider.getGson().toJson(params),
-    )
+    val aelfClient = AElfHolder.getAElfClient(chainId)
+    val res = try {
+        aelfClient.callContractMethodWithAddress(
+                AElfHolder.getCaAddress(chainId), // caAddress IS NOT caContractAddress !
+                methodName,
+                this.keyPairInfo.privateKey,
+                isViewMethod,
+                params,
+        )
+    } catch (e: Exception) {
+        GLogger.e("callCAContractMethod error.", AElfException(e))
+        null
+    }
+    return res
 }
+
+@Throws(AElfException::class)
+private fun <R> parseResult(result: String, parser: (String) -> R): R = parser.invoke(result)
 
 enum class WalletStage {
     INIT, // We can't be sure that the wallet is ready to use, need to check the sessionId.

@@ -167,7 +167,7 @@ public class LoginBehaviourEntity implements GuardianObserver, IAfterVerifiedBeh
                         )
                         .setContext(new ContextDTO().setClientId(keyPairInfo.getAddress()))
         );
-        AssertChecker.assertNotNull(resultDTO.getSessionId(), new AElfException(ResultCode.INTERNAL_ERROR, "requestRecovery failed"));
+        AssertChecker.assertNotNull(resultDTO, new AElfException(ResultCode.INTERNAL_ERROR, "requestRecovery failed"));
         return new WalletBuildConfig()
                 .setPrivKey(keyPairInfo.getPrivateKey())
                 .setSessionId(resultDTO.getSessionId())

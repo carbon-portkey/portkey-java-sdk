@@ -98,7 +98,7 @@ public class RegisterBehaviourEntity implements GuardianObserver, IAfterVerified
                         .setVerifierId(guardianWrapper.getOriginalData().getVerifierId())
                         .setExtraData(new Gson().toJson(new ExtraInfoWrapper(DeviceExtraInfo.fromPlatformEnum(ExtraDataPlatformEnum.OTHER))))
         );
-        AssertChecker.assertNotNull(resultDTO.getSessionId(), new AElfException(ResultCode.INTERNAL_ERROR, "requestRecovery failed"));
+        AssertChecker.assertNotNull(resultDTO, new AElfException(ResultCode.INTERNAL_ERROR, "requestRecovery failed"));
         return new WalletBuildConfig()
                 .setPrivKey(keyPairInfo.getPrivateKey())
                 .setSessionId(resultDTO.getSessionId())

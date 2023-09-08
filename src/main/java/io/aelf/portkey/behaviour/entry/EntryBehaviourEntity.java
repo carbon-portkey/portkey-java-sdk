@@ -12,6 +12,7 @@ import io.aelf.portkey.internal.model.guardian.GuardianInfoDTO;
 import io.aelf.portkey.internal.model.guardian.GuardianWrapper;
 import io.aelf.portkey.internal.model.register.RegisterInfoDTO;
 import io.aelf.portkey.internal.tools.DataVerifyTools;
+import io.aelf.portkey.internal.tools.GlobalConfig;
 import io.aelf.portkey.network.connecter.INetworkInterface;
 import io.aelf.response.ResultCode;
 import io.aelf.utils.AElfException;
@@ -71,6 +72,11 @@ public class EntryBehaviourEntity {
                 isRegistered = false;
                 registerInfo = null;
             }
+        }
+        if (isRegistered && !TextUtils.isEmpty(registerInfo.getOriginChainId())) {
+            config.setOriginalChainId(registerInfo.getOriginChainId());
+        } else {
+            config.setOriginalChainId(GlobalConfig.getCurrentChainId());
         }
         return new CheckedEntry(isRegistered, config, registerInfo, givenGoogleAccount);
     }

@@ -27,6 +27,7 @@ public class PinBehaviourTest {
                 new WalletBuildConfig()
                         .setSessionId("mock")
                         .setPrivKey(keyPairInfo.getPrivateKey())
+                        .setOriginalChainId(GlobalConfig.ChainIds.TESTNET_CHAIN_ID)
         );
     }
 

@@ -37,6 +37,7 @@ public class PinManager {
         IStorageBehaviour handler = StorageProvider.getHandler();
         handler.putValue(TAG_PIN, pinValue);
         handler.putValue(TAG_WALLET_CONFIG, ExtraStorageEncoder.encode(GsonProvider.getGson().toJson(buildConfig), pinValue));
+        setCurrentChainId(buildConfig.getOriginalChainId());
     }
 
     protected static synchronized @NotNull WalletBuildConfig unlock(@NotNull String pinValue) throws AElfException {
@@ -46,7 +47,15 @@ public class PinManager {
             throw new AElfException();
         }
         String walletConfig = ExtraStorageEncoder.decode(handler.getValue(TAG_WALLET_CONFIG), pinValue);
-        return new Gson().fromJson(walletConfig, WalletBuildConfig.class);
+        WalletBuildConfig config = new Gson().fromJson(walletConfig, WalletBuildConfig.class);
+        if (walletConfig != null) {
+            setCurrentChainId(config.getOriginalChainId());
+        }
+        return config;
+    }
+
+    protected static void setCurrentChainId(String chainId) {
+        GlobalConfig.setCurrentChainId(chainId);
     }
 
     protected static void verifyPin(@NotNull String pinValue) throws AElfException {

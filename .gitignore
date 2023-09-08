@@ -43,3 +43,4 @@ build/
 /**/*.jar
 
 /**/*.properties
+/src/main/java/io/aelf/portkey/core/generated/*.java

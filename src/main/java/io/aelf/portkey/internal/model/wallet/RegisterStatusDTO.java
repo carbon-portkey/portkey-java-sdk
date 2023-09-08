@@ -3,48 +3,26 @@ package io.aelf.portkey.internal.model.wallet;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RegisterStatusDTO {
-    @JsonProperty("caAddress")
-    private String caAddress;
-    @JsonProperty("caHash")
-    private String caHash;
-    @JsonProperty("registerStatus")
-    private String registerStatus;
-    @JsonProperty("registerMessage")
-    private String registerMessage;
+    @JsonProperty("totalCount")
+    private int totalCount;
+    @JsonProperty("items")
+    private RegisterStatusItemDTO[] items;
 
-    public String getCaAddress() {
-        return caAddress;
+    public int getTotalCount() {
+        return totalCount;
     }
 
-    public RegisterStatusDTO setCaAddress(String caAddress) {
-        this.caAddress = caAddress;
+    public RegisterStatusDTO setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
         return this;
     }
 
-    public String getCaHash() {
-        return caHash;
+    public RegisterStatusItemDTO[] getItems() {
+        return items;
     }
 
-    public RegisterStatusDTO setCaHash(String caHash) {
-        this.caHash = caHash;
-        return this;
-    }
-
-    public String getRegisterStatus() {
-        return registerStatus;
-    }
-
-    public RegisterStatusDTO setRegisterStatus(String registerStatus) {
-        this.registerStatus = registerStatus;
-        return this;
-    }
-
-    public String getRegisterMessage() {
-        return registerMessage;
-    }
-
-    public RegisterStatusDTO setRegisterMessage(String registerMessage) {
-        this.registerMessage = registerMessage;
+    public RegisterStatusDTO setItems(RegisterStatusItemDTO[] items) {
+        this.items = items;
         return this;
     }
 }
